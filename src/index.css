@@ -49,3 +49,27 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.alert-error {
+  background-color: #e42d1c;
+  font-weight: bold;
+  color: white;
+  padding: 10px;
+  font-size: 16px;  
+}
+
+.alert-warnnig {
+  background-color: #e4871c;
+  font-weight: bold;
+  color: white;
+  padding: 10px;
+  font-size: 16px;  
+}
+
+.alert-success {
+  background-color: #1764d8;
+  font-weight: bold;
+  color: black;
+  padding: 10px; 
+  font-size: 16px; 
+}
