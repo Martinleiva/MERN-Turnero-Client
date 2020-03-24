@@ -25,25 +25,25 @@ const Home = () => {
                     </ol>
                     <div className="carousel-inner">
                         <div className="carousel-item active h-100">
-                        <img src={Img1} className="d-block w-100" alt="..."/>
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </div>
-                        </div>
-                        <div className="carousel-item h-100">
-                        <img src={Img2} className="d-block w-100 " alt="..."/>
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
+                            <img src={Img1} className="d-block w-100" alt="..."/>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>First slide label</h5>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
                         </div>
                         <div className="carousel-item h-100">
-                        <img src={Img3} className="d-block w-100" alt="..."/>
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <img src={Img2} className="d-block w-100 " alt="..."/>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Second slide label</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
                         </div>
+                        <div className="carousel-item h-100">
+                            <img src={Img3} className="d-block w-100" alt="..."/>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Third slide label</h5>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
                         </div>
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -57,13 +57,12 @@ const Home = () => {
                     </div>
                 </div>
             </div>
- 
-            
+
             </div>
 
             <div className="container">
                 <di className="row justify-content-md-center">
-                    <div className="col-sm-4">
+                    <div className="col-md-4 margen-card">
                         <div className="card border-success mb-3 h-100 estilo-card" >
                             <div className="card-header">
                                 <img src={ImgCard1} className="mx-auto d-block"></img>
@@ -74,7 +73,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-4">
+                    <div className="col-md-4 margen-card">
                         <div className="card border-success mb-3 h-100 estilo-card">
                             <div className="card-header">
                             <img src={ImgCard2} className="mx-auto d-block"></img>
@@ -85,7 +84,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-4">
+                    <div className="col-md-4 margen-card">
                         <div className="card border-success mb-3 h-100 estilo-card">
                             <div className="card-header">
                                 <img src={ImgCard3} className="mx-auto d-block"></img>

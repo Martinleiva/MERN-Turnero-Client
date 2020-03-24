@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url('../src/img/fondoturnero.png');
   
-  background-position-x: 0.4cm;
+  background-position-x: 0cm;
   background-position-y: -15cm;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -21,7 +21,7 @@ code {
 
 .contenedor-header{
   width: 100%;
-  padding: 0.3rem 0 0.3rem 2rem;
+  padding: 0.3rem 2rem 0.3rem 2rem;
   background-color: white;
   margin: 0 0 8rem 0;
   font-family: 'Verdana';
@@ -58,6 +58,15 @@ code {
 
 .estilo-card{
   font-family: 'Century Gothic';
+  max-width: 30rem;
+}
+
+.margen-card{
+  margin-bottom: 1.5rem;
+}
+
+.margen-btn{
+  margin-bottom: 1.5rem;
 }
 
 .list-estilo{
@@ -65,7 +74,9 @@ code {
   font-size: 1rem;
   margin: 0;
   padding: 0;
+  margin-bottom: 1rem;
 }
+
 
 .nombre-app{
   font-size: 1rem;

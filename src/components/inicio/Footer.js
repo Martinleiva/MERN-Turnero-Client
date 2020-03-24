@@ -5,13 +5,13 @@ const Footer = () => {
         
             <div className="estilo-footer footer-margen">
                 <div className="row justify-content-md-center logo-footer">
-                    <div className="col-lg-2">
-                        <img src={Logo}></img>
+                    <div className="col-md-auto">
+                        <img src={Logo} className="mx-auto d-block"></img>
                     </div>
                 </div>
             
-                <div className="row justify-content-md-center align-items-end">
-                    <div className="col col-lg-3 offset-md-2">
+                <div className="row justify-content-sm-center">
+                    <div className="col col-sm-auto">
                         <ul className="list-estilo">
                             <li className="">Teléfono</li>
                             <li className="">Domicilio</li>
@@ -20,7 +20,7 @@ const Footer = () => {
                         </ul>
 
                     </div>
-                    <div className="col col-lg-3 ">
+                    <div className="col-sm-auto">
                     <p className="nombre-app">Tu Cancha Ya!</p>
                     <ul className="list-estilo">
                             <li className=""><a href="#">Terminos y Condiciones</a></li>

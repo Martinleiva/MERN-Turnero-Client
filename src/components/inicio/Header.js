@@ -6,13 +6,13 @@ const Header = () => {
         <Fragment>
             <div className="contenedor-header">
                 <div className="row align-items-center">
-                    <div className="col-sm-8">
+                    <div className="col margen-btn">
                         <img src={Logo} class="rounded float-left logo" alt="..."/>
                     </div>
-                    <div className="col-sm-2" >
+                    <div className="col-md-auto" >
                         <button type="button" className="btn btn-success btn-lg btn-block">Iniciar Sesión</button>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col col-md-auto">
                         <button type="button" className="btn btn-success btn-lg btn-block">Registrarse</button>
                     </div>
                 </div>
