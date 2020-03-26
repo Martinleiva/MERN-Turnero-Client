@@ -7,6 +7,26 @@
   --headingFont:'Raleway', sans-serif;
   --textFont:  'Roboto', sans-serif;
 }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('../src/img/fondoturnero.png');
+  
+  background-position-x: 0cm;
+  background-position-y: -15cm;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 .div-form-signin {
   background-color: #aacab4;
   height: 100vh;
@@ -119,4 +139,70 @@
 
 .card-text {
   font-size: 1rem;
+}
+
+
+.contenedor-header{
+  width: 100%;
+  padding: 0.3rem 2rem 0.3rem 2rem;
+  background-color: white;
+  margin: 0 0 8rem 0;
+  font-family: 'Verdana';
+  font-style: normal;
+  font-family: 'Century Gothic';
+}
+
+.btn{
+  text-transform: none;
+  font-size: 1.3rem;
+}
+
+.img-carrusel{
+  margin-bottom: 5em;
+}
+
+.logo-footer{
+  margin: 0 0 3rem 0;
+}
+
+.estilo-footer{
+  width: 100%;
+  margin: 18rem 0 0 0;
+  background-color: white;
+  padding: 4rem 0 3rem 0;
+  font-family: 'Century Gothic';
+  font-size: 1.2rem;
+}
+
+.card-text{
+  font-size: 1.2rem;
+  font-family: 'Century Gothic';
+}
+
+.estilo-card{
+  font-family: 'Century Gothic';
+  max-width: 30rem;
+}
+
+.margen-card{
+  margin-bottom: 1.5rem;
+}
+
+.margen-btn{
+  margin-bottom: 1.5rem;
+}
+
+.list-estilo{
+  list-style-type: none;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+
+.nombre-app{
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 0 0 0;
 }
