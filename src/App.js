@@ -9,6 +9,8 @@ import SingUpDuenio from './components/auth/SingUpDuenio';
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
 import Home from './components/inicio/Home';
+import Login from './components/authCliente/Login';
+import AuthClienteState from './context/authCliente/authClienteState';
 
 function App() {
   
