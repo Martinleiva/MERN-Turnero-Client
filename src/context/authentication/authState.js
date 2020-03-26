@@ -52,7 +52,17 @@ const AuthState = props => {
     // Return the authenticated user
     const userAuth = async () =>  {
         const token = localStorage.getItem('token');
-        
+        if(token) {
+            // Function that sends the token through the header
+
+        }
+
+        try {
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
 
 

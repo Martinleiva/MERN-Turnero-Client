@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 import InputMask from 'react-input-mask';
+import Footer from '../../components/inicio/Footer'
 
 
 const SingUpDuenio = (props) => {
@@ -106,88 +107,91 @@ const SingUpDuenio = (props) => {
     }
 
     return (
-        <div className="div-form-signin">
-            <div className="contenedor-form-signin">
-                {alert ? (<div className={`alert alert-dismissible font-weight-bold ${alert.category}`}>{alert.msg}</div>) : null}
-                <form 
-                    className="form-login"
-                    onSubmit={onSubmit}
-                >
-                    <h1 className="h2 mb-3 font-weight-bold">Nuevo Dueño</h1> 
+        <Fragment>
+            <div className="div-form-signin">
+                <div className="contenedor-form-signin polaroid">
+                    {alert ? (<div className={`alert alert-dismissible font-weight-bold ${alert.category}`}>{alert.msg}</div>) : null}
+                    <form 
+                        className="form-login"
+                        onSubmit={onSubmit}
+                    >
+                        <h1 className="h2 mb-3 font-weight-bold">Nuevo Dueño</h1> 
 
-                    <input 
-                        type="text"                 
-                        className="form-control" 
-                        placeholder="Apellidos"
-                        name="last_names"
-                        value={last_names}
-                        onChange={onChange}
-                    /> 
+                        <input 
+                            type="text"                 
+                            className="form-control" 
+                            placeholder="Apellidos"
+                            name="last_names"
+                            value={last_names}
+                            onChange={onChange}
+                        /> 
 
-                    <input 
-                        type="text"                 
-                        className="form-control" 
-                        placeholder="Nombres"
-                        name="names"
-                        value={names}
-                        onChange={onChange}
-                    /> 
+                        <input 
+                            type="text"                 
+                            className="form-control" 
+                            placeholder="Nombres"
+                            name="names"
+                            value={names}
+                            onChange={onChange}
+                        /> 
 
-                    <InputMask 
-                        mask='+5\4 999 4999999'                 
-                        className="form-control" 
-                        placeholder="Teléfono"
-                        name="tel"
-                        value={tel}
-                        onChange={onChange}
-                    />
+                        <InputMask 
+                            mask='+5\4 999 4999999'                 
+                            className="form-control" 
+                            placeholder="Teléfono"
+                            name="tel"
+                            value={tel}
+                            onChange={onChange}
+                        />
 
-                    <InputMask 
-                        mask='99-99999999-9'                 
-                        className="form-control" 
-                        placeholder="CUIT"
-                        name="cuit"
-                        value={cuit}
-                        onChange={onChange}
-                    />
+                        <InputMask 
+                            mask='99-99999999-9'                 
+                            className="form-control" 
+                            placeholder="CUIT"
+                            name="cuit"
+                            value={cuit}
+                            onChange={onChange}
+                        />
 
-                    <input 
-                        type="email"                 
-                        className="form-control" 
-                        placeholder="Email"
-                        name="email"
-                        value={email}
-                        onChange={onChange}
+                        <input 
+                            type="email"                 
+                            className="form-control" 
+                            placeholder="Email"
+                            name="email"
+                            value={email}
+                            onChange={onChange}
 
-                    />            
-                    <input 
-                        type="password"               
-                        className="form-control"
-                        placeholder="Password"
-                        name="password"
-                        value={password}
-                        onChange={onChange}
-                    />
-                    <input 
-                        type="password"               
-                        className="form-control"
-                        placeholder="Confirmar Password"
-                        name="confirm"
-                        value={confirm}
-                        onChange={onChange}
-                    />
+                        />            
+                        <input 
+                            type="password"               
+                            className="form-control"
+                            placeholder="Password"
+                            name="password"
+                            value={password}
+                            onChange={onChange}
+                        />
+                        <input 
+                            type="password"               
+                            className="form-control"
+                            placeholder="Confirmar Password"
+                            name="confirm"
+                            value={confirm}
+                            onChange={onChange}
+                        />
 
-                    <button 
-                        className="btn btn-lg btn-success btn-block mb-4" 
-                        type="submit"               
-                    >Registrarme
-                    </button>                                        
-                </form>
+                        <button 
+                            className="btn btn-lg btn-success btn-block mb-4" 
+                            type="submit"               
+                        >Registrarme
+                        </button>                                        
+                    </form>
 
-                <Link to={'/singup'}> &lt;&lt; Volver Atrás </Link>
+                    <Link to={'/singup'}> &lt;&lt; Volver Atrás </Link>
 
-            </div>         
-        </div>
+                </div>         
+            </div>
+            <Footer />
+        </Fragment>
     );
 };
 

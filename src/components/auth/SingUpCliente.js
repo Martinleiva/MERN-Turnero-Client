@@ -79,7 +79,7 @@ const SingUpCliente = () => {
 
     return (
         <div className="div-form-signin">  
-            <div className="contenedor-form-signin">
+            <div className="contenedor-form-signin polaroid">
             {alert ? (<div className={`alert alert-dismissible font-weight-bold ${alert.category}`}>{alert.msg}</div>) : null}
                 <form 
                     className="form-login"
