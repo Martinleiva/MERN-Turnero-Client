@@ -1,18 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 import InputMask from 'react-input-mask';
 
 
-const SingUpDuenio = () => {
+const SingUpDuenio = (props) => {
 
     //Extract values from context
     const alertContext = useContext(AlertContext);
     const { alert, showAlert } = alertContext;
 
     const authContext = useContext(AuthContext);
-    const { userRegister } = authContext;
+    const { message, authenticated, userRegister } = authContext;
+
+    // In case of the user has been authenticated or registred or duplicate register 
+    useEffect( () => {
+
+        if(authenticated) {
+            props.history.push('/'); // Screen user authenticated
+        }
+
+        if(message) {
+            showAlert(message.msg, message.category);
+        }
+
+    }, [message, authenticated, props.history]);
 
     //State for singup
     const [userduenio, guardarUserduenio] = useState({

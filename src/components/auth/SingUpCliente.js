@@ -22,7 +22,7 @@ const SingUpCliente = () => {
         confirm: '',
         user_type: 'Cliente'
     });
-    //Carpeta 25
+
     const { names, tel, email, password, confirm, user_type} = userclient;
 
     const onChange = e => {

@@ -49,6 +49,12 @@ const AuthState = props => {
         }
     }
 
+    // Return the authenticated user
+    const userAuth = async () =>  {
+        const token = localStorage.getItem('token');
+        
+    }
+
 
     return(
         <AuthContext.Provider
