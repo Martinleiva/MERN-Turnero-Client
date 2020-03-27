@@ -1,0 +1,49 @@
+import React from 'react';
+import Container from './Container';
+import Card from './Card';
+
+const Navbar = () => {
+    return (
+        <div> 
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a className="navbar-brand" href="#/">Reservala YA!</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon" />
+                </button>
+                <div className="collapse navbar-collapse" id="navbarColor01">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" href="#/">Ir al inicio<span className="sr-only">(current)</span></a>
+                        </li>
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#/">Ver mis reservas</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#/">Mi cuenta</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#/">Cerrar sesion</a>
+                        </li>
+                    </ul>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control form-control-lg mx-2" type="text" placeholder="Buscar por deporte" />
+                        <button className="btn btn-secondary mx-4" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+
+            <div id="contenedorNavbar" className="container col">
+                <Container />
+                <div className="row">
+                    <div className="col"><Card/></div>
+                    <div className="col"><Card/></div>
+                    <div className="col"><Card/></div>
+                </div>
+                
+            </div>
+            
+        </div>
+     );
+}
+ 
+export default Navbar;

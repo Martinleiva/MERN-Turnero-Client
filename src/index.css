@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#contenedorNavbar {
+  padding: 1.5%;
+}
+
+#cont-card{
+  
+}
+
+.nav-item {
+  font-size: 140%;
+}
