@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import AuthClienteContext from './authClienteContext';
 import AuthClienteReducer from './authClienteReducer';
 import axiosClient from '../../config/axios';
-import tokenAuth from '../../config/token';
+import tokenAuth from '../../config/tokenAuth';
 
 import {
     LOGIN_SUCCESS,

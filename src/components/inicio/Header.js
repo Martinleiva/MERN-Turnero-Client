@@ -13,9 +13,11 @@ const Header = () => {
                         </Link>
                     </div>
                     <div className="col-md-auto" >
-                        <button type="button" className="btn btn-success btn-lg btn-block">Iniciar Sesión</button>
+                        <Link to={'/login'} type="button" className="btn btn-lg btn-success btn-block">
+                            Iniciar Sesión
+                        </Link>
                     </div>
-                    <div class="col col-md-auto">
+                    <div className="col col-md-auto">
                         <Link to={'/singup'} type="button" className="btn btn-lg btn-success btn-block">
                             Registrarse!
                         </Link>

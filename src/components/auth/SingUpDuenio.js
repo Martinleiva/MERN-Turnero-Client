@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 import InputMask from 'react-input-mask';
-import Footer from '../../components/inicio/Footer'
+import Header from '../../components/inicio/Header';
+import Footer from '../../components/inicio/Footer';
 
 
 const SingUpDuenio = (props) => {
@@ -19,7 +20,7 @@ const SingUpDuenio = (props) => {
     useEffect( () => {
 
         if(authenticated) {
-            props.history.push('/'); // Screen user authenticated
+            props.history.push('/dash'); // Screen user authenticated
         }
 
         if(message) {
@@ -108,9 +109,10 @@ const SingUpDuenio = (props) => {
 
     return (
         <Fragment>
+            <Header />
             <div className="div-form-signin">
                 <div className="contenedor-form-signin polaroid">
-                    {alert ? (<div className={`alert alert-dismissible font-weight-bold ${alert.category}`}>{alert.msg}</div>) : null}
+                
                     <form 
                         className="form-login"
                         onSubmit={onSubmit}
@@ -136,6 +138,7 @@ const SingUpDuenio = (props) => {
                         /> 
 
                         <InputMask 
+                            /* eslint-disable-next-line */
                             mask='+5\4 999 4999999'                 
                             className="form-control" 
                             placeholder="Teléfono"
@@ -185,7 +188,7 @@ const SingUpDuenio = (props) => {
                         >Registrarme
                         </button>                                        
                     </form>
-
+                    {alert ? (<div className={`alert font-weight-bold ${alert.category}`}>{alert.msg}</div>) : null}
                     <Link to={'/singup'}> &lt;&lt; Volver Atrás </Link>
 
                 </div>         

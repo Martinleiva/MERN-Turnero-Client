@@ -18,7 +18,7 @@ const Home = () => {
             <div className="row justify-content-md-center">
                 <div className="col col-lg-9">
                 <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
+                    <ol className="carousel-indicators">
                         <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
                         <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                         <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
@@ -61,11 +61,11 @@ const Home = () => {
             </div>
 
             <div className="container">
-                <di className="row justify-content-md-center">
+                <div className="row justify-content-md-center">
                     <div className="col-md-4 margen-card">
                         <div className="card border-success mb-3 h-100 estilo-card" >
                             <div className="card-header">
-                                <img src={ImgCard1} className="mx-auto d-block"></img>
+                                <img src={ImgCard1} className="mx-auto d-block" alt="..."></img>
                             </div>
                             <div className="card-body text-success">
                                 <h2 className="card-title">Busca</h2>
@@ -76,7 +76,7 @@ const Home = () => {
                     <div className="col-md-4 margen-card">
                         <div className="card border-success mb-3 h-100 estilo-card">
                             <div className="card-header">
-                            <img src={ImgCard2} className="mx-auto d-block"></img>
+                            <img src={ImgCard2} className="mx-auto d-block" alt="..."></img>
                             </div>
                             <div className="card-body text-success">
                                 <h2 className="card-title">Reservá</h2>
@@ -87,7 +87,7 @@ const Home = () => {
                     <div className="col-md-4 margen-card">
                         <div className="card border-success mb-3 h-100 estilo-card">
                             <div className="card-header">
-                                <img src={ImgCard3} className="mx-auto d-block"></img>
+                                <img src={ImgCard3} className="mx-auto d-block" alt="..."></img>
                             </div>
                             <div className="card-body text-success">
                                 <h2 className="card-title">Jugá</h2>
@@ -95,7 +95,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                </di>
+                </div>
             </div>
             
             <Footer />

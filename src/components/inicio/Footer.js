@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="estilo-footer footer-margen">
                 <div className="row justify-content-md-center logo-footer">
                     <div className="col-md-auto">
-                        <img src={Logo} className="mx-auto d-block"></img>
+                        <img src={Logo} className="mx-auto d-block" alt="..."></img>
                     </div>
                 </div>
             
@@ -23,9 +23,9 @@ const Footer = () => {
                     <div className="col-sm-auto">
                     <p className="nombre-app">Tu Cancha Ya!</p>
                     <ul className="list-estilo">
-                            <li className=""><a href="#">Terminos y Condiciones</a></li>
-                            <li className=""><a href="#">Politica de cookies</a></li>
-                            <li className=""><a href="#">Equipo de Desarrollo</a></li>
+                            <li className=""><a href="#!">Terminos y Condiciones</a></li>
+                            <li className=""><a href="#!">Politica de cookies</a></li>
+                            <li className=""><a href="#!">Equipo de Desarrollo</a></li>
                     </ul>
                     </div>
                 </div>
