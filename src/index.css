@@ -202,3 +202,11 @@ body {
   font-weight: bold;
   margin: 0 0 0 0;
 }
+
+#contenedorNavbar {
+  padding: 1.5%;
+}
+
+.nav-item {
+  font-size: 140%;
+}

@@ -1,25 +1,16 @@
 import React from 'react';
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import Home from './components/inicio/Home';
 import Login from './components/auth/Login';
 import SingUp from './components/auth/SingUp';
 import SingUpCliente from './components/auth/SingUpCliente';
 import SingUpDuenio from './components/auth/SingUpDuenio';
-import Dash from './components/dash/Dash';
-
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
-
-import tokenAuth from './config/tokenAuth';
 import PrivateRoute from './components/routes/PrivateRoute';
+import DashClient from './components/usuarios/DashClient';
+import DashOwner from './components/usuarios/DashOwner';
 
-// Check for a token
-const token = localStorage.getItem('token');
-if(token) {
-  tokenAuth(token);
-}
 
 function App() {
   
@@ -33,11 +24,12 @@ function App() {
             <Route exact path="/singup" component={SingUp} />
             <Route exact path="/singup-client" component={SingUpCliente} />
             <Route exact path="/singup-duenio" component={SingUpDuenio} />
-            <PrivateRoute exact path="/dash" component={Dash} />
+            <PrivateRoute exact path="/dash-client" component={DashClient} />
+            <PrivateRoute exact path="/dash-owner" component={DashOwner} />
           </Switch>
         </Router>
       </AuthState>
-    </AlertState>
+    </AlertState>    
   );
 }
 

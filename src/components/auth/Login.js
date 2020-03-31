@@ -18,7 +18,7 @@ const Login = (props) => {
     useEffect( () => {
 
         if(authenticated) {
-            props.history.push('/dash'); // Screen user authenticated
+            props.history.push('/dash-client'); // Screen user authenticated
         }
 
         if(message) {

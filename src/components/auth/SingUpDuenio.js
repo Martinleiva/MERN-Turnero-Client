@@ -20,7 +20,7 @@ const SingUpDuenio = (props) => {
     useEffect( () => {
 
         if(authenticated) {
-            props.history.push('/dash'); // Screen user authenticated
+            props.history.push('/dash-owner'); // Screen user authenticated
         }
 
         if(message) {
