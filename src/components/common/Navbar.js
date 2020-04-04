@@ -1,4 +1,5 @@
 import React, {useContext, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
 import AuthContext from '../../context/authentication/authContext';
 
@@ -22,6 +23,9 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link" href="#/">Ver mis reservas</a>
+                        </li>
+                        <li className="nav-item active">
+                            <Link className="nav-link" to={'/establishment'}>Complejos</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/">Mi cuenta</a>
