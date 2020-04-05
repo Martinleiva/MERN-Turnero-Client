@@ -217,6 +217,26 @@ body {
   padding-bottom: 2rem;
 }
 
+.header-my-establishment {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.header-my-establishment p {
+  width: 5rem;     
+}
+
+.header-my-establishment h1{     
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;  
+}
+
+.header-my-establishment button{
+  font-size: 14px;    
+  height: 2.2rem;
+}
+
+
 .title-my-establishment{
   text-align: center;   
   margin-bottom: 2rem;
@@ -224,11 +244,13 @@ body {
 
 .establishments {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;  
 }
 
 .card-establishment {
   padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .establishment-details p attr{
@@ -249,5 +271,32 @@ body {
 
 .badge-day-of-week {
   margin-right: 5px;
+}
+
+.card-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-field {
+  width: 220px;
+  height: 280px;
+  margin-right: 30px;  
+  margin-bottom: 30px;  
+}
+
+.card-field:last-of-type {
+  margin-right : 0;
+}
+
+.card-field img {
+  width: 220px;
+  height: 200px;  
+}
+
+.card-field p {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
 }
 

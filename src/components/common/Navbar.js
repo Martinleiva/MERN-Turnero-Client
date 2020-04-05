@@ -11,7 +11,7 @@ const Navbar = () => {
 
     return (
         <div> 
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a className="navbar-brand" href="#/">Tu Cancha Ya!</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
@@ -25,7 +25,7 @@ const Navbar = () => {
                             <a className="nav-link" href="#/">Ver mis reservas</a>
                         </li>
                         <li className="nav-item active">
-                            <Link className="nav-link" to={'/establishment'}>Complejos</Link>
+                            <Link className="nav-link" to={'/my-establishments'}>Complejos</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/">Mi cuenta</a>

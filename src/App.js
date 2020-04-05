@@ -10,7 +10,7 @@ import AuthState from './context/authentication/authState';
 import PrivateRoute from './components/routes/PrivateRoute';
 import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
-import Establishment from './components/establishment/Establishment';
+import MyEstablishments from './components/establishment/MyEstablishments';
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
             <Route exact path="/singup-duenio" component={SingUpDuenio} />
             <PrivateRoute exact path="/dash-client" component={DashClient} />
             <PrivateRoute exact path="/dash-owner" component={DashOwner} />
-            <PrivateRoute exact path="/establishment" component={Establishment} />
+            <PrivateRoute exact path="/my-establishments" component={MyEstablishments} />
           </Switch>
         </Router>
       </AuthState>
