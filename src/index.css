@@ -301,6 +301,85 @@ body {
 }
 
 .collapseField {
-  background-color: #e9d4bc;
+  background-color: #f3ebe2;
 }
 
+.btn-group-fab {
+  position: relative; 
+  float: right; 
+  width: 50px;
+  height: auto;
+  right: 20px; bottom: 20px;
+}
+
+.btn-group-fab .btn {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 4px;
+  width: 40px; height: 40px;
+  margin: 4px auto;
+}
+
+.btn-plus-bold {
+  font-weight: bold;
+}
+
+.btn-group-fab .btn-new-field {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 80px;
+  width: 40px; height: 40px;
+  margin: 80px auto;
+}
+
+.btn-group-fab .btn-main {
+  width: 50px; height: 50px;
+  right: 50%; margin-right: -25px;
+}
+
+.btn-group-fab-edit-establishment {
+  position: relative; 
+  float: right;   
+  height: auto;  
+}
+
+.btn-group-fab-edit-establishment .btn {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: -40px;  
+}
+
+.btn-group-fab-edit-establishment .btn-main {
+  width: 50px; height: 50px;
+  right: 50%; margin-right: -25px;
+}
+
+.modal_new_field {
+  background-color: #ebf8e8;
+}
+
+.modal_new_field label{
+  font-size: 1rem;
+}
+
+.form-control-edited {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

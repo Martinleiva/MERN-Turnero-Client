@@ -3,6 +3,7 @@ import Header from '../common/Header';
 import Establishment from './Establishment';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import AuthContext from '../../context/authentication/authContext';
+import ModalNewField from './ModalNewField';
 
 const MyEstablishments = () => {
 
@@ -35,7 +36,9 @@ const MyEstablishments = () => {
                         />
                        ))
                     }                    
-                    
+
+                    <ModalNewField/>
+
                 </div>
             </div>            
         </Fragment>

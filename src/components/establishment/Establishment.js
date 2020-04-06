@@ -2,15 +2,17 @@ import React, {useContext, useState, useEffect} from 'react';
 import imagenTemp from '../../img/complejo_img_test1.jpg';
 import Field from './Field';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
+import { ChevronDoubleUp, Pencil, Plus, PlusSquare} from 'react-bootstrap-icons';
 
 const Establishment = ({establishment}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
     const { listOfFields, getFields } = establishmentContext;
 
-    const handleGetFields = () =>{
+    const handleGetFields = () => {
 
-        //Get all collapse elements and set remove the show class...
+        //Get all collapse elements and remove the show class... 
+        //This is in orden to close all document's collapses
         const collapses = document.getElementsByClassName('collapseField');        
         for(let i=0; i<collapses.length; i++){           
             collapses[i].classList.remove('show');    
@@ -26,7 +28,18 @@ const Establishment = ({establishment}) => {
                     <img src={imagenTemp} className="card-img" alt="..."/>
                 </div>
                 <div className="col-md-8">
+
                     <div className="card-body establishment-details">
+
+                        <div className="btn-group-fab-edit-establishment">
+                            <button type="button" 
+                                    className="btn btn-main btn-success d-flex d-flex justify-content-center" 
+                                    title="Editar Complejo"                                          
+                            > 
+                                <Pencil color="white" size={20}/>
+                            </button>
+                        </div>  
+
                         <h2 className="card-title">{establishment.name}</h2>
                         <p className="card-text"><attr>Dirección: </attr>{establishment.address}</p>
                         <p className="card-text"><attr>Teléfono: </attr>{establishment.tel}</p>
@@ -46,7 +59,8 @@ const Establishment = ({establishment}) => {
                             {establishment.saturday !== '' ? <span className="badge badge-warning mr-2">Sábado: {establishment.saturday}</span> : null}
                             {establishment.sunday !== '' ? <span className="badge badge-warning mr-2">Domingo: {establishment.sunday}</span> : null}
                         </p>
-                    </div>
+                    </div>                          
+
                 </div>                            
             </div>
             <div className="row no-gutters mt-3">
@@ -82,9 +96,31 @@ const Establishment = ({establishment}) => {
                                     ))}
                                    
                                 </div>
-                            </div>
-                        </div> 
 
+                                <div className="btn-group-fab">
+
+                                    <button type="button" 
+                                            className="btn-new-field btn btn-main btn-success d-flex d-flex justify-content-center collapsed" 
+                                            title="Nueva Cancha"
+                                            data-toggle="modal"
+                                            data-target="#modal_new_field"                                                                                
+                                    > 
+                                        <Plus color="white" size={20} />
+                                    </button>    
+
+                                    <button type="button" 
+                                            className="btn btn-main btn-success d-flex d-flex justify-content-center collapsed" 
+                                            title="Cerrar"
+                                            data-toggle="collapse" 
+                                            data-target={`#collapse${establishment._id}`}
+                                            aria-controls={`#collapse${establishment._id}`}                                            
+                                    > 
+                                        <ChevronDoubleUp color="white" size={20}/>
+                                    </button>
+                                </div>            
+
+                            </div>                                     
+                        </div> 
                     </div>
                 </div>
             </div>
