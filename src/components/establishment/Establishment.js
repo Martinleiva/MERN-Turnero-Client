@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import imagenTemp from '../../img/complejo_img_test1.jpg';
 import Field from './Field';
+import EstablishmentContext from '../../context/establishment/establishmentContext';
 
-const Establishment = () => {
+const Establishment = ({establishment}) => {
+
+    const establishmentContext = useContext(EstablishmentContext); 
+    const { listOfFields, getFields } = establishmentContext;
+
+    const handleGetFields = () =>{
+        getFields(establishment._id);
+    }
+
     return (  
         <div className="card card-establishment">
             <div className="row no-gutters">                            
@@ -11,20 +20,24 @@ const Establishment = () => {
                 </div>
                 <div className="col-md-8">
                     <div className="card-body establishment-details">
-                        <h2 className="card-title">Nombre del Complejo</h2>
-                        <p className="card-text"><attr>Dirección: </attr>direccion</p>
-                        <p className="card-text"><attr>Teléfono: </attr>383(441520)</p>
-                        <p className="card-text"><attr>Servicios: </attr>                                     
-                            <span className="badge badge-info mr-2">Vestuarios</span>
-                            <span className="badge badge-info mr-2">Bar</span>
-                            <span className="badge badge-info mr-2">Parrilla</span>
+                        <h2 className="card-title">{establishment.name}</h2>
+                        <p className="card-text"><attr>Dirección: </attr>{establishment.address}</p>
+                        <p className="card-text"><attr>Teléfono: </attr>{establishment.tel}</p>
+                        <p className="card-text"><attr>Servicios: </attr>
+                            {
+                                establishment.services.map(service => (
+                                    <span className="badge badge-info mr-2">{service.description}</span>
+                                ))
+                            }                                                                
                         </p>
                         <p className="card-text"><attr>Horarios: </attr>                                         
-                            <span className="badge badge-warning mr-2">Martes (15:00 - 23:30)</span>
-                            <span className="badge badge-warning mr-2">Miercoles (15:00 - 23:30)</span>
-                            <span className="badge badge-warning mr-2">Jueves (15:00 - 23:30)</span>
-                            <span className="badge badge-warning mr-2">Viernes (15:00 - 2:00)</span>
-                            <span className="badge badge-warning mr-2">Sabados (15:00 - 2:00)</span>
+                            {establishment.monday !== '' ? <span className="badge badge-warning mr-2">Lunes: {establishment.monday}</span> : null}
+                            {establishment.tuesday !== '' ? <span className="badge badge-warning mr-2">Martes: {establishment.tuesday}</span> : null}
+                            {establishment.wednesday !== '' ? <span className="badge badge-warning mr-2">Miércoles: {establishment.wednesday}</span> : null}
+                            {establishment.thursday !== '' ? <span className="badge badge-warning mr-2">Jueves: {establishment.thursday}</span> : null}
+                            {establishment.friday !== '' ? <span className="badge badge-warning mr-2">Viernes: {establishment.friday}</span> : null}
+                            {establishment.saturday !== '' ? <span className="badge badge-warning mr-2">Sábado: {establishment.saturday}</span> : null}
+                            {establishment.sunday !== '' ? <span className="badge badge-warning mr-2">Domingo: {establishment.sunday}</span> : null}
                         </p>
                     </div>
                 </div>                            
@@ -32,26 +45,41 @@ const Establishment = () => {
             <div className="row no-gutters mt-3">
                 <div className="col-md-12">                                
                     <div className="accordion" id="accordion">
+
                         <div className="card">
-                            <div className="card-header" id="headingOne">
-                            <h2 className="mb-0">
-                                <button className="btn btn-success btn-sm" type="button" data-toggle="collapse" data-target="#collapseFields" aria-expanded="false" aria-controls="collapseFields">
-                                    Canchas
-                                </button>
-                            </h2>
+                            <div className="card-header" id={`heading${establishment._id}`}>
+                                <h2 className="mb-0">
+                                    <button 
+                                        className="btn btn-link collapsed" 
+                                        type="button" 
+                                        data-toggle="collapse" 
+                                        data-target={`#collapse${establishment._id}`}
+                                        aria-expanded="false"    
+                                        aria-controls={`#collapse${establishment._id}`}                                    
+                                        onClick={handleGetFields}                                        
+                                    >
+                                        Canchas
+                                    </button>
+                                </h2>
                             </div>
 
-                            <div id="collapseFields" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id={`collapse${establishment._id}`} 
+                                 className="collapse"
+                                 aria-labelledby={`heading${establishment._id}`}
+                                 data-parent="#accordion"   
+                            >
                                 <div className="card-body card-fields">
-                                    <Field/>
-                                    <Field/>
-                                    <Field/>
-                                    <Field/>
-                                    <Field/>                                    
-                                    <Field/>
+
+                                    {listOfFields.map(field => (
+                                            <Field
+                                                field={field}
+                                            />
+                                    ))}
+                                   
                                 </div>
                             </div>
-                        </div>    
+                        </div> 
+
                     </div>
                 </div>
             </div>

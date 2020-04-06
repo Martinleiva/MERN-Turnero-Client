@@ -7,6 +7,7 @@ import SingUpCliente from './components/auth/SingUpCliente';
 import SingUpDuenio from './components/auth/SingUpDuenio';
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
+import EstablishmentState from './context/establishment/establishmentState';
 import PrivateRoute from './components/routes/PrivateRoute';
 import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
@@ -18,6 +19,7 @@ function App() {
   return (
     <AlertState>
       <AuthState>
+        <EstablishmentState>
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -30,6 +32,7 @@ function App() {
             <PrivateRoute exact path="/my-establishments" component={MyEstablishments} />
           </Switch>
         </Router>
+        </EstablishmentState> 
       </AuthState>
     </AlertState>    
   );

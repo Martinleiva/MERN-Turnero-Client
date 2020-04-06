@@ -6,11 +6,7 @@ const Container = () => {
 
     //Extract the information from authentication
     const authContext = useContext(AuthContext);
-    const { user, setAuthenticatedUser, logOut } = authContext;
-
-    useEffect(() => {
-        setAuthenticatedUser();
-    }, []);
+    const { user } = authContext;    
 
     return (
         <div id="contenedorNavbar" className="container col">

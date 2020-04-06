@@ -1,8 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import Header from '../common/Header';
 import Establishment from './Establishment';
+import EstablishmentContext from '../../context/establishment/establishmentContext';
+import AuthContext from '../../context/authentication/authContext';
 
 const MyEstablishments = () => {
+
+    const establishmentContext = useContext(EstablishmentContext);
+    const authContext = useContext(AuthContext);
+
+    const { user } = authContext;
+    const { listOfStablishments, getStablishmentByOwner } = establishmentContext;    
+
+    useEffect( ()=> {
+        getStablishmentByOwner();
+    }, [])    
+
     return ( 
         <Fragment>
             <Header />
@@ -15,8 +28,14 @@ const MyEstablishments = () => {
                 </div>
 
                 <div className="establishments">
-                    <Establishment/>
-                    <Establishment/>
+                    {
+                       listOfStablishments.map(establisment => (
+                        <Establishment 
+                           establishment = {establisment}
+                        />
+                       ))
+                    }                    
+                    
                 </div>
             </div>            
         </Fragment>

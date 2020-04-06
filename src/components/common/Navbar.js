@@ -7,7 +7,11 @@ const Navbar = () => {
 
     //Extract the information from authentication
     const authContext = useContext(AuthContext);
-    const { user, logOut } = authContext;
+    const { user, setAuthenticatedUser, logOut } = authContext;
+
+    useEffect(() => {
+        setAuthenticatedUser();
+    }, []);
 
     return (
         <div> 
