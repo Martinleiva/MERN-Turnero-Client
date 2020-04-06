@@ -9,6 +9,13 @@ const Establishment = ({establishment}) => {
     const { listOfFields, getFields } = establishmentContext;
 
     const handleGetFields = () =>{
+
+        //Get all collapse elements and set remove the show class...
+        const collapses = document.getElementsByClassName('collapseField');        
+        for(let i=0; i<collapses.length; i++){           
+            collapses[i].classList.remove('show');    
+        }
+
         getFields(establishment._id);
     }
 
@@ -50,7 +57,7 @@ const Establishment = ({establishment}) => {
                             <div className="card-header" id={`heading${establishment._id}`}>
                                 <h2 className="mb-0">
                                     <button 
-                                        className="btn btn-link collapsed" 
+                                        className="btn btn-success btn-sm collapsed" 
                                         type="button" 
                                         data-toggle="collapse" 
                                         data-target={`#collapse${establishment._id}`}
@@ -64,16 +71,14 @@ const Establishment = ({establishment}) => {
                             </div>
 
                             <div id={`collapse${establishment._id}`} 
-                                 className="collapse"
+                                 className="collapseField collapse"
                                  aria-labelledby={`heading${establishment._id}`}
                                  data-parent="#accordion"   
                             >
                                 <div className="card-body card-fields">
 
                                     {listOfFields.map(field => (
-                                            <Field
-                                                field={field}
-                                            />
+                                        field.establishment === establishment._id ? <Field field={field} /> : null
                                     ))}
                                    
                                 </div>
