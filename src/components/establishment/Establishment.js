@@ -1,16 +1,20 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, Fragment} from 'react';
 import imagenTemp from '../../img/complejo_img_test1.jpg';
 import Field from './Field';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import { ChevronDoubleUp, Pencil, Plus, PlusSquare} from 'react-bootstrap-icons';
+import Spinner from '../common/Spinner';
 
 const Establishment = ({establishment}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
     const { listOfFields, getFields } = establishmentContext;
 
+    const [loading, setLoading] = useState(false);
+
     const handleGetFields = () => {
 
+        setLoading(true);
         //Get all collapse elements and remove the show class... 
         //This is in orden to close all document's collapses
         const collapses = document.getElementsByClassName('collapseField');        
@@ -19,6 +23,10 @@ const Establishment = ({establishment}) => {
         }
 
         getFields(establishment._id);
+
+        setTimeout(() => {                        
+            setLoading(false);            
+        }, 1000);
     }
 
     return (  
@@ -63,6 +71,8 @@ const Establishment = ({establishment}) => {
 
                 </div>                            
             </div>
+
+
             <div className="row no-gutters mt-3">
                 <div className="col-md-12">                                
                     <div className="accordion" id="accordion">
@@ -89,6 +99,10 @@ const Establishment = ({establishment}) => {
                                  aria-labelledby={`heading${establishment._id}`}
                                  data-parent="#accordion"   
                             >
+
+                            { (loading) ? 
+                                <Spinner/> :
+                                <Fragment>
                                 <div className="card-body card-fields">
 
                                     {listOfFields.map(field => (
@@ -117,13 +131,17 @@ const Establishment = ({establishment}) => {
                                     > 
                                         <ChevronDoubleUp color="white" size={20}/>
                                     </button>
-                                </div>            
+                                </div> 
+                                </Fragment>
+                            }              
 
                             </div>                                     
                         </div> 
                     </div>
                 </div>
             </div>
+
+
         </div>
     );
 }

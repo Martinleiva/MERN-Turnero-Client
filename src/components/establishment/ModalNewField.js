@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ModalNewField = () => {
+
+    const [ photo, setPhoto] = useState(null);
+
+    const onChangeFoto = e => {
+        setPhoto(URL.createObjectURL(e.target.files[0]));
+        console.log(photo);
+    }
+
     return (  
         <div className="modal" id="modal_new_field" role="dialog">
             <div className="modal-dialog">                                                                
@@ -86,11 +94,25 @@ const ModalNewField = () => {
                                         <input type="text" className="form-control-edited" id="inputPrice" placeholder="$150 por hora"/>
                                 </div>
                             </div>
+
+                            <div className="form-row">
+                                <div className="form-group col-md-12">
+                                    <label for="inputPrice">Foto de la chancha</label>
+                                    <div className="card">
+                                        <img src={photo ? photo : null} class="card-img-top" alt="..."/>    
+                                        <div class="card-body">
+                                            <input type="file" name="photo" onChange={onChangeFoto}/>      
+                                        </div>                                                      
+                                    </div>                                    
+                                </div>                                
+                            </div>
+
                         </form> 
 
                     </div>
                     <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary btn-sm">Guardar</button>
+                        <button type="button" className="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>            
             </div>
