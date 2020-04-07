@@ -54,18 +54,18 @@ const Establishment = ({establishment}) => {
                         <p className="card-text"><attr>Servicios: </attr>
                             {
                                 establishment.services.map(service => (
-                                    <span className="badge badge-info mr-2">{service.description}</span>
+                                    <span className="badge badge-success mr-2">{service.description}</span>
                                 ))
                             }                                                                
                         </p>
                         <p className="card-text"><attr>Horarios: </attr>                                         
-                            {establishment.monday !== '' ? <span className="badge badge-warning mr-2">Lunes: {establishment.monday}</span> : null}
-                            {establishment.tuesday !== '' ? <span className="badge badge-warning mr-2">Martes: {establishment.tuesday}</span> : null}
-                            {establishment.wednesday !== '' ? <span className="badge badge-warning mr-2">Miércoles: {establishment.wednesday}</span> : null}
-                            {establishment.thursday !== '' ? <span className="badge badge-warning mr-2">Jueves: {establishment.thursday}</span> : null}
-                            {establishment.friday !== '' ? <span className="badge badge-warning mr-2">Viernes: {establishment.friday}</span> : null}
-                            {establishment.saturday !== '' ? <span className="badge badge-warning mr-2">Sábado: {establishment.saturday}</span> : null}
-                            {establishment.sunday !== '' ? <span className="badge badge-warning mr-2">Domingo: {establishment.sunday}</span> : null}
+                            {establishment.monday !== '' ? <span className="badge badge-success mr-2">Lunes: {establishment.monday}</span> : null}
+                            {establishment.tuesday !== '' ? <span className="badge badge-success mr-2">Martes: {establishment.tuesday}</span> : null}
+                            {establishment.wednesday !== '' ? <span className="badge badge-success mr-2">Miércoles: {establishment.wednesday}</span> : null}
+                            {establishment.thursday !== '' ? <span className="badge badge-success mr-2">Jueves: {establishment.thursday}</span> : null}
+                            {establishment.friday !== '' ? <span className="badge badge-success mr-2">Viernes: {establishment.friday}</span> : null}
+                            {establishment.saturday !== '' ? <span className="badge badge-success mr-2">Sábado: {establishment.saturday}</span> : null}
+                            {establishment.sunday !== '' ? <span className="badge badge-success mr-2">Domingo: {establishment.sunday}</span> : null}
                         </p>
                     </div>                          
 

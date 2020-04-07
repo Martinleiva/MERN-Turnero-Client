@@ -4,6 +4,7 @@ import Establishment from './Establishment';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import AuthContext from '../../context/authentication/authContext';
 import ModalNewField from './ModalNewField';
+import Spinner from '../common/Spinner';
 
 const MyEstablishments = () => {
 
@@ -20,7 +21,7 @@ const MyEstablishments = () => {
         getStablishmentByOwner();
         setTimeout(() => {                        
             setLoading(false);            
-        }, 500);
+        }, 800);
     }, [])    
 
     return ( 
@@ -34,13 +35,15 @@ const MyEstablishments = () => {
                     <button type="button" className="btn btn-success btn-sm">Agregar Complejo</button>
                 </div>
 
-                <div className="establishments">
+                <div className="establishments">                    
                     {
-                       listOfStablishments.map(establisment => (
-                        <Establishment 
-                           establishment = {establisment}
-                        />
-                       ))
+                       loading ? 
+                            <Spinner/> 
+                            :listOfStablishments.map(establisment => (
+                                <Establishment 
+                                establishment = {establisment}
+                                />
+                            ))                       
                     }                    
 
                     <ModalNewField/>

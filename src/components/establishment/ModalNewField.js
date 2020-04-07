@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import SinImagen from '../../img/sin_imagen.png';
 
 const ModalNewField = () => {
 
     const [ photo, setPhoto] = useState(null);
 
     const onChangeFoto = e => {
-        setPhoto(URL.createObjectURL(e.target.files[0]));
-        console.log(photo);
+        setPhoto(URL.createObjectURL(e.target.files[0]));        
+        //console.log(photo);
     }
 
     return (  
@@ -14,7 +15,7 @@ const ModalNewField = () => {
             <div className="modal-dialog">                                                                
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h4 className="modal-title">INGRESE DATOS DE LA CANCHA:</h4>
+                        <h4 className="modal-title">INGRESE DATOS DE LA CANCHA</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -91,15 +92,15 @@ const ModalNewField = () => {
 
                                 <div className="form-group col-md-6">
                                         <label for="inputPrice">Precio</label>
-                                        <input type="text" className="form-control-edited" id="inputPrice" placeholder="$150 por hora"/>
+                                        <input type="number" className="form-control-edited" id="inputPrice" placeholder="$150 por hora"/>
                                 </div>
                             </div>
 
                             <div className="form-row">
                                 <div className="form-group col-md-12">
-                                    <label for="inputPrice">Foto de la chancha</label>
+                                    <label for="inputPrice">Foto</label>
                                     <div className="card">
-                                        <img src={photo ? photo : null} class="card-img-top" alt="..."/>    
+                                        <img src={photo ? photo : SinImagen} class="card-img-top" alt="..."/>    
                                         <div class="card-body">
                                             <input type="file" name="photo" onChange={onChangeFoto}/>      
                                         </div>                                                      
