@@ -5,11 +5,14 @@ import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
     LOG_OUT,
-    SHOW_ALERT
+    SHOW_ALERT,
+    UPDATE_USER
 } from '../types';
 
 export default (state, action) => {
     switch(action.type) {
+        
+        case UPDATE_USER:
         case REGISTER_SUCCESS: 
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
@@ -34,25 +37,25 @@ export default (state, action) => {
                 message: action.payload
             }
 
-            case GET_USER:
-                return {
-                    ...state,
-                    authenticated : true,
-                    message : null,
-                    loading : false,
-                    user : action.payload
-                }    
-  
-            case SHOW_ALERT:    
-                return {
-                    ...state,
-                    authenticated : false,
-                    message : action.payload,
-                    loading : false,
-                    token : null,
-                    user : null
-                }    
-            default :
-                return state;
+        case GET_USER:
+            return {
+                ...state,
+                authenticated : true,
+                message : null,
+                loading : false,
+                user : action.payload
+            }    
+
+        case SHOW_ALERT:    
+            return {
+                ...state,
+                authenticated : false,
+                message : action.payload,
+                loading : false,
+                token : null,
+                user : null
+            }    
+        default :
+            return state;
     }
 }

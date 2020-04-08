@@ -1,9 +1,9 @@
-import React, {useContext, useEffect} from 'react';
+import React, { Fragment, useContext, useEffect} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import AuthContext from '../../context/authentication/authContext';
 
-const Navbar = () => {
+const NavbarOwner = () => {
 
     //Extract the information from authentication
     const authContext = useContext(AuthContext);
@@ -13,8 +13,9 @@ const Navbar = () => {
         setAuthenticatedUser();
     }, []);
 
+
     return (
-        <div> 
+        <Fragment>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 <a className="navbar-brand" href="#/">Tu Cancha Ya!</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,12 +29,12 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink exact to={'/dash-client'} className="nav-link" activeClassName="nav-link active">
-                                Mis reservas
+                            <NavLink exact to={'/dash-owner'} className="nav-link" activeClassName="nav-link active">
+                                Complejos
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink exact to={'#/'} className="nav-link" activeClassName="nav-link active">
+                            <NavLink exact to={'/dash-owner/my-account'} className="nav-link" activeClassName="nav-link active">
                                 Mi cuenta
                             </NavLink>
                         </li>
@@ -48,9 +49,9 @@ const Navbar = () => {
                         <button className="btn btn-secondary mx-4" type="submit">Buscar</button>
                     </form>
                 </div>
-            </nav>            
-        </div>
+            </nav>
+        </Fragment>
      );
 }
  
-export default Navbar;
+export default NavbarOwner;

@@ -9,6 +9,6 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOG_OUT = 'LOG_OUT';
 export const START_SESION = 'START_SESION';
 
-
+export const UPDATE_USER = 'UPDATE_USER';
 
 

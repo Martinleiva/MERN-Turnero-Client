@@ -210,3 +210,19 @@ body {
 .nav-item {
   font-size: 140%;
 }
+
+/* MyAccountOwner */
+
+.contenedor-body {
+  padding: 18%;
+  margin: 2%;
+  background-color: rgb(209, 209, 209);
+}
+
+.contenedor-form {
+  font-size: 150%;
+  margin-left: -20%;
+  margin-top: -20%;
+}
+/* END MyAccountOwner */
+

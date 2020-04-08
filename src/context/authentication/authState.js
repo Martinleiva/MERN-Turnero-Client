@@ -10,7 +10,8 @@ import {
     GET_USER,
     LOGIN_SUCCESS,
     LOGIN_ERROR,
-    LOG_OUT
+    LOG_OUT,
+    UPDATE_USER
 } from '../types';
 
 
@@ -109,6 +110,21 @@ const AuthState = props => {
         });
     }
 
+    // update user 
+    const updateUser = async data => {
+        try {
+            const response = await clienteAxios.put(`/api/users/${data._id}`, data);
+            console.log(response);
+            dispatch({
+                type: UPDATE_USER,
+                payload : response.data.user
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return(
         <AuthContext.Provider
             value={{
@@ -120,7 +136,8 @@ const AuthState = props => {
                 userRegister,
                 setAuthenticatedUser,
                 startSession,
-                logOut
+                logOut,
+                updateUser
             }}
         >
             {props.children}
