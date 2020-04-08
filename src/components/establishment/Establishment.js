@@ -8,7 +8,7 @@ import Spinner from '../common/Spinner';
 const Establishment = ({establishment}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { listOfFields, getFields } = establishmentContext;
+    const { listOfFields, getFields, setSelectedEstablishment } = establishmentContext;
 
     const [loading, setLoading] = useState(false);
 
@@ -21,6 +21,8 @@ const Establishment = ({establishment}) => {
         for(let i=0; i<collapses.length; i++){           
             collapses[i].classList.remove('show');    
         }
+
+        setSelectedEstablishment(establishment);
 
         getFields(establishment._id);
 

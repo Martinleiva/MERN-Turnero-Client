@@ -14,11 +14,13 @@ const MyEstablishments = () => {
     const [loading, setLoading] = useState(false); 
 
     const { user } = authContext;
-    const { listOfStablishments, getStablishmentByOwner } = establishmentContext;    
+    const { listOfStablishments, getStablishmentByOwner, getTypesOfSports, getTypesOfGrounds } = establishmentContext;    
 
     useEffect( ()=> {
         setLoading(true);
         getStablishmentByOwner();
+        getTypesOfSports();
+        getTypesOfGrounds();
         setTimeout(() => {                        
             setLoading(false);            
         }, 800);
