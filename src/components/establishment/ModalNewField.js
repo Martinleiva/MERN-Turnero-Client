@@ -3,6 +3,7 @@ import SinImagen from '../../img/sin_imagen.png';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import AlertContext from '../../context/alerts/alertContext';
 import image2base64 from 'image-to-base64';
+import Spinner from '../common/Spinner';
 
 const ModalNewField = () => {
     
@@ -13,6 +14,8 @@ const ModalNewField = () => {
     const establishmentContext = useContext(EstablishmentContext);    
     const { selected_stablishment, listOfTypesSports, listOfTypesGrounds, 
             createField, alert_message } = establishmentContext;
+
+    const [loading, setLoading] = useState(false);             
 
     const [name, setName] = useState('');
     const [establishment, setEstablishment] = useState(null);
@@ -31,9 +34,12 @@ const ModalNewField = () => {
 
     const handleSaveField = async () => {
 
+        setLoading(true);
+
         //verify required fields
         if(name.trim() === '' || price.trim() === ''){            
             showAlert('Todos los campos son obligatorios!', 'alert-danger');
+            setLoading(false); 
             return;
         }
 
@@ -58,6 +64,10 @@ const ModalNewField = () => {
             'photo_1': photo2base64            
         };
         createField(field);
+
+        setTimeout(() => {                        
+            setLoading(false);            
+        }, 800);
     }
 
     useEffect(()=> {
@@ -76,8 +86,7 @@ const ModalNewField = () => {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div className="modal-body modal_new_field">
-                        
+                    <div className="modal-body modal_new_field">                        
                        <form>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
@@ -193,8 +202,9 @@ const ModalNewField = () => {
                             </div>
 
                             <div className="form-row">
-                                <div className="form-group col-md-12">
-                                {alert ? (
+                                <div className="form-group col-md-12">                                                          
+                                { loading ? <Spinner/>  
+                                  : alert ? (
                                     <div className={`alert font-weight-bold ${alert.category}`}>
                                         {alert.msg}
                                     </div>) : null

@@ -322,10 +322,6 @@ body {
   margin: 4px auto;
 }
 
-.btn-plus-bold {
-  font-weight: bold;
-}
-
 .btn-group-fab .btn-new-field {
   position: absolute;
   bottom: 0;
@@ -359,6 +355,26 @@ body {
   width: 50px; height: 50px;
   right: 50%; margin-right: -25px;
 }
+
+/* remove field fab */
+.btn-group-fab-remove-field {
+  position: relative; 
+  float: right;   
+  height: auto;  
+}
+
+.btn-group-fab-remove-field .btn-remove-field {
+  position: absolute;
+  bottom: 0;    
+  margin-bottom: 5px;  
+  right: 3%;
+}
+
+.btn-remove-field:hover {
+  cursor: pointer;
+}
+
+/* end remove field fab */
 
 .modal_new_field {
   background-color: #ebf8e8;

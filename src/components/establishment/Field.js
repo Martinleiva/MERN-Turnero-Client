@@ -3,6 +3,7 @@ import imagenFutbol from '../../img/foto-futbol.jpg';
 import imagenBasquet from '../../img/foto-basquet.jpg';
 import imagenPaddle from '../../img/foto_paddle.jpg';
 import SinImagen from '../../img/sin_imagen.png';
+import { Trash } from 'react-bootstrap-icons';
 
 const Field = ({field}) => {
 
@@ -20,8 +21,12 @@ const Field = ({field}) => {
             break;
     }
 
+    const handleDeleteField = e => {
+        console.log('llamado a eliminar: ', field._id);
+    }
+
     return (
-        <div className="card card-field">     
+        <div className="card card-field"> 
             <img className="card-img-top" src={image} alt="Card image"/>       
             <div className="card-body">
                 <p className="card-title">{field.name} - {field.sport_type.description}</p>
@@ -30,6 +35,9 @@ const Field = ({field}) => {
                    data-target="#modal_detail_of_field"
                 ><p>Ver detalle</p></a>
             </div>
+            <div className="btn-group-fab-remove-field">                 
+                    <Trash color="black" className="btn-remove-field" size={15}  onClick={handleDeleteField} />                
+            </div> 
         </div>
     );
 }
