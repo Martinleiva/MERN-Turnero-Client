@@ -25,7 +25,10 @@ const Field = ({field}) => {
             <img className="card-img-top" src={image} alt="Card image"/>       
             <div className="card-body">
                 <p className="card-title">{field.name} - {field.sport_type.description}</p>
-                <a href=""><p>Ver detalle</p></a>
+                <a href=""
+                   data-toggle="modal"
+                   data-target="#modal_detail_of_field"
+                ><p>Ver detalle</p></a>
             </div>
         </div>
     );

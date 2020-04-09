@@ -4,6 +4,7 @@ import Establishment from './Establishment';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import AuthContext from '../../context/authentication/authContext';
 import ModalNewField from './ModalNewField';
+import ModalDetailOfField from './ModalDetailOfField';
 import Spinner from '../common/Spinner';
 
 const MyEstablishments = () => {
@@ -46,8 +47,9 @@ const MyEstablishments = () => {
                                 establishment = {establisment}
                                 />
                             ))                       
-                    }                    
-
+                    }     
+                                  
+                    <ModalDetailOfField/>
                     <ModalNewField/>
 
                 </div>
