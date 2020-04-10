@@ -5,7 +5,8 @@ import {
     GET_TYPE_OF_SPORTS,
     GET_TYPE_OF_GROUNDS,
     CREATE_FIELD,
-    ERROR_CREATING_FIELD
+    ERROR_CREATING_FIELD,
+    SET_SELECTED_FIELD
 } from '../types';
 
 export default (state, action) => {
@@ -45,6 +46,11 @@ export default (state, action) => {
             return {
                 ...state,
                 alert_message : action.payload
+            }
+        case SET_SELECTED_FIELD:
+            return {
+                ...state,
+                selected_field : action.payload
             }                  
         default :
             return state;        

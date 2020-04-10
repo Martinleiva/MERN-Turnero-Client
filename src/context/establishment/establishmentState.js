@@ -10,7 +10,8 @@ import {
     GET_TYPE_OF_SPORTS,
     GET_TYPE_OF_GROUNDS,
     CREATE_FIELD,
-    ERROR_CREATING_FIELD
+    ERROR_CREATING_FIELD,
+    SET_SELECTED_FIELD
 } from '../types';
 
 const EstablishmentState = props => {
@@ -21,6 +22,7 @@ const EstablishmentState = props => {
         listOfTypesSports : [],
         listOfTypesGrounds : [],
         selected_stablishment : null,
+        selected_field : null,
         alert_message : null
     }
 
@@ -116,12 +118,30 @@ const EstablishmentState = props => {
         }
     }
 
+    const setSelectedField = async field => {
+
+        try {
+            const result = await AxiosClient.get(`/api/field/${field._id}`);
+            //console.log(result.data.field);
+            
+            dispatch({
+                type : SET_SELECTED_FIELD,
+                payload : result.data.field
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    
+
     return (
         <EstablishmentContext.Provider
             value={{
                 listOfStablishments : state.listOfStablishments,
                 listOfFields : state.listOfFields,
                 selected_stablishment : state.selected_stablishment,
+                selected_field : state.selected_field,
                 listOfTypesSports : state.listOfTypesSports,
                 listOfTypesGrounds : state.listOfTypesGrounds,
                 alert_message : state.alert_message,
@@ -130,7 +150,8 @@ const EstablishmentState = props => {
                 setSelectedEstablishment,
                 getTypesOfSports,
                 getTypesOfGrounds,
-                createField
+                createField,
+                setSelectedField
             }}
         >
             {props.children}
