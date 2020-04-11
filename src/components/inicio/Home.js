@@ -27,22 +27,22 @@ const Home = () => {
                         <div className="carousel-item active h-100">
                             <img src={Img1} className="d-block w-100" alt="..."/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                <h3 className="titulo-carrusel">Diversidad deportiva</h3>
+                                <p className="texto-carrusel">Podes encontrar canchas de diferntes actividades deportivas.</p>
                             </div>
                         </div>
                         <div className="carousel-item h-100">
                             <img src={Img2} className="d-block w-100 " alt="..."/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h3 className="titulo-carrusel">Panorama de reservas</h3>
+                                <p className="texto-carrusel">De forma práctica podes realizar la reserva de tu cancha preferida.</p>
                             </div>
                         </div>
                         <div className="carousel-item h-100">
                             <img src={Img3} className="d-block w-100" alt="..."/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                <h3 className="titulo-carrusel">Diversión</h3>
+                                <p className="texto-carrusel">Disfruta y compartí con tus amigos de partidas inolvidables.</p>
                             </div>
                         </div>
                     </div>

@@ -203,10 +203,38 @@ body {
   margin: 0 0 0 0;
 }
 
+.texto-carrusel{
+  /*font-family: 'Century Gothic';*/
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+/*.titulo-carrusel{
+  font-family: 'Century Gothic';
+}*/
+
 #contenedorNavbar {
   padding: 1.5%;
 }
 
 .nav-item {
   font-size: 140%;
+}
+
+.tab-body{
+  background-color: white;
+}
+
+.tab-container{
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.table-style{
+  margin-top: 2rem;
+}
+
+.container-owner{
+  background-color: white;
+  padding: 1rem;
 }

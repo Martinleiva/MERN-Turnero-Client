@@ -25,7 +25,8 @@ function App() {
             <Route exact path="/singup-client" component={SingUpCliente} />
             <Route exact path="/singup-duenio" component={SingUpDuenio} />
             <PrivateRoute exact path="/dash-client" component={DashClient} />
-            <PrivateRoute exact path="/dash-owner" component={DashOwner} />
+            {/* <PrivateRoute exact path="/dash-owner" component={DashOwner} /> */}
+            <Route exact path="/dash-owner" component={DashOwner} />
           </Switch>
         </Router>
       </AuthState>
