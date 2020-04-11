@@ -224,5 +224,13 @@ body {
   margin-left: -20%;
   margin-top: -20%;
 }
-/* END MyAccountOwner */
 
+
+.fotoPerfil {
+  padding: 1.5%;
+}
+
+.img-thumbnail{
+  box-shadow: 2px 2px 5px #999;
+}
+/* END MyAccountOwner */
