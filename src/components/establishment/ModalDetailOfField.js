@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import SinImagen from '../../img/sin_imagen.png';
+import {backEndURL} from '../../config/urlBackEnd';
 
 const ModalDetailOfField = () => {
 
@@ -28,9 +29,13 @@ const ModalDetailOfField = () => {
                             <div className="form-group col-md-12">
                                 <div className="card">
                                     <img className="card-img-top" 
-                                            src={selected_field ? 
-                                                            selected_field.photo_1 !== '' ? `data:image/jpeg;base64,${selected_field.photo_1}` : SinImagen
-                                                            :''}
+                                            src={selected_field 
+                                                 ? 
+                                                    selected_field.photo_1 !== '' 
+                                                       ? 
+                                                       `${backEndURL}${selected_field.photo_1}` 
+                                                       : SinImagen
+                                                 :''}
                                     />                        
                                 </div>  
                             </div>                                

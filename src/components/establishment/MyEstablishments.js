@@ -5,6 +5,7 @@ import EstablishmentContext from '../../context/establishment/establishmentConte
 import AuthContext from '../../context/authentication/authContext';
 import ModalNewField from './ModalNewField';
 import ModalDetailOfField from './ModalDetailOfField';
+import DialogConfirmDeleteField from './DialogConfirmDeleteField';
 import Spinner from '../common/Spinner';
 
 const MyEstablishments = () => {
@@ -51,6 +52,7 @@ const MyEstablishments = () => {
                                   
                     <ModalDetailOfField/>
                     <ModalNewField/>
+                    <DialogConfirmDeleteField/>
 
                 </div>
             </div>            

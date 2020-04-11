@@ -9,7 +9,7 @@ import EstablishmentContext from '../../context/establishment/establishmentConte
 const Field = ({field}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { setSelectedField}= establishmentContext;
+    const { setSelectedField, deleteField }= establishmentContext;
 
     let image = SinImagen;    
     
@@ -23,14 +23,14 @@ const Field = ({field}) => {
         case '5e87672286caa812e42a4140':
             image = imagenPaddle;
             break;
-    }
+    }   
 
-    const handleDeleteField = e => {
-        console.log('llamado a eliminar: ', field._id);
+    const handleSetSelectedFieldWithImage = e => {
+        setSelectedField(field, true); //In this call we need the image
     }
 
     const handleSetSelectedField = e => {
-        setSelectedField(field);
+        setSelectedField(field, false);
     }
 
     return (
@@ -41,12 +41,15 @@ const Field = ({field}) => {
                 <a href=""
                    data-toggle="modal"
                    data-target="#modal_detail_of_field"
-                   onClick={handleSetSelectedField}
+                   onClick={handleSetSelectedFieldWithImage}
                 ><p>Ver detalle</p></a>
             </div>
             <div className="btn-group-fab-remove-field">                 
-                    <Trash color="black" className="btn-remove-field" size={15}  onClick={handleDeleteField} />                
-            </div> 
+                    <Trash color="black" className="btn-remove-field" 
+                           size={15} data-toggle="modal" 
+                           data-target="#confirm-delete-field-dialog"
+                           onClick={handleSetSelectedField}/>                
+            </div>           
         </div>
     );
 }

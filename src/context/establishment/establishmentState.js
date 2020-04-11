@@ -118,22 +118,27 @@ const EstablishmentState = props => {
         }
     }
 
-    const setSelectedField = async field => {
-
-        try {
-            const result = await AxiosClient.get(`/api/field/${field._id}`);
-            //console.log(result.data.field);
-            
+    const setSelectedField = async (field) => {
+        try {                                    
             dispatch({
                 type : SET_SELECTED_FIELD,
-                payload : result.data.field
+                payload : field
             });
-        } catch (error) {
+        } catch(error){
             console.log(error);
         }
     }
 
-    
+    const deleteField = async field => {
+        try {
+            const response = await AxiosClient.delete(`/api/field/${field._id}`);
+            console.log(response);
+            //update list of field
+            getFields(field.establishment);
+        } catch (error) {
+            console.log(error);
+        }
+    }    
 
     return (
         <EstablishmentContext.Provider
@@ -151,7 +156,8 @@ const EstablishmentState = props => {
                 getTypesOfSports,
                 getTypesOfGrounds,
                 createField,
-                setSelectedField
+                setSelectedField,
+                deleteField
             }}
         >
             {props.children}

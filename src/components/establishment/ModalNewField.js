@@ -45,9 +45,7 @@ const ModalNewField = () => {
 
         /*
         In this line we convert the uploaded image to base64 in order to send it to 
-        the back end as a string. There are major alternatives to do so. The best alternatie to store
-        a image in the database, is to load it on the server (in a specific location) and then
-        use the path. Howover, due to, we are working on a separated serves (localhost), it is not possible.        
+        the back end as a string.         
         */
         const photo2base64 = await image2base64(URL.createObjectURL(photo));
 
