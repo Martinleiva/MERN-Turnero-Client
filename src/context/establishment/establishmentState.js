@@ -10,9 +10,14 @@ import {
     GET_TYPE_OF_SPORTS,
     GET_TYPE_OF_GROUNDS,
     GET_CATEGORIES,
+    GET_SERVICES,
     CREATE_FIELD,
     ERROR_CREATING_FIELD,
-    SET_SELECTED_FIELD
+    SET_SELECTED_FIELD,
+    CREATE_ESTABLISHMENT,
+    ERROR_CREATING_ESTABLISHMENT,
+    ADD_SERVICE,
+    REMOVE_SERVICE
 } from '../types';
 
 const EstablishmentState = props => {
@@ -23,6 +28,8 @@ const EstablishmentState = props => {
         listOfTypesSports : [],
         listOfTypesGrounds : [],
         listOfCategories : [],
+        listOfServices : [],
+        listOfAddedServices : [],
         selected_stablishment : null,
         selected_field : null,
         alert_message : null
@@ -33,14 +40,11 @@ const EstablishmentState = props => {
     //functions
     const getStablishmentByOwner = async () => {
         try {
-            const results = await AxiosClient.get('/api/establishment-by-owner/');
-            //console.log(results.data.establishments);
-
+            const results = await AxiosClient.get('/api/establishment-by-owner/');                        
             dispatch({
                 type : GET_ESTABLISHMENT_BY_OWNER,
                 payload : results.data.establishments
-            });
-
+            });                        
         } catch (error) {
             console.log(error);
         }
@@ -107,6 +111,18 @@ const EstablishmentState = props => {
         }
     }
 
+    const getServices = async () => {
+        try {
+            const services = await AxiosClient.get('/api/service');            
+            dispatch({
+                type : GET_SERVICES,
+                payload : services.data.services
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const createField = async data => {
         try {
             const response = await AxiosClient.post('/api/field/', data);
@@ -152,7 +168,54 @@ const EstablishmentState = props => {
         } catch (error) {
             console.log(error);
         }
-    }    
+    }
+    
+    const createEstablishment = async data => {
+        try {
+            const response = await AxiosClient.post('/api/establishment/', data);
+            console.log(response.data);
+
+            //update list of field
+            getStablishmentByOwner(data.establishment);
+
+            dispatch({
+                type : CREATE_ESTABLISHMENT,
+                payload : response.data
+            })
+        } catch (error) {
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alert-danger'
+            }
+            dispatch({
+                type : ERROR_CREATING_ESTABLISHMENT,
+                payload : alert              
+            })
+            console.log(error);
+        }
+    }
+
+    const addService = serviceId => {
+        try {
+            dispatch({
+                type: ADD_SERVICE,
+                payload : serviceId
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const removeService = serviceId => {
+        try {
+            dispatch({
+                type: REMOVE_SERVICE,
+                payload : serviceId
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <EstablishmentContext.Provider
@@ -164,6 +227,8 @@ const EstablishmentState = props => {
                 listOfTypesSports : state.listOfTypesSports,
                 listOfTypesGrounds : state.listOfTypesGrounds,
                 listOfCategories : state.listOfCategories,
+                listOfServices : state.listOfServices,
+                listOfAddedServices : state.listOfAddedServices,
                 alert_message : state.alert_message,
                 getStablishmentByOwner,
                 getFields,
@@ -171,9 +236,13 @@ const EstablishmentState = props => {
                 getTypesOfSports,
                 getTypesOfGrounds,
                 getCategories,
+                getServices,
                 createField,
                 setSelectedField,
-                deleteField
+                deleteField,
+                createEstablishment,
+                addService,
+                removeService
             }}
         >
             {props.children}

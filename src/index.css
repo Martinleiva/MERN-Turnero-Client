@@ -459,7 +459,7 @@ body {
 }
 
 .div-times {
-  
+
 }
 
 .div-times p {
@@ -472,3 +472,39 @@ body {
   color: black;
 }
 
+.service-boxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-box {   
+  margin: 10px;
+  text-align: center;    
+  width: 10rem;
+  height: 40px;
+  line-height: 40px;  
+}
+
+.servicio-agregado {
+  border: 1px solid rgb(30, 155, 35);
+  background-color: #4CAF50; 
+}
+
+.servicio-agregado p{
+  color: white;
+  font-weight: bold;
+}
+
+.servicio-disponible {
+  border: 1px solid grey;
+  background-color: grey;   
+}
+
+.servicio-disponible p{
+  color: black;
+  font-weight: bold;
+}
+
+.service-box :hover {
+  cursor: pointer;
+}

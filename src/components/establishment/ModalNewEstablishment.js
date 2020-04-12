@@ -14,7 +14,8 @@ const ModalNewEstablishment = () => {
     const { alert, showAlert } = alertContext;
 
     const establishmentContext = useContext(EstablishmentContext);    
-    const { listOfCategories, alert_message } = establishmentContext;
+    const { listOfCategories, listOfServices, alert_message , 
+            listOfAddedServices, addService, removeService, createEstablishment } = establishmentContext;
 
     const authContext = useContext(AuthContext);            
     const { user } = authContext;
@@ -24,8 +25,7 @@ const ModalNewEstablishment = () => {
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [tel, setTel] = useState('');
-    const [coordinates, setCoordinates] = useState('');
-    const [owner, setOwner] = useState('');
+    const [coordinates, setCoordinates] = useState('');    
     const [category, setCategory] = useState(null);
     const [services, setServices] = useState([]); 
     const [photo, setPhoto] = useState(null);
@@ -61,17 +61,34 @@ const ModalNewEstablishment = () => {
 
         const establishment = {
             'name' : name,
-            'address' : tel,
+            'address' : address,
             'tel' : tel,
             'owner' : user._id,
             'category' : category,            
-            'photo_1': photo2base64            
+            'photo_1': photo2base64,
+            'monday' : monday,
+            'tuesday' : tuesday,
+            'wednesday' : wednesday,
+            'thursday' : thursday,
+            'friday' : friday,
+            'saturday' : saturday,
+            'sunday' : sunday,
+            'services' : listOfAddedServices           
         };
-        //createEstablishment(establishment);
+        createEstablishment(establishment);
 
         setTimeout(() => {                        
             setLoading(false);            
         }, 800);
+    }
+
+    const handleAddService = service => {
+        if(!listOfAddedServices.includes(service._id)){
+            addService(service._id);        
+        }
+        else {
+            removeService(service._id);
+        }        
     }
 
     useEffect(()=> {               
@@ -143,14 +160,14 @@ const ModalNewEstablishment = () => {
 
                             <div className="form-row">
                                 <div className="form-group col-md-12">                                    
-                                    <div className="accordion">
+                                    <div className="accordion" id="accordionNewEstablishment">
                                         <div className="card">
                                             <div className="card-header">
                                                 <a className="card-link" data-toggle="collapse" href="#collapseOne">
                                                     Horarios de atención
                                                 </a>                                                
                                             </div>
-                                            <div id="collapseOne" className="collapse" data-parent="#accordion">
+                                            <div id="collapseOne" className="collapse" data-parent="#accordionNewEstablishment">
                                                 <div className="card-body">
                                                     <div className="form-row">
                                                         <DayOfWeek day="Lunes" fnSetTimes={setMonday}/>
@@ -175,9 +192,15 @@ const ModalNewEstablishment = () => {
                                                     Servicios ofrecidos
                                                 </a>
                                             </div>
-                                            <div id="collapseTwo" className="collapse" data-parent="#accordion">
-                                                <div className="card-body">
-                                                    Configuracion de Horarios
+                                            <div id="collapseTwo" className="collapse" data-parent="#accordionNewEstablishment">
+                                                <div className="card-body service-boxes">                                                    
+                                                    { listOfServices.map(service => (                                                        
+                                                        <div className={listOfAddedServices.includes(service._id) ? "service-box servicio-agregado" : "service-box servicio-disponible"}
+                                                             onClick={ ()=> handleAddService(service)}>
+                                                              <p>{service.description}</p>  
+                                                        </div>
+                                                    ))
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

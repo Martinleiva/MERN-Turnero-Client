@@ -15,7 +15,9 @@ const DayOfWeen = ({day, fnSetTimes}) => {
     }
 
     useEffect(()=> {
-        fnSetTimes(`${times.start}-${times.end}`); 
+        if(times.start !== '' && times.end !== ''){
+            fnSetTimes(`${times.start}-${times.end}`); 
+        }        
     }, [times]);
 
     return (  
@@ -25,8 +27,7 @@ const DayOfWeen = ({day, fnSetTimes}) => {
                 <div className="form-group col-md-6 div-times"> 
                     <p>Abre</p>                   
                     <input type="time" 
-                        className="form-control font-weight-bold input-times"
-                        placeholder="Abre"
+                        className="form-control font-weight-bold input-times"                        
                         name="start"
                         onChange={handleTimes}
                     />                                                                    
@@ -34,8 +35,7 @@ const DayOfWeen = ({day, fnSetTimes}) => {
                 <div className="form-group col-md-6 div-times">
                     <p>Cierra</p>
                     <input type="time" 
-                        className="form-control font-weight-bold input-times"
-                        placeholder="Cierra"
+                        className="form-control font-weight-bold input-times"                        
                         name="end"
                         onChange={handleTimes}
                     />

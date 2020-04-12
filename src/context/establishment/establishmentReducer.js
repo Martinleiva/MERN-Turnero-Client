@@ -5,9 +5,14 @@ import {
     GET_TYPE_OF_SPORTS,
     GET_TYPE_OF_GROUNDS,
     GET_CATEGORIES,
+    GET_SERVICES,
     CREATE_FIELD,
     ERROR_CREATING_FIELD,
-    SET_SELECTED_FIELD
+    SET_SELECTED_FIELD,    
+    CREATE_ESTABLISHMENT,
+    ERROR_CREATING_ESTABLISHMENT,
+    ADD_SERVICE,
+    REMOVE_SERVICE
 } from '../types';
 
 export default (state, action) => {
@@ -41,7 +46,12 @@ export default (state, action) => {
             return {
                 ...state,
                 listOfCategories : action.payload
-            }    
+            } 
+        case GET_SERVICES:
+            return {
+                ...state,
+                listOfServices : action.payload
+            }        
         case CREATE_FIELD:
             return {
                 ...state,
@@ -54,10 +64,26 @@ export default (state, action) => {
                 alert_message : action.payload
             }
         case SET_SELECTED_FIELD:
+        case ERROR_CREATING_ESTABLISHMENT:    
             return {
                 ...state,
                 selected_field : action.payload
-            }                  
+            } 
+        case CREATE_ESTABLISHMENT:
+            return {
+                ...state,                
+                alert_message : {msg :'Complejo creado con exito', category:'alert-success'}
+            } 
+        case ADD_SERVICE:
+            return {
+                ...state,
+                listOfAddedServices : [...state.listOfAddedServices, action.payload]
+            } 
+        case REMOVE_SERVICE:
+            return {
+                ...state,
+                listOfAddedServices : state.listOfAddedServices.filter(serviceId => serviceId !== action.payload)
+            }                                       
         default :
             return state;        
     }
