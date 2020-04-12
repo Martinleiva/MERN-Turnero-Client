@@ -6,6 +6,7 @@ import AuthContext from '../../context/authentication/authContext';
 import ModalNewField from './ModalNewField';
 import ModalDetailOfField from './ModalDetailOfField';
 import DialogConfirmDeleteField from './DialogConfirmDeleteField';
+import ModalNewEstablishment from './ModalNewEstablishment';
 import Spinner from '../common/Spinner';
 
 const MyEstablishments = () => {
@@ -16,13 +17,14 @@ const MyEstablishments = () => {
     const [loading, setLoading] = useState(false); 
 
     const { user } = authContext;
-    const { listOfStablishments, getStablishmentByOwner, getTypesOfSports, getTypesOfGrounds } = establishmentContext;    
+    const { listOfStablishments, getStablishmentByOwner, getTypesOfSports, getTypesOfGrounds, getCategories } = establishmentContext;    
 
     useEffect( ()=> {
         setLoading(true);
         getStablishmentByOwner();
         getTypesOfSports();
         getTypesOfGrounds();
+        getCategories();
         setTimeout(() => {                        
             setLoading(false);            
         }, 800);
@@ -36,7 +38,13 @@ const MyEstablishments = () => {
                 <div className="header-my-establishment">
                     <p>&nbsp;</p>
                     <h1 >Mis Complejos</h1>
-                    <button type="button" className="btn btn-success btn-sm">Agregar Complejo</button>
+                    <button type="button" 
+                            className="btn btn-success btn-sm"
+                            data-toggle="modal"
+                            data-target="#modal_new_stablishment"
+                            >
+                            Agregar Complejo
+                    </button>
                 </div>
 
                 <div className="establishments">                    
@@ -50,6 +58,7 @@ const MyEstablishments = () => {
                             ))                       
                     }     
                                   
+                    <ModalNewEstablishment/>                                  
                     <ModalDetailOfField/>
                     <ModalNewField/>
                     <DialogConfirmDeleteField/>

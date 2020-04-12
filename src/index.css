@@ -458,3 +458,17 @@ body {
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.div-times {
+  
+}
+
+.div-times p {
+  margin-left: 1.5rem;
+}
+
+.div-times input {
+  font-size: 1.2rem;
+  text-align: center;
+  color: black;
+}
+

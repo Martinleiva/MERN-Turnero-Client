@@ -4,6 +4,7 @@ import {
     SET_SELECTED_ESTABLISHMENT,
     GET_TYPE_OF_SPORTS,
     GET_TYPE_OF_GROUNDS,
+    GET_CATEGORIES,
     CREATE_FIELD,
     ERROR_CREATING_FIELD,
     SET_SELECTED_FIELD
@@ -36,6 +37,11 @@ export default (state, action) => {
                 ...state,
                 listOfTypesGrounds : action.payload
             }
+        case GET_CATEGORIES:
+            return {
+                ...state,
+                listOfCategories : action.payload
+            }    
         case CREATE_FIELD:
             return {
                 ...state,
