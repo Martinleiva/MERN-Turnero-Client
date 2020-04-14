@@ -164,7 +164,7 @@ const EstablishmentState = props => {
             const response = await AxiosClient.delete(`/api/field/${field._id}`);
             console.log(response);
             //update list of field
-            getFields(field.establishment);
+            getFields(field.establishment);            
         } catch (error) {
             console.log(error);
         }

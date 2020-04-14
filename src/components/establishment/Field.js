@@ -5,11 +5,12 @@ import imagenPaddle from '../../img/foto_paddle.jpg';
 import SinImagen from '../../img/sin_imagen.png';
 import { Trash } from 'react-bootstrap-icons';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
+import Swal from 'sweetalert2';
 
 const Field = ({field}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { setSelectedField, deleteField }= establishmentContext;
+    const { setSelectedField, deleteField, selected_field }= establishmentContext;
 
     let image = SinImagen;    
     
@@ -23,14 +24,33 @@ const Field = ({field}) => {
         case '5e87672286caa812e42a4140':
             image = imagenPaddle;
             break;
-    }   
-
-    const handleSetSelectedFieldWithImage = e => {
-        setSelectedField(field, true); //In this call we need the image
+    }
+    
+    const handleSetSelectedField = e => {
+        setSelectedField(field);
     }
 
-    const handleSetSelectedField = e => {
-        setSelectedField(field, false);
+    const handleDeleteField = e => {
+        setSelectedField(field);
+        Swal.fire({
+            title: '¿Seguro de eliminar la cancha?',
+            text: "Si elimina esta cancha, se eliminará toda la información relacionada a la misma.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'SI, acepto eliminar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+              deleteField(selected_field);  
+              Swal.fire(
+                'Cancha eliminada con exito!',
+                'Los datos de la cancha han sido barrados!',
+                'success'
+              )
+            }
+        })        
     }
 
     return (
@@ -41,14 +61,13 @@ const Field = ({field}) => {
                 <a href=""
                    data-toggle="modal"
                    data-target="#modal_detail_of_field"
-                   onClick={handleSetSelectedFieldWithImage}
+                   onClick={handleSetSelectedField}
                 ><p>Ver detalle</p></a>
             </div>
             <div className="btn-group-fab-remove-field">                 
                     <Trash color="black" className="btn-remove-field" 
-                           size={15} data-toggle="modal" 
-                           data-target="#confirm-delete-field-dialog"
-                           onClick={handleSetSelectedField}/>                
+                           size={15}                            
+                           onClick={handleDeleteField}/>                
             </div>           
         </div>
     );

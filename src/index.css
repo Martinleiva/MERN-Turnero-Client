@@ -279,7 +279,7 @@ body {
 }
 
 .card-field {
-  width: 180px;
+  width: 185px;
   height: 200px;
   margin-right: 15px;  
   margin-bottom: 15px;    
@@ -290,7 +290,7 @@ body {
 }
 
 .card-field img {
-  width: 180px;
+  width: 185px;
   height: 101px; 
 }
 
@@ -382,6 +382,11 @@ body {
 
 .modal_new_field label{
   font-size: 1rem;
+}
+
+.btn-add-field{
+  font-size: 12px;
+  width: 100%;  
 }
 
 .form-control-edited {

@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect, Fragment} from 'react';
 import imagenTemp from '../../img/complejo_img_test1.jpg';
 import Field from './Field';
+import FieldEmpty from './FieldEmpty';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import { ChevronDoubleUp, Pencil, Plus, PlusSquare} from 'react-bootstrap-icons';
 import Spinner from '../common/Spinner';
@@ -105,11 +106,16 @@ const Establishment = ({establishment}) => {
                             { (loading) ? 
                                 <Spinner/> :
                                 <Fragment>
-                                <div className="card-body card-fields">
-
-                                    {listOfFields.map(field => (
-                                        field.establishment === establishment._id ? <Field field={field} /> : null
-                                    ))}
+                                <div className="card-body card-fields">                                    
+                                    {
+                                    listOfFields.length === 0 
+                                        ? 
+                                        <FieldEmpty/>                                                                            
+                                        :
+                                        listOfFields.map(field => (
+                                            field.establishment === establishment._id ? <Field field={field} /> : null
+                                        ))
+                                    }
                                    
                                 </div>
 
