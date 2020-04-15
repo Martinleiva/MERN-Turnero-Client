@@ -32,6 +32,8 @@ const EstablishmentState = props => {
         listOfCategories : [],
         listOfServices : [],
         listOfAddedServices : [],
+        amount_of_establishment : null,
+        amount_of_field : null,
         selected_stablishment : null,
         selected_field : null,
         alert_message : null
@@ -241,6 +243,8 @@ const EstablishmentState = props => {
                 listOfServices : state.listOfServices,
                 listOfAddedServices : state.listOfAddedServices,
                 alert_message : state.alert_message,
+                amount_of_establishment : state.amount_of_establishment,
+                amount_of_field: state.amount_of_field,
                 getStablishmentByOwner,
                 getFields,
                 setSelectedEstablishment,

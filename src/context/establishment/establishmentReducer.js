@@ -22,12 +22,14 @@ export default (state, action) => {
         case GET_ESTABLISHMENT_BY_OWNER :
             return {
                 ...state,
-                listOfStablishments : action.payload
+                listOfStablishments : action.payload,
+                amount_of_establishment : action.payload.length
             }
-        case GET_FIELDS_BY_ESTABLISHMENT :
+        case GET_FIELDS_BY_ESTABLISHMENT :            
             return{
                 ...state,
-                listOfFields : action.payload
+                listOfFields : action.payload,
+                amount_of_field : action.payload.length
             }
         case SET_SELECTED_ESTABLISHMENT:
             return {
@@ -76,7 +78,8 @@ export default (state, action) => {
             return {
                 ...state,                
                 alert_message : {msg :'Complejo creado con exito', category:'alert-success'},
-                alert_message : null
+                alert_message : null,
+                amount_of_field : null
             } 
         case ADD_SERVICE:            
             return {

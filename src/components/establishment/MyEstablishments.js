@@ -14,23 +14,27 @@ const MyEstablishments = () => {
     const establishmentContext = useContext(EstablishmentContext);
     const authContext = useContext(AuthContext);
 
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(true); 
 
     const { user } = authContext;
-    const { listOfStablishments, getStablishmentByOwner, getTypesOfSports, 
+    const { listOfStablishments, amount_of_establishment, 
+            getStablishmentByOwner, getTypesOfSports, 
             getTypesOfGrounds, getCategories, getServices } = establishmentContext;    
 
-    useEffect( ()=> {
-        setLoading(true);        
+    useEffect( ()=> {                 
         getStablishmentByOwner();
         getTypesOfSports();
         getTypesOfGrounds();
         getCategories();
         getServices();        
-        setTimeout(() => {                        
-            setLoading(false);            
-        }, 3000);
-    }, [])    
+    }, [])
+    
+    useEffect( ()=> {
+        console.log('amount_of_establishment:', amount_of_establishment);
+        if(amount_of_establishment !== null){
+            setLoading(false);        
+        }                    
+    }, [amount_of_establishment])
 
     return ( 
         <Fragment>

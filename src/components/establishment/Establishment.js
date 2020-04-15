@@ -9,12 +9,12 @@ import Spinner from '../common/Spinner';
 const Establishment = ({establishment}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { listOfFields, getFields, setSelectedEstablishment } = establishmentContext;
+    const { listOfFields, amount_of_field, getFields, 
+            setSelectedEstablishment } = establishmentContext;
 
     const [loading, setLoading] = useState(false);
 
     const handleGetFields = () => {
-
         setLoading(true);
         //Get all collapse elements and remove the show class... 
         //This is in orden to close all document's collapses
@@ -22,15 +22,15 @@ const Establishment = ({establishment}) => {
         for(let i=0; i<collapses.length; i++){           
             collapses[i].classList.remove('show');    
         }
-
         setSelectedEstablishment(establishment);
-
         getFields(establishment._id);
-
-        setTimeout(() => {                        
-            setLoading(false);            
-        }, 1000);
     }
+
+    useEffect( ()=> {
+        if(amount_of_field !== null){
+            setLoading(false); 
+        }
+    }, [amount_of_field, loading]);
 
     return (  
         <div className="card card-establishment">
