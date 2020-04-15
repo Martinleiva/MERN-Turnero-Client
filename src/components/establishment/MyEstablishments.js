@@ -6,6 +6,7 @@ import AuthContext from '../../context/authentication/authContext';
 import ModalNewField from './ModalNewField';
 import ModalDetailOfField from './ModalDetailOfField';
 import ModalNewEstablishment from './ModalNewEstablishment';
+import EstablishmentEmpty from './EstablishmentEmpty';
 import Spinner from '../common/Spinner';
 
 const MyEstablishments = () => {
@@ -28,7 +29,7 @@ const MyEstablishments = () => {
         getServices();        
         setTimeout(() => {                        
             setLoading(false);            
-        }, 800);
+        }, 3000);
     }, [])    
 
     return ( 
@@ -37,26 +38,33 @@ const MyEstablishments = () => {
             <div className="container container-establishments"> 
 
                 <div className="header-my-establishment">
-                    <p>&nbsp;</p>
-                    <h1 >Mis Complejos</h1>
-                    <button type="button" 
-                            className="btn btn-success btn-sm"
-                            data-toggle="modal"
-                            data-target="#modal_new_stablishment"
-                            >
-                            Agregar Complejo
-                    </button>
-                </div>
+                    <h3>Mis Complejos</h3> 
+                {listOfStablishments.length !== 0 
+                    ?                                                                        
+                        <button type="button" 
+                                className="btn btn-success btn-sm"
+                                data-toggle="modal"
+                                data-target="#modal_new_stablishment"
+                                >
+                                Agregar Complejo
+                        </button>                                             
+                    : null
+                }
+                </div>                
 
                 <div className="establishments">                    
                     {
-                       loading ? 
+                       loading 
+                            ? 
                             <Spinner/> 
-                            :listOfStablishments.map(establisment => (
-                                <Establishment 
-                                establishment = {establisment}
-                                />
-                            ))                       
+                            :
+                            listOfStablishments.length === 0 
+                                ? <EstablishmentEmpty/>
+                                : listOfStablishments.map(establisment => (
+                                    <Establishment 
+                                        establishment = {establisment}
+                                    />
+                                ))                       
                     }     
                                   
                     <ModalNewEstablishment/>                                  

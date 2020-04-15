@@ -8,11 +8,13 @@ import {
     GET_SERVICES,
     CREATE_FIELD,
     ERROR_CREATING_FIELD,
+    ERROR_DELETING_FIELD,
     SET_SELECTED_FIELD,    
     CREATE_ESTABLISHMENT,
     ERROR_CREATING_ESTABLISHMENT,
     ADD_SERVICE,
-    REMOVE_SERVICE
+    REMOVE_SERVICE,
+    REMOVE_ALERT_MESSAGE
 } from '../types';
 
 export default (state, action) => {
@@ -54,36 +56,45 @@ export default (state, action) => {
             }        
         case CREATE_FIELD:
             return {
-                ...state,
-                //listOfFields : [...state.listOfFields, action.payload],
-                alert_message : {msg :'Cancha creada con exito', category:'alert-success'}
+                ...state,                
+                alert_message : {msg :'Cancha creada con exito', category:'alert-success'}                
             } 
         case ERROR_CREATING_FIELD:
+        case ERROR_DELETING_FIELD:
+        case ERROR_CREATING_ESTABLISHMENT:    
             return {
                 ...state,
                 alert_message : action.payload
             }
-        case SET_SELECTED_FIELD:
-        case ERROR_CREATING_ESTABLISHMENT:    
+        case SET_SELECTED_FIELD:                       
             return {
                 ...state,
-                selected_field : action.payload
+                selected_field : action.payload,
+                alert_message : null
             } 
-        case CREATE_ESTABLISHMENT:
+        case CREATE_ESTABLISHMENT:            
             return {
                 ...state,                
-                alert_message : {msg :'Complejo creado con exito', category:'alert-success'}
+                alert_message : {msg :'Complejo creado con exito', category:'alert-success'},
+                alert_message : null
             } 
-        case ADD_SERVICE:
+        case ADD_SERVICE:            
             return {
                 ...state,
-                listOfAddedServices : [...state.listOfAddedServices, action.payload]
+                listOfAddedServices : [...state.listOfAddedServices, action.payload],
+                alert_message : null
             } 
-        case REMOVE_SERVICE:
+        case REMOVE_SERVICE:            
             return {
                 ...state,
-                listOfAddedServices : state.listOfAddedServices.filter(serviceId => serviceId !== action.payload)
-            }                                       
+                listOfAddedServices : state.listOfAddedServices.filter(serviceId => serviceId !== action.payload),
+                alert_message : null
+            }
+        case REMOVE_ALERT_MESSAGE:
+            return {
+                ...state,
+                alert_message : null
+            }                                           
         default :
             return state;        
     }

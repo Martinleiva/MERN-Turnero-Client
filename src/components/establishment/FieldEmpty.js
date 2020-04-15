@@ -1,7 +1,7 @@
 import React from 'react';
 import SinImagen from '../../img/sports2.png';
 
-const FieldEmpty = ({field}) => {    
+const FieldEmpty = () => {    
     return (
         <div className="card card-field"> 
             <img className="card-img-top" src={SinImagen} alt="Card image"/>       

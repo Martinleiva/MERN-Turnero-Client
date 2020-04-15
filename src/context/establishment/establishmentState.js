@@ -13,6 +13,8 @@ import {
     GET_SERVICES,
     CREATE_FIELD,
     ERROR_CREATING_FIELD,
+    ERROR_DELETING_FIELD,
+    REMOVE_ALERT_MESSAGE,
     SET_SELECTED_FIELD,
     CREATE_ESTABLISHMENT,
     ERROR_CREATING_ESTABLISHMENT,
@@ -52,19 +54,14 @@ const EstablishmentState = props => {
 
     //Get fields by establishmentId
     const getFields = async establishmentId => {
-
         try {
-            const fields = await AxiosClient.get(`/api/field/establishment/${establishmentId}`);
-            //console.log(fields.data);
-
+            const fields = await AxiosClient.get(`/api/field/establishment/${establishmentId}`);            
             dispatch({
                 type: GET_FIELDS_BY_ESTABLISHMENT,
                 payload: fields.data.fields
-            });            
-            
+            });                        
         } catch (error) {
-            console.log(error);
-            
+            console.log(error);            
         }
     }    
 
@@ -164,8 +161,16 @@ const EstablishmentState = props => {
             const response = await AxiosClient.delete(`/api/field/${field._id}`);
             console.log(response);
             //update list of field
-            getFields(field.establishment);            
+            getFields(field.establishment);                        
         } catch (error) {
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alert-danger'
+            }
+            dispatch({
+                type : ERROR_DELETING_FIELD,
+                payload : alert              
+            })
             console.log(error);
         }
     }
@@ -217,6 +222,12 @@ const EstablishmentState = props => {
         }
     }
 
+    const removeAlertMessage = () => {
+        dispatch({
+            type : REMOVE_ALERT_MESSAGE
+        })
+    }
+
     return (
         <EstablishmentContext.Provider
             value={{
@@ -242,7 +253,8 @@ const EstablishmentState = props => {
                 deleteField,
                 createEstablishment,
                 addService,
-                removeService
+                removeService,
+                removeAlertMessage
             }}
         >
             {props.children}

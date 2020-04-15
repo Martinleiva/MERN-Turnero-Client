@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import imagenFutbol from '../../img/foto-futbol.jpg';
 import imagenBasquet from '../../img/foto-basquet.jpg';
 import imagenPaddle from '../../img/foto_paddle.jpg';
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 const Field = ({field}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { setSelectedField, deleteField, selected_field }= establishmentContext;
+    const { setSelectedField, removeAlertMessage, deleteField, alert_message }= establishmentContext;
 
     let image = SinImagen;    
     
@@ -30,8 +30,7 @@ const Field = ({field}) => {
         setSelectedField(field);
     }
 
-    const handleDeleteField = e => {
-        setSelectedField(field);
+    const handleDeleteField = field => {        
         Swal.fire({
             title: '¿Seguro de eliminar la cancha?',
             text: "Si elimina esta cancha, se eliminará toda la información relacionada a la misma.",
@@ -43,15 +42,40 @@ const Field = ({field}) => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.value) {
-              deleteField(selected_field);  
-              Swal.fire(
-                'Cancha eliminada con exito!',
-                'Los datos de la cancha han sido barrados!',
-                'success'
-              )
+                deleteField(field);                               
+                Swal.fire({
+                title: 'Eliminando cancha...',
+                html: 'aguarde por favor...',
+                timer: 3000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    Swal.showLoading()                   
+                },
+                onClose: () => {                    
+                }
+                }).then((result) => {                
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        Swal.fire(
+                            'Cancha eliminada con exito!',
+                            'Los datos de la cancha han sido barrados!',
+                            'success'
+                        )                        
+                    }
+                })             
             }
         })        
     }
+
+    useEffect(()=> {
+        if(alert_message && alert_message.category === 'alert-danger' ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al eliminar',
+                text: alert_message.msg                                
+              })
+            removeAlertMessage();      
+        }
+    }, [alert_message])
 
     return (
         <div className="card card-field"> 
@@ -67,7 +91,7 @@ const Field = ({field}) => {
             <div className="btn-group-fab-remove-field">                 
                     <Trash color="black" className="btn-remove-field" 
                            size={15}                            
-                           onClick={handleDeleteField}/>                
+                           onClick={ () => handleDeleteField(field)}/>                
             </div>           
         </div>
     );

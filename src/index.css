@@ -227,15 +227,14 @@ body {
   width: 5rem;     
 }
 
-.header-my-establishment h1{     
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;  
+.header-my-establishment h3{     
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .header-my-establishment button{
   font-size: 14px;    
   height: 2.2rem;
 }
-
 
 .title-my-establishment{
   text-align: center;   
@@ -245,7 +244,8 @@ body {
 .establishments {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;  
+  justify-content: flex-end;
+  align-items: center;  
 }
 
 .card-establishment {
@@ -267,6 +267,23 @@ body {
 .establishment-details h2{
   font-weight: bold;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.card-establishment-empty {
+  width: 280px;
+  height: 300px;
+  text-align: center;  
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card-establishment-empty img {
+  width: 280px;
+  height: 200px; 
+}
+
+.card-establishment-empty button {
+  font-size: 16px;  
 }
 
 .badge-day-of-week {
