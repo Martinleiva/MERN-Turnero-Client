@@ -19,7 +19,7 @@ const FieldCard = ({ field }) => {
                 <div className="card-footer text-center">
                     {/* <Link to={'/res-client'} type="button" className="btn btn-success">Reservar</Link> */}
                     <button 
-                        type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_new_reservation">
+                        type="button" className="btn btn-success" data-toggle="modal" data-target="#modal_new_reservation">
                             Reservar
                     </button>
                 </div>
