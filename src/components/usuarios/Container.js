@@ -4,6 +4,8 @@ import FieldsList from '../establishment/fields/FieldsList';
 import AuthContext from '../../context/authentication/authContext';
 import FieldContext from '../../context/fields/fieldContext';
 
+import ModalNewRes from '../establishment/fields/ModalNewRes';
+
 const Container = () => {
 
     //Extract the information from authentication
@@ -28,6 +30,8 @@ const Container = () => {
             <div className="card-columns">
                 <FieldsList />
             </div>
+
+            <ModalNewRes />
             
         </div> 
      );
