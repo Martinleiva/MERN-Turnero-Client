@@ -6,6 +6,7 @@ import AuthContext from '../../context/authentication/authContext';
 import image2base64 from 'image-to-base64';
 import Spinner from '../common/Spinner';
 import DayOfWeek from './DayOfWeek';
+import {backEndURL} from '../../config/urlBackEnd';
 
 const ModalNewEstablishment = () => {
     
@@ -14,8 +15,9 @@ const ModalNewEstablishment = () => {
     const { alert, showAlert } = alertContext;
 
     const establishmentContext = useContext(EstablishmentContext);    
-    const { listOfCategories, listOfServices, alert_message , 
-            listOfAddedServices, addService, removeService, createEstablishment } = establishmentContext;
+    const {selected_stablishment, listOfCategories, listOfServices, alert_message , 
+            listOfAddedServices, addService, removeService, 
+            createEstablishment, updateEstablishment } = establishmentContext;
 
     const authContext = useContext(AuthContext);            
     const { user } = authContext;
@@ -38,6 +40,8 @@ const ModalNewEstablishment = () => {
     const [saturday, setSaturday] = useState('');
     const [sunday, setSunday] = useState('');
 
+    const [editionMode, setEditionMode] = useState(false);
+
     const onChangeFoto = e => {
         setPhoto(e.target.files[0]);                
     }
@@ -57,7 +61,10 @@ const ModalNewEstablishment = () => {
         In this line we convert the uploaded image to base64 in order to send it to 
         the back end as a string.         
         */
-        const photo2base64 = await image2base64(URL.createObjectURL(photo));
+        let photo2base64 = '';
+        if(photo !== ''){
+            photo2base64 = await image2base64(URL.createObjectURL(photo));
+        }        
 
         const establishment = {
             'name' : name,
@@ -75,7 +82,13 @@ const ModalNewEstablishment = () => {
             'sunday' : sunday,
             'services' : listOfAddedServices           
         };
-        createEstablishment(establishment);
+
+        if(!editionMode) {
+            createEstablishment(establishment);
+        } else {
+            updateEstablishment(establishment, selected_stablishment._id);
+        }   
+        
 
         setTimeout(() => {                        
             setLoading(false);            
@@ -95,7 +108,35 @@ const ModalNewEstablishment = () => {
         if(alert_message){
             showAlert(alert_message.msg, alert_message.category);
         }
-    }, [alert_message])
+    }, [alert_message]);
+    
+    useEffect( ()=> {
+        if(selected_stablishment){
+            setName(selected_stablishment.name);
+            setAddress(selected_stablishment.address);
+            setTel(selected_stablishment.tel);
+            setCategory(selected_stablishment.category);
+            setMonday(selected_stablishment.monday);
+            setTuesday(selected_stablishment.tuesday);
+            setWednesday(selected_stablishment.wednesday);
+            setThursday(selected_stablishment.thursday);
+            setFriday(selected_stablishment.friday);
+            setSaturday(selected_stablishment.saturday);
+            setSunday(selected_stablishment.sunday);
+            setPhoto(selected_stablishment.photo);            
+
+            listOfAddedServices.map(id => (
+                removeService(id)
+            ));
+
+            selected_stablishment.services.map(service => (
+                addService(service._id)
+            ));                
+
+            setEditionMode(true);
+
+        }
+    }, [selected_stablishment]);
 
     return (  
         <div className="modal" id="modal_new_stablishment" role="dialog">
@@ -116,6 +157,7 @@ const ModalNewEstablishment = () => {
                                            id="inputField" 
                                            placeholder="Nombre"
                                            name={name}
+                                           value={name}
                                            onChange={(e) => { setName(e.target.value) }}
                                            />
                                 </div>                           
@@ -128,6 +170,7 @@ const ModalNewEstablishment = () => {
                                            id="inputField" 
                                            placeholder="Dirección"
                                            name={address}
+                                           value={address}
                                            onChange={(e) => { setAddress(e.target.value) }}
                                            />
                                 </div>                           
@@ -140,6 +183,7 @@ const ModalNewEstablishment = () => {
                                            id="inputField" 
                                            placeholder="Teléfono"
                                            name={tel}
+                                           value={tel}
                                            onChange={(e) => { setTel(e.target.value) }}
                                            />
                                 </div> 
@@ -170,17 +214,17 @@ const ModalNewEstablishment = () => {
                                             <div id="collapseOne" className="collapse" data-parent="#accordionNewEstablishment">
                                                 <div className="card-body">
                                                     <div className="form-row">
-                                                        <DayOfWeek day="Lunes" fnSetTimes={setMonday}/>
-                                                        <DayOfWeek day="Martes" fnSetTimes={setTuesday}/>
-                                                        <DayOfWeek day="Miércoles" fnSetTimes={setWednesday}/>
+                                                        <DayOfWeek day="Lunes" fnSetTimes={setMonday} value={monday}/>
+                                                        <DayOfWeek day="Martes" fnSetTimes={setTuesday} value={tuesday}/>
+                                                        <DayOfWeek day="Miércoles" fnSetTimes={setWednesday} value={wednesday}/>
                                                     </div>
                                                     <div className="form-row">
-                                                        <DayOfWeek day="Jueves" fnSetTimes={setThursday}/>
-                                                        <DayOfWeek day="Viernes" fnSetTimes={setFriday}/>
-                                                        <DayOfWeek day="Sábado" fnSetTimes={setSaturday}/>
+                                                        <DayOfWeek day="Jueves" fnSetTimes={setThursday} value={thursday}/>
+                                                        <DayOfWeek day="Viernes" fnSetTimes={setFriday} value={friday}/>
+                                                        <DayOfWeek day="Sábado" fnSetTimes={setSaturday} value={saturday}/>
                                                     </div>
                                                     <div className="form-row">
-                                                        <DayOfWeek day="Domingo" fnSetTimes={setSunday}/>                                                        
+                                                        <DayOfWeek day="Domingo" fnSetTimes={setSunday} value={sunday}/>                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,7 +258,7 @@ const ModalNewEstablishment = () => {
                                     <div className="card">
                                         <img src={photo ? URL.createObjectURL(photo) : SinImagen} class="card-img-top" alt="..."/>    
                                         <div class="card-body">
-                                            <input type="file" accept="image/png, image/jpeg"
+                                            <input type="file" accept="image/png, image/jpeg"                                                   
                                                    name="photo" onChange={onChangeFoto}/>                                                         
                                         </div>                                                      
                                     </div>                                    

@@ -11,6 +11,7 @@ import {
     ERROR_DELETING_FIELD,
     SET_SELECTED_FIELD,    
     CREATE_ESTABLISHMENT,
+    UPDATE_ESTABLISHMENT,
     ERROR_CREATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE,
@@ -81,6 +82,13 @@ export default (state, action) => {
                 alert_message : null,
                 amount_of_field : null
             } 
+        case UPDATE_ESTABLISHMENT:            
+        return {
+            ...state,                
+            alert_message : {msg :'Complejo modificado con exito', category:'alert-success'},
+            alert_message : null,
+            amount_of_field : null
+        }     
         case ADD_SERVICE:            
             return {
                 ...state,

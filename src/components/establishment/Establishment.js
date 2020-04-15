@@ -32,6 +32,11 @@ const Establishment = ({establishment}) => {
         }
     }, [amount_of_field, loading]);
 
+    const handleEdit = () => {
+        setSelectedEstablishment(establishment);
+
+    }
+
     return (  
         <div className="card card-establishment">
             <div className="row no-gutters">                            
@@ -45,7 +50,10 @@ const Establishment = ({establishment}) => {
                         <div className="btn-group-fab-edit-establishment">
                             <button type="button" 
                                     className="btn btn-main btn-success d-flex d-flex justify-content-center" 
-                                    title="Editar Complejo"                                          
+                                    title="Editar Complejo"
+                                    data-toggle="modal"
+                                    data-target="#modal_new_stablishment"
+                                    onClick={handleEdit}                                          
                             > 
                                 <Pencil color="white" size={20}/>
                             </button>

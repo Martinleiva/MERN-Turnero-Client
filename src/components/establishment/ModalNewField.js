@@ -47,7 +47,7 @@ const ModalNewField = () => {
         In this line we convert the uploaded image to base64 in order to send it to 
         the back end as a string.         
         */
-        const photo2base64 = await image2base64(URL.createObjectURL(photo));
+        const photo2base64 = await image2base64(URL.createObjectURL(photo));        
 
         const field = {
             'name' : name,

@@ -17,6 +17,7 @@ import {
     REMOVE_ALERT_MESSAGE,
     SET_SELECTED_FIELD,
     CREATE_ESTABLISHMENT,
+    UPDATE_ESTABLISHMENT,
     ERROR_CREATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE
@@ -202,6 +203,31 @@ const EstablishmentState = props => {
         }
     }
 
+    const updateEstablishment = async (data, id) => {
+        try {
+            const response = await AxiosClient.put(`/api/establishment/${id}`, data);
+            console.log(response.data);
+
+            //update list of field
+            getStablishmentByOwner(data.establishment);
+
+            dispatch({
+                type : UPDATE_ESTABLISHMENT,
+                payload : response.data
+            })
+        } catch (error) {
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alert-danger'
+            }
+            dispatch({
+                type : ERROR_CREATING_ESTABLISHMENT,
+                payload : alert              
+            })
+            console.log(error);
+        }
+    }
+
     const addService = serviceId => {
         try {
             dispatch({
@@ -256,6 +282,7 @@ const EstablishmentState = props => {
                 setSelectedField,
                 deleteField,
                 createEstablishment,
+                updateEstablishment,
                 addService,
                 removeService,
                 removeAlertMessage
