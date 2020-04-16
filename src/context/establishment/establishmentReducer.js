@@ -1,6 +1,7 @@
 import {
     GET_ESTABLISHMENT_BY_OWNER, 
     GET_FIELDS_BY_ESTABLISHMENT,
+    GET_FIELDS,
     SET_SELECTED_ESTABLISHMENT,
     GET_TYPE_OF_SPORTS,
     GET_TYPE_OF_GROUNDS,
@@ -32,6 +33,11 @@ export default (state, action) => {
                 listOfFields : action.payload,
                 amount_of_field : action.payload.length
             }
+        case GET_FIELDS:
+            return {
+                ...state,
+                fields: action.payload
+            }    
         case SET_SELECTED_ESTABLISHMENT:
             return {
                 ...state,

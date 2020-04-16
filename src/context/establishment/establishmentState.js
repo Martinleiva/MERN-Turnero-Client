@@ -6,6 +6,7 @@ import AxiosClient from '../../config/axios';
 import {
     GET_ESTABLISHMENT_BY_OWNER,
     GET_FIELDS_BY_ESTABLISHMENT,
+    GET_FIELDS,
     SET_SELECTED_ESTABLISHMENT,
     GET_TYPE_OF_SPORTS,
     GET_TYPE_OF_GROUNDS,
@@ -27,12 +28,13 @@ const EstablishmentState = props => {
 
     const initialState = {
         listOfStablishments : [],
-        listOfFields : [],
+        listOfFields : [], //list of field by stablishment
         listOfTypesSports : [],
         listOfTypesGrounds : [],
         listOfCategories : [],
         listOfServices : [],
         listOfAddedServices : [],
+        fields: [], //list of fields that will be shown to registed clients...
         amount_of_establishment : null,
         amount_of_field : null,
         selected_stablishment : null,
@@ -56,7 +58,7 @@ const EstablishmentState = props => {
     }
 
     //Get fields by establishmentId
-    const getFields = async establishmentId => {
+    const getFieldByStablishment = async establishmentId => {
         try {
             const fields = await AxiosClient.get(`/api/field/establishment/${establishmentId}`);            
             dispatch({
@@ -66,7 +68,22 @@ const EstablishmentState = props => {
         } catch (error) {
             console.log(error);            
         }
-    }    
+    }
+    
+    //Obtain fields
+    const getFields = async () => {
+        try {
+            const res = await AxiosClient.get('/api/field');
+            console.log(res);
+            dispatch({
+                type: GET_FIELDS,
+                payload: res.data.fields
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const setSelectedEstablishment = establishment => {
         dispatch({
@@ -129,7 +146,7 @@ const EstablishmentState = props => {
             console.log(response.data);
 
             //update list of field
-            getFields(data.establishment);
+            getFieldByStablishment(data.establishment);
 
             dispatch({
                 type : CREATE_FIELD,
@@ -164,7 +181,7 @@ const EstablishmentState = props => {
             const response = await AxiosClient.delete(`/api/field/${field._id}`);
             console.log(response);
             //update list of field
-            getFields(field.establishment);                        
+            getFieldByStablishment(field.establishment);                        
         } catch (error) {
             const alert = {
                 msg: error.response.data.msg,
@@ -261,6 +278,7 @@ const EstablishmentState = props => {
             value={{
                 listOfStablishments : state.listOfStablishments,
                 listOfFields : state.listOfFields,
+                fields : state.fields,
                 selected_stablishment : state.selected_stablishment,
                 selected_field : state.selected_field,
                 listOfTypesSports : state.listOfTypesSports,
@@ -272,6 +290,7 @@ const EstablishmentState = props => {
                 amount_of_establishment : state.amount_of_establishment,
                 amount_of_field: state.amount_of_field,
                 getStablishmentByOwner,
+                getFieldByStablishment,
                 getFields,
                 setSelectedEstablishment,
                 getTypesOfSports,

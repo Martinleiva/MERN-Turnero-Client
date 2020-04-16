@@ -530,3 +530,23 @@ body {
 .service-box :hover {
   cursor: pointer;
 }
+.section-confirm {
+  background-color: lightgrey;
+  margin: 2rem;
+  position: relative;
+  border-radius: .5rem;
+}
+
+.section-confirm__data {
+  display: inline-block;
+  padding: 2rem;
+  width: 50%;
+}
+
+.section-confirm__court {
+  display: inline-block;
+  padding: 2rem;
+  width: 50%;
+}
+
+

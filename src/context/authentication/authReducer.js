@@ -18,7 +18,8 @@ export default (state, action) => {
                 authenticated : true,
                 message : null,
                 loading : false,
-                user : null               
+                user : null,
+                type_usr: action.payload.type_usr,                
             }
         
         case LOG_OUT:
@@ -31,28 +32,28 @@ export default (state, action) => {
                 user: null,
                 authenticated: null,
                 loading : false,
-                message: action.payload
+                message: action.payload,
+                type_usr: null,
             }
-
-            case GET_USER:
-                return {
-                    ...state,
-                    authenticated : true,
-                    message : null,
-                    loading : false,
-                    user : action.payload
-                }    
-  
-            case SHOW_ALERT:    
-                return {
-                    ...state,
-                    authenticated : false,
-                    message : action.payload,
-                    loading : false,
-                    token : null,
-                    user : null
-                }    
-            default :
-                return state;
+        case GET_USER:
+            return {
+                ...state,
+                authenticated : true,
+                message : null,
+                loading : false,
+                user : action.payload,
+                type_usr: action.payload.user_type
+            }    
+        case SHOW_ALERT:    
+            return {
+                ...state,
+                authenticated : false,
+                message : action.payload,
+                loading : false,
+                token : null,
+                user : null
+            }    
+        default :
+            return state;
     }
 }

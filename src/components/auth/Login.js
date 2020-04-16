@@ -12,13 +12,17 @@ const Login = (props) => {
     const { alert, showAlert } = alertContext;
 
     const authContext = useContext(AuthContext);
-    const { message, authenticated, startSession } = authContext;
+    const { message, authenticated, type_usr, startSession } = authContext;
 
     // In case of the user has been authenticated or registred or duplicate register 
     useEffect( () => {
 
-        if(authenticated) {
+        if(authenticated && type_usr === 'Cliente') {          
             props.history.push('/dash-client'); // Screen user authenticated
+        } 
+
+        if (authenticated && type_usr === 'Dueño') {
+            props.history.push('/my-establishments');
         }
 
         if(message) {
@@ -29,7 +33,8 @@ const Login = (props) => {
 
     const [user, saveUser] = useState({
         email : '',
-        password : ''
+        password : '',
+        user_type: '',
     });
 
     const handleOnChange = e => {
@@ -39,7 +44,7 @@ const Login = (props) => {
         })
     }
 
-    const { email, password } = user;
+    const { email, password, user_type } = user;
 
     const onSubmit = e => {
         e.preventDefault();
@@ -52,7 +57,7 @@ const Login = (props) => {
         }
 
         //start session  
-        startSession({ email, password });    
+        startSession({ email, password, user_type });    
     }
 
     return (
