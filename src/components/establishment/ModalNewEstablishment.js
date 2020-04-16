@@ -30,7 +30,7 @@ const ModalNewEstablishment = () => {
     const [coordinates, setCoordinates] = useState('');    
     const [category, setCategory] = useState(null);
     const [services, setServices] = useState([]); 
-    const [photo, setPhoto] = useState(null);
+    const [photoUploaded, setPhotoUploaded] = useState(null);
     
     const [monday, setMonday] = useState('');
     const [tuesday, setTuesday] = useState('');
@@ -42,8 +42,9 @@ const ModalNewEstablishment = () => {
 
     const [editionMode, setEditionMode] = useState(false);
 
-    const onChangeFoto = e => {
-        setPhoto(e.target.files[0]);                
+    const onChangeFoto = e => {  
+        console.log('se llama a cambiar foto');      
+        setPhotoUploaded(e.target.files[0]);                
     }
 
     const handleSaveEstablishment = async () => {
@@ -57,22 +58,12 @@ const ModalNewEstablishment = () => {
             return;
         }
 
-        /*
-        In this line we convert the uploaded image to base64 in order to send it to 
-        the back end as a string.         
-        */
-        let photo2base64 = '';
-        if(photo !== ''){
-            photo2base64 = await image2base64(URL.createObjectURL(photo));
-        }        
-
         const establishment = {
             'name' : name,
             'address' : address,
             'tel' : tel,
             'owner' : user._id,
-            'category' : category,            
-            'photo_1': photo2base64,
+            'category' : category,                        
             'monday' : monday,
             'tuesday' : tuesday,
             'wednesday' : wednesday,
@@ -83,15 +74,25 @@ const ModalNewEstablishment = () => {
             'services' : listOfAddedServices           
         };
 
+        /*
+        In this line we convert the uploaded image to base64 in order to send it to 
+        the back end as a string.         
+        */
+        let photo2base64 = '';
+        if(photoUploaded){
+            photo2base64 = await image2base64(URL.createObjectURL(photoUploaded));
+            establishment.photo_1 = photo2base64;
+        }    
+
         if(!editionMode) {
             createEstablishment(establishment);
         } else {
             updateEstablishment(establishment, selected_stablishment._id);
-        }   
-        
+        }                   
 
         setTimeout(() => {                        
             setLoading(false);            
+            setPhotoUploaded(null);
         }, 800);
     }
 
@@ -110,8 +111,9 @@ const ModalNewEstablishment = () => {
         }
     }, [alert_message]);
     
-    useEffect( ()=> {
+    useEffect( ()=> {                        
         if(selected_stablishment){
+            setPhotoUploaded(null);
             setName(selected_stablishment.name);
             setAddress(selected_stablishment.address);
             setTel(selected_stablishment.tel);
@@ -122,8 +124,7 @@ const ModalNewEstablishment = () => {
             setThursday(selected_stablishment.thursday);
             setFriday(selected_stablishment.friday);
             setSaturday(selected_stablishment.saturday);
-            setSunday(selected_stablishment.sunday);
-            setPhoto(selected_stablishment.photo);            
+            setSunday(selected_stablishment.sunday);                                    
 
             listOfAddedServices.map(id => (
                 removeService(id)
@@ -255,8 +256,20 @@ const ModalNewEstablishment = () => {
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="inputPrice">Foto</label>
-                                    <div className="card">
-                                        <img src={photo ? URL.createObjectURL(photo) : SinImagen} class="card-img-top" alt="..."/>    
+                                    <div className="card">               
+                                        <img src={
+                                                !selected_stablishment
+                                                    ?
+                                                    photoUploaded
+                                                        ? URL.createObjectURL(photoUploaded) 
+                                                        : SinImagen
+                                                    : !photoUploaded  
+                                                      ? selected_stablishment.photo_1 !== ''
+                                                         ? `${backEndURL}${selected_stablishment.photo_1}`
+                                                         : SinImagen
+                                                      : URL.createObjectURL(photoUploaded)         
+                                                } 
+                                            class="card-img-top" alt="..."/>    
                                         <div class="card-body">
                                             <input type="file" accept="image/png, image/jpeg"                                                   
                                                    name="photo" onChange={onChangeFoto}/>                                                         

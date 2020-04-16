@@ -5,6 +5,8 @@ import FieldEmpty from './FieldEmpty';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import { ChevronDoubleUp, Pencil, Plus, PlusSquare} from 'react-bootstrap-icons';
 import Spinner from '../common/Spinner';
+import {backEndURL} from '../../config/urlBackEnd';
+import SinImagen from '../../img/sin_imagen.png';
 
 const Establishment = ({establishment}) => {
 
@@ -41,7 +43,13 @@ const Establishment = ({establishment}) => {
         <div className="card card-establishment">
             <div className="row no-gutters">                            
                 <div className="col-md-4">
-                    <img src={imagenTemp} className="card-img" alt="..."/>
+                    <img src={
+                            establishment.photo_1 !== ''
+                                 ?
+                                 `${backEndURL}${establishment.photo_1}`
+                                 : SinImagen                    
+                            } 
+                        className="card-img" alt="..."/>
                 </div>
                 <div className="col-md-8">
 
