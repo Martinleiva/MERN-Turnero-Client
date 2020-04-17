@@ -13,8 +13,10 @@ import {
     GET_CATEGORIES,
     GET_SERVICES,
     CREATE_FIELD,
+    UPDATE_FIELD,
     ERROR_CREATING_FIELD,
     ERROR_DELETING_FIELD,
+    ERROR_UPDATE_FIELD,
     REMOVE_ALERT_MESSAGE,
     SET_SELECTED_FIELD,
     CREATE_ESTABLISHMENT,
@@ -142,9 +144,7 @@ const EstablishmentState = props => {
 
     const createField = async data => {
         try {
-            const response = await AxiosClient.post('/api/field/', data);
-            console.log(response.data);
-
+            const response = await AxiosClient.post('/api/field/', data);            
             //update list of field
             getFieldByStablishment(data.establishment);
 
@@ -178,8 +178,7 @@ const EstablishmentState = props => {
 
     const deleteField = async field => {
         try {
-            const response = await AxiosClient.delete(`/api/field/${field._id}`);
-            console.log(response);
+            const response = await AxiosClient.delete(`/api/field/${field._id}`);            
             //update list of field
             getFieldByStablishment(field.establishment);                        
         } catch (error) {
@@ -194,12 +193,33 @@ const EstablishmentState = props => {
             console.log(error);
         }
     }
+
+    const updateField = async (data, id) => {
+        try {
+            const response = await AxiosClient.put(`/api/field/${id}`, data);            
+            //update list of field by establishment
+            getFieldByStablishment(data.establishment);
+
+            dispatch({
+                type : UPDATE_FIELD,
+                payload : response.data.msg
+            })
+        } catch (error) {
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alert-danger'
+            }
+            dispatch({
+                type : ERROR_UPDATE_FIELD,
+                payload : alert              
+            })
+            console.log(error);
+        }
+    }
     
     const createEstablishment = async data => {
         try {
-            const response = await AxiosClient.post('/api/establishment/', data);
-            console.log(response.data);
-
+            const response = await AxiosClient.post('/api/establishment/', data);            
             //update list of field
             getStablishmentByOwner(data.establishment);
 
@@ -222,9 +242,7 @@ const EstablishmentState = props => {
 
     const updateEstablishment = async (data, id) => {
         try {
-            const response = await AxiosClient.put(`/api/establishment/${id}`, data);
-            console.log(response.data);
-
+            const response = await AxiosClient.put(`/api/establishment/${id}`, data);            
             //update list of field
             getStablishmentByOwner(data.establishment);
 
@@ -300,6 +318,7 @@ const EstablishmentState = props => {
                 createField,
                 setSelectedField,
                 deleteField,
+                updateField,
                 createEstablishment,
                 updateEstablishment,
                 addService,

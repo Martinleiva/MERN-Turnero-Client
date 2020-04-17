@@ -393,6 +393,26 @@ body {
 
 /* end remove field fab */
 
+/* edit field fab */
+.btn-group-fab-edit-field {
+  position: relative; 
+  float: right;   
+  height: auto;  
+}
+
+.btn-group-fab-edit-field .btn-edit-field {
+  position: absolute;
+  bottom: 0;    
+  margin-bottom: 5px;  
+  right: 15%;
+}
+
+.btn-edit-field:hover {
+  cursor: pointer;
+}
+
+/* end edit field fab */
+
 .modal_new_field {
   background-color: #ebf8e8;
 }

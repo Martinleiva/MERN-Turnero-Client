@@ -18,8 +18,9 @@ const MyEstablishments = () => {
 
     const { user } = authContext;
     const { listOfStablishments, amount_of_establishment, 
-            getStablishmentByOwner, getTypesOfSports, 
-            getTypesOfGrounds, getCategories, getServices } = establishmentContext;    
+            getStablishmentByOwner, getTypesOfSports,            
+            getTypesOfGrounds, getCategories, getServices,
+            setSelectedEstablishment } = establishmentContext;    
 
     useEffect( ()=> {                 
         getStablishmentByOwner();
@@ -29,12 +30,16 @@ const MyEstablishments = () => {
         getServices();        
     }, [])
     
-    useEffect( ()=> {
-        console.log('amount_of_establishment:', amount_of_establishment);
+    useEffect( ()=> {        
         if(amount_of_establishment !== null){
             setLoading(false);        
         }                    
     }, [amount_of_establishment])
+
+    const handleNewEstablishment = () => {
+        //Make sure of clean if there is a selected stablishment
+        setSelectedEstablishment(null);
+    }
 
     return ( 
         <Fragment>
@@ -49,6 +54,7 @@ const MyEstablishments = () => {
                                 className="btn btn-success btn-sm"
                                 data-toggle="modal"
                                 data-target="#modal_new_stablishment"
+                                onClick={handleNewEstablishment}
                                 >
                                 Agregar Complejo
                         </button>                                             

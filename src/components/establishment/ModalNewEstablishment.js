@@ -111,7 +111,28 @@ const ModalNewEstablishment = () => {
         }
     }, [alert_message]);
     
-    useEffect( ()=> {                        
+    useEffect( ()=> { 
+        
+        //First of all, clean the current state        
+        listOfAddedServices.map(id => (
+            removeService(id)
+        ));
+
+        setPhotoUploaded(null);
+        setName('');
+        setAddress('');
+        setTel('');
+        setCategory('');
+        setMonday('');
+        setTuesday('');
+        setWednesday('');
+        setThursday('');
+        setFriday('');
+        setSaturday('');
+        setSunday(''); 
+        
+        //If there is a selected establishment, then we need to set up the state with the value of this..
+        //The edition mode needs to be set as well...
         if(selected_stablishment){
             setPhotoUploaded(null);
             setName(selected_stablishment.name);
@@ -126,16 +147,11 @@ const ModalNewEstablishment = () => {
             setSaturday(selected_stablishment.saturday);
             setSunday(selected_stablishment.sunday);                                    
 
-            listOfAddedServices.map(id => (
-                removeService(id)
-            ));
-
             selected_stablishment.services.map(service => (
                 addService(service._id)
             ));                
 
             setEditionMode(true);
-
         }
     }, [selected_stablishment]);
 
@@ -191,6 +207,7 @@ const ModalNewEstablishment = () => {
                                 <div className="form-group col-md-6">                                    
                                     <select id="inputSportType" 
                                             className="form-control-edited"
+                                            value={category}
                                             onChange={(e) => { setCategory(e.target.value) }}
                                             >
                                         <option selected>-- Seleccione Categoría --</option>                                                                                
@@ -269,7 +286,8 @@ const ModalNewEstablishment = () => {
                                                          : SinImagen
                                                       : URL.createObjectURL(photoUploaded)         
                                                 } 
-                                            class="card-img-top" alt="..."/>    
+                                            class="card-img-top" alt="..."
+                                        />    
                                         <div class="card-body">
                                             <input type="file" accept="image/png, image/jpeg"                                                   
                                                    name="photo" onChange={onChangeFoto}/>                                                         

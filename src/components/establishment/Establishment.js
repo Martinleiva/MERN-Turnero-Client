@@ -12,7 +12,7 @@ const Establishment = ({establishment}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
     const { listOfFields, amount_of_field, getFieldByStablishment, 
-            setSelectedEstablishment } = establishmentContext;
+            setSelectedEstablishment, setSelectedField } = establishmentContext;
 
     const [loading, setLoading] = useState(false);
 
@@ -37,6 +37,10 @@ const Establishment = ({establishment}) => {
     const handleEdit = () => {
         setSelectedEstablishment(establishment);
 
+    }
+
+    const handleNewField = () => {
+        setSelectedField(null);
     }
 
     return (  
@@ -141,7 +145,8 @@ const Establishment = ({establishment}) => {
                                             className="btn-new-field btn btn-main btn-success d-flex d-flex justify-content-center collapsed" 
                                             title="Nueva Cancha"
                                             data-toggle="modal"
-                                            data-target="#modal_new_field"                                                                                
+                                            data-target="#modal_new_field" 
+                                            onClick={handleNewField}                                                                               
                                     > 
                                         <Plus color="white" size={20} />
                                     </button>    
