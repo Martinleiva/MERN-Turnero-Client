@@ -6,6 +6,7 @@ import SinImagen from '../../img/sin_imagen.png';
 import { Trash, Pencil } from 'react-bootstrap-icons';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import Swal from 'sweetalert2';
+import {backEndURL} from '../../config/urlBackEnd';
 
 const Field = ({field}) => {
 
@@ -67,7 +68,8 @@ const Field = ({field}) => {
     }
 
     useEffect(()=> {
-        if(alert_message && alert_message.category === 'alert-danger' ) {
+        if(alert_message && alert_message.category === 'alert-danger' 
+            && alert_message.error_type === 'ERROR_DELETING_FIELD') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error al eliminar',
@@ -78,8 +80,8 @@ const Field = ({field}) => {
     }, [alert_message])
 
     return (
-        <div className="card card-field"> 
-            <img className="card-img-top" src={image} alt="Card image"/>       
+        <div className="card card-field polaroid"> 
+            <img className="card-img-top" src={`${backEndURL}${field.photo_1}`} alt="Card image"/>       
             <div className="card-body">
                 <p className="card-title">{field.name} - {field.sport_type.description}</p>
                 <a href=""

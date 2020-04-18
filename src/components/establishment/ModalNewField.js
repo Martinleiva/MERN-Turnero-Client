@@ -40,8 +40,15 @@ const ModalNewField = () => {
         setLoading(true);
 
         //verify required fields
-        if(name.trim() === ''){            
+        if(name.trim() === '' || ground_type === '' || 
+           sport_type === '' || number_of_players === 0 || price === ''){            
             showAlert('Todos los campos son obligatorios!', 'alert-danger');
+            setLoading(false); 
+            return;
+        }
+
+        if(!selected_stablishment){
+            showAlert('No hay un complejo seleccionado.', 'alert-danger');
             setLoading(false); 
             return;
         }

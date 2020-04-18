@@ -16,6 +16,7 @@ import {
     CREATE_ESTABLISHMENT,
     UPDATE_ESTABLISHMENT,
     ERROR_CREATING_ESTABLISHMENT,
+    ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE,
     REMOVE_ALERT_MESSAGE
@@ -79,7 +80,8 @@ export default (state, action) => {
         case ERROR_CREATING_FIELD:
         case ERROR_DELETING_FIELD:
         case ERROR_UPDATE_FIELD:
-        case ERROR_CREATING_ESTABLISHMENT:    
+        case ERROR_CREATING_ESTABLISHMENT:
+        case ERROR_UPDATING_ESTABLISHMENT:        
             return {
                 ...state,
                 alert_message : action.payload

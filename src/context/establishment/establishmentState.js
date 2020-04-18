@@ -22,6 +22,7 @@ import {
     CREATE_ESTABLISHMENT,
     UPDATE_ESTABLISHMENT,
     ERROR_CREATING_ESTABLISHMENT,
+    ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE
 } from '../types';
@@ -155,7 +156,8 @@ const EstablishmentState = props => {
         } catch (error) {
             const alert = {
                 msg: error.response.data.msg,
-                category: 'alert-danger'
+                category: 'alert-danger',
+                error_type : ERROR_CREATING_FIELD
             }
             dispatch({
                 type : ERROR_CREATING_FIELD,
@@ -184,7 +186,8 @@ const EstablishmentState = props => {
         } catch (error) {
             const alert = {
                 msg: error.response.data.msg,
-                category: 'alert-danger'
+                category: 'alert-danger',
+                error_type : ERROR_DELETING_FIELD
             }
             dispatch({
                 type : ERROR_DELETING_FIELD,
@@ -207,7 +210,8 @@ const EstablishmentState = props => {
         } catch (error) {
             const alert = {
                 msg: error.response.data.msg,
-                category: 'alert-danger'
+                category: 'alert-danger',
+                error_type : ERROR_UPDATE_FIELD
             }
             dispatch({
                 type : ERROR_UPDATE_FIELD,
@@ -230,7 +234,8 @@ const EstablishmentState = props => {
         } catch (error) {
             const alert = {
                 msg: error.response.data.msg,
-                category: 'alert-danger'
+                category: 'alert-danger',
+                error_type : ERROR_CREATING_ESTABLISHMENT
             }
             dispatch({
                 type : ERROR_CREATING_ESTABLISHMENT,
@@ -253,10 +258,11 @@ const EstablishmentState = props => {
         } catch (error) {
             const alert = {
                 msg: error.response.data.msg,
-                category: 'alert-danger'
+                category: 'alert-danger',
+                error_type : ERROR_UPDATING_ESTABLISHMENT
             }
             dispatch({
-                type : ERROR_CREATING_ESTABLISHMENT,
+                type : ERROR_UPDATING_ESTABLISHMENT,
                 payload : alert              
             })
             console.log(error);

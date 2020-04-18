@@ -9,6 +9,10 @@ import ModalNewEstablishment from './ModalNewEstablishment';
 import EstablishmentEmpty from './EstablishmentEmpty';
 import Spinner from '../common/Spinner';
 
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Add from '@material-ui/icons/Add';
+
 const MyEstablishments = () => {
 
     const establishmentContext = useContext(EstablishmentContext);
@@ -41,6 +45,13 @@ const MyEstablishments = () => {
         setSelectedEstablishment(null);
     }
 
+    const ButtonAdd = withStyles({
+        root: {
+          backgroundColor: '#10850e',
+          color : 'white'                    
+        }        
+    })(Button);
+
     return ( 
         <Fragment>
             <Header />
@@ -50,14 +61,16 @@ const MyEstablishments = () => {
                     <h3>Mis Complejos</h3> 
                 {listOfStablishments.length !== 0 
                     ?                                                                        
-                        <button type="button" 
-                                className="btn btn-success btn-sm"
-                                data-toggle="modal"
-                                data-target="#modal_new_stablishment"
-                                onClick={handleNewEstablishment}
-                                >
-                                Agregar Complejo
-                        </button>                                             
+                        <ButtonAdd
+                            variant="contained"
+                            color="default"                            
+                            startIcon={<Add />}
+                            data-toggle="modal"
+                            data-target="#modal_new_stablishment"
+                            onClick={handleNewEstablishment}
+                        >
+                            Agregar Complejo
+                        </ButtonAdd>                                             
                     : null
                 }
                 </div>                
