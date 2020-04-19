@@ -530,4 +530,8 @@ body {
   width: 50%;
 }
 
+.div-hidden {
+  visibility: hidden;
+}
+
 
