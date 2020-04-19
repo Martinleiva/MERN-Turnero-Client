@@ -14,28 +14,28 @@ const ContainerOwner = () => {
         <div className="row">
             <div className="col col-lg-12">
                 <h1>Bienvenido Dueño</h1>
-                <div class="container-owner">
+                <div className="container-owner">
                         <h2>Ver listado de turnos pendientes</h2>
                         <p>Type something in the input field to search the table for first names, last names or emails:</p>  
                         <form>
-                            <div class="form-row">
-                                <div class="col">
+                            <div className="form-row">
+                                <div className="col">
                                 <input type="text" id="myInput" class="form-control" placeholder="Nombre del Complejo"/>
                                 </div>
-                                <div class="col">
+                                <div className="col">
                                 <input type="text" id="myInput2" class="form-control" placeholder="Nombre de cancha"/>
                                 </div>
-                                <div class="col">
+                                <div className="col">
                                 <input type="text" id="myInput2" class="form-control" placeholder="Fecha reservada"/>
                                 </div>
-                                <div class="col">
+                                <div className="col">
                                 <input type="text" id="myInput2" class="form-control" placeholder="Nombre cliente"/>
                                 </div>
                             </div>
                         </form>
                         
-                        <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
-                        <input class="form-control" id="myInput2" type="text" placeholder="Search.."/>
+                        <input className="form-control" id="myInput" type="text" placeholder="Search.."/>
+                        <input className="form-control" id="myInput2" type="text" placeholder="Search.."/>
                             
                             <select class="form-control" id="select1">
                                 <option >Seleccionar complejo</option>
@@ -45,7 +45,7 @@ const ContainerOwner = () => {
                                 <option value="complejo 4">complejo 4</option>
                             </select>
                         
-                        <table class="table table-bordered table-striped">
+                        <table className="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th scope="col">COMPLEJO</th>
