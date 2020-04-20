@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import Header from '../common/Header';
 import Footer from '../inicio/Footer';
 import Container from './Container';
+import Header from '../common/Header';
 
 const DashClient = () => {
     return ( 
         <Fragment>
-            <Header />
+            <Header/>
             <Container/>
             <Footer />
         </Fragment>

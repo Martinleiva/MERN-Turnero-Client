@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import Header from '../common/Header';
+import HeaderOwner from '../common/HeaderOwner';
 import Establishment from './Establishment';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import AuthContext from '../../context/authentication/authContext';
@@ -54,7 +54,7 @@ const MyEstablishments = () => {
 
     return ( 
         <Fragment>
-            <Header />
+            <HeaderOwner />
             <div className="container container-establishments"> 
 
                 <div className="header-my-establishment">

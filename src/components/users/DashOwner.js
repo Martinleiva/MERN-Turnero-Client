@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
-import Header from '../common/Header';
+import HeaderOwner from '../common/HeaderOwner';
 
 
 const DashOwner = () => {
     return (         
         <Fragment>
-            <Header />
+            <HeaderOwner />
             <h1>Bienvenido Dueño</h1>
         </Fragment>
      );

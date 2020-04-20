@@ -1,13 +1,13 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderOwner from '../common/HeaderOwner';
+import Header from '../common/Header';
 import AuthContext from '../../context/authentication/authContext';
 import AlertContext from '../../context/alerts/alertContext';
 import Swal from 'sweetalert2';
 import image2base64 from 'image-to-base64';
 
 
-const MyAccountOwner = () => {
+const MyAccountClient = () => {
 
     //Extract values from context
     const alertContext = useContext(AlertContext);
@@ -19,9 +19,7 @@ const MyAccountOwner = () => {
     const [ data, setData] = useState({
         _id : user ? user._id : '',
         names: user ? user.names : '',
-        last_names: user ? user.last_names : '',
         tel: user ? user.tel : '',
-        cuit: user ? user.cuit : '',
         email: user ? user.email : ''
     });
 
@@ -41,10 +39,8 @@ const MyAccountOwner = () => {
 
         // validate form
         if (
-            data.last_names.trim() === '' && 
             data.names.trim() === '' &&
             data.tel.trim() === '' &&
-            data.cuit.trim() === '' &&
             data.email.trim() === '' 
             ){
                 showAlert('Todos los campos excepto la foto son obligatorios', 'alert-danger');
@@ -63,7 +59,7 @@ const MyAccountOwner = () => {
 
     return ( 
         <Fragment>
-            <HeaderOwner />
+            <Header />
             <div className="div-form-signin">  
                 <div className="contenedor-form-signin polaroid">
                     <form onSubmit={onSubmit} >
@@ -82,23 +78,9 @@ const MyAccountOwner = () => {
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Apellido</label>
-                            <div className="col-sm-10">
-                            <input type="input" className="form-control" name="last_names" value={data.last_names} onChange={handleChange} />
-                            </div>
-                        </div>
-
-                        <div className="form-group row">
                             <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Telefono</label>
                             <div className="col-sm-10">
                             <input type="input" className="form-control" name="tel" value={data.tel} onChange={handleChange} />
-                            </div>
-                        </div>
-
-                        <div className="form-group row">
-                            <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">CUIT</label>
-                            <div className="col-sm-10">
-                            <input type="input" className="form-control" name="cuit" value={data.cuit} onChange={handleChange} />
                             </div>
                         </div>
 
@@ -131,4 +113,4 @@ const MyAccountOwner = () => {
      );
 }
  
-export default MyAccountOwner;
+export default MyAccountClient;

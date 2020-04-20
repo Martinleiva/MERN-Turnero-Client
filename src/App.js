@@ -15,6 +15,7 @@ import DashClient from './components/users/DashClient';
 import DashOwner from './components/users/DashOwner';
 import ReservationClient from './components/reservation/client/ReservationClient';
 import MyAccountOwner from './components/users/MyAccountOwner';
+import MyAccountClient from './components/users/MyAccountClient';
 
 
 function App() {
@@ -31,10 +32,11 @@ function App() {
                 <Route exact path="/singup-client" component={SingUpCliente} />
                 <Route exact path="/singup-duenio" component={SingUpDuenio} />
                 <PrivateRouteClient exact path="/dash-client" component={DashClient} />
+                <PrivateRouteClient exact path="/my-account-client" component={MyAccountClient} />
                 <Route exact path="/res-client" component={ReservationClient} />
                 <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
                 <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
-                <PrivateRouteOwner exact path="/my-account" component={MyAccountOwner} />
+                <PrivateRouteOwner exact path="/my-account-owner" component={MyAccountOwner} />
               </Switch>
             </Router>
           </AuthState>        
