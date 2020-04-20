@@ -4,6 +4,7 @@ import HeaderOwner from '../../common/HeaderOwner';
 import AuthContext from '../../../context/authentication/authContext';
 import AlertContext from '../../../context/alerts/alertContext';
 import Swal from 'sweetalert2';
+import image2base64 from 'image-to-base64';
 
 
 const MyAccountOwner = () => {
@@ -15,6 +16,10 @@ const MyAccountOwner = () => {
     const authContext = useContext(AuthContext);
     const { user, updateUser } = authContext;
 
+    const [profilephoto, setProfilePhoto] = useState(null);
+    
+    const photo2base64 = image2base64(URL.createObjectURL(profilephoto));  
+
     const [ data, setData] = useState({
         _id : user ? user._id : '',
         names: user ? user.names : '',
@@ -22,8 +27,12 @@ const MyAccountOwner = () => {
         tel: user ? user.tel : '',
         cuit: user ? user.cuit : '',
         email: user ? user.email : '',
-        // profile_photo: user ? user.profile_photo : '',
+        profile_photo: photo2base64
     });
+
+    const onChangePhoto = e => {
+        setProfilePhoto(e.target.files[0]);                
+    }
 
     const handleChange = (e) => {
         setData({
@@ -42,12 +51,10 @@ const MyAccountOwner = () => {
             data.tel.trim() === '' &&
             data.cuit.trim() === '' &&
             data.email.trim() === '' 
-            // || data.password.trim() === '' ||
-            // confirm.trim() === '' 
             ){
                 showAlert('Todos los campos excepto la foto son obligatorios', 'alert-danger');
                 return;
-            }
+            }  
 
         // user data save changer
         updateUser(data);
@@ -108,9 +115,11 @@ const MyAccountOwner = () => {
                         <div className="form-group row">
                             <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Foto</label>
                             <div className="col-sm-10">
-                            <input type="file" className="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" />
-                            <small id="fileHelp" className="form-text text-muted">Su foto solo sera usada para su perfil.</small>
+                                <input type="file" accept="image/png, image/jpeg" name="profile_photo" onChange={onChangePhoto}/>    
+                                <small id="fileHelp" className="form-text text-muted">Su foto solo sera usada para su perfil.</small>
                             </div>
+
+
                         </div>
 
                         <button className="btn btn-lg btn-success btn-block mb-4" type="submit">
