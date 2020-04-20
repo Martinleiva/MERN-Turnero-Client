@@ -4,6 +4,7 @@ import EstablishmentReducer from './establishmentReducer';
 import AxiosClient from '../../config/axios';
 
 import {
+    GET_ESTABLISHMENTS,
     GET_ESTABLISHMENT_BY_OWNER,
     GET_FIELDS_BY_ESTABLISHMENT,
     GET_FIELDS,
@@ -35,6 +36,7 @@ const EstablishmentState = props => {
         listOfServices : [],
         listOfAddedServices : [],
         fields: [], //list of fields that will be shown to registed clients...
+        establishments: [],
         amount_of_establishment : null,
         amount_of_field : null,
         selected_stablishment : null,
@@ -45,6 +47,19 @@ const EstablishmentState = props => {
     const [state, dispatch] = useReducer(EstablishmentReducer, initialState);
 
     //functions
+
+    const getAllEstablishments = async () => {
+        try {
+            const response = await AxiosClient.get('/api/establishment');              
+            dispatch({
+                type : GET_ESTABLISHMENTS,
+                payload : response.data.establishments
+            });                        
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const getStablishmentByOwner = async () => {
         try {
             const results = await AxiosClient.get('/api/establishment-by-owner/');                        
@@ -279,6 +294,7 @@ const EstablishmentState = props => {
                 listOfStablishments : state.listOfStablishments,
                 listOfFields : state.listOfFields,
                 fields : state.fields,
+                establishments: state.establishments,
                 selected_stablishment : state.selected_stablishment,
                 selected_field : state.selected_field,
                 listOfTypesSports : state.listOfTypesSports,
@@ -289,6 +305,7 @@ const EstablishmentState = props => {
                 alert_message : state.alert_message,
                 amount_of_establishment : state.amount_of_establishment,
                 amount_of_field: state.amount_of_field,
+                getAllEstablishments,
                 getStablishmentByOwner,
                 getFieldByStablishment,
                 getFields,
