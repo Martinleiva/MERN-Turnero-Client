@@ -1,8 +1,8 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderOwner from '../../common/HeaderOwner';
-import AuthContext from '../../../context/authentication/authContext';
-import AlertContext from '../../../context/alerts/alertContext';
+import HeaderOwner from '../common/HeaderOwner';
+import AuthContext from '../../context/authentication/authContext';
+import AlertContext from '../../context/alerts/alertContext';
 import Swal from 'sweetalert2';
 import image2base64 from 'image-to-base64';
 

@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
-import HeaderOwner from '../../common/HeaderOwner';
-import Container from '../Container';
+import Header from '../common/Header';
 
 
 const DashOwner = () => {
     return (         
         <Fragment>
-            <HeaderOwner />
-            <Container/>
+            <Header />
+            <h1>Bienvenido Dueño</h1>
         </Fragment>
      );
 }
