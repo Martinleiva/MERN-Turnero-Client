@@ -23,6 +23,7 @@ const AuthState = props => {
         user: null,
         message: null,
         loading: true,
+        type_usr: null
     }
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -67,7 +68,7 @@ const AuthState = props => {
         try {
                 //call api in order to get the user
             const res = await clienteAxios.get('/api/auth');
-            
+            console.log(res.data.user);
             dispatch({
                 type : GET_USER,
                 payload : res.data.user
@@ -83,7 +84,6 @@ const AuthState = props => {
     const startSession = async data => {
         try {
             const res = await clienteAxios.post('/api/auth', data);
-            console.log(res);
             dispatch({
                 type : LOGIN_SUCCESS,
                 payload : res.data
@@ -133,6 +133,7 @@ const AuthState = props => {
                 user: state.user,
                 message: state.message,
                 loading: state.loading,
+                type_usr: state.type_usr,
                 userRegister,
                 setAuthenticatedUser,
                 startSession,

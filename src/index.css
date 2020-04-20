@@ -234,3 +234,323 @@ body {
   box-shadow: 2px 2px 5px #999;
 }
 /* END MyAccountOwner */
+.container-establishments {
+  background-color: var(--blanco);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.header-my-establishment {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.header-my-establishment p {
+  width: 5rem;     
+}
+
+.header-my-establishment h3{     
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.header-my-establishment button{
+  font-size: 14px;      
+}
+
+.title-my-establishment{
+  text-align: center;   
+  margin-bottom: 2rem;
+}
+
+.establishments {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;  
+}
+
+.card-establishment {
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.establishment-details p attr{
+  color: black;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.establishment-details p{  
+  font-weight: normal;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.establishment-details h2{
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.card-establishment-empty {
+  width: 280px;
+  height: 300px;
+  text-align: center;  
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card-establishment-empty img {
+  width: 280px;
+  height: 200px; 
+}
+
+.card-establishment-empty button {
+  font-size: 16px;  
+}
+
+.badge-day-of-week {
+  margin-right: 5px;
+}
+
+.card-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-field {
+  width: 185px;
+  height: 200px;
+  margin-right: 15px;  
+  margin-bottom: 15px;    
+}
+
+.card-field:last-of-type {
+  margin-right : 0;
+}
+
+.card-field img {
+  width: 185px;
+  height: 101px; 
+}
+
+.card-field p {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.collapseField {
+  background-color: #d6e9d7;
+}
+
+.btn-group-fab {
+  position: relative; 
+  float: right; 
+  width: 50px;
+  height: auto;
+  right: 20px; bottom: 20px;
+}
+
+.btn-group-fab-edit-establishment {
+  position: relative; 
+  float: right;   
+  height: auto;  
+}
+
+/* remove field fab */
+.btn-group-fab-remove-field {
+  position: relative; 
+  float: right;   
+  height: auto;  
+}
+
+.btn-group-fab-remove-field .btn-remove-field {
+  position: absolute;
+  bottom: 0;    
+  margin-bottom: 5px;  
+  right: 3%;
+}
+
+.btn-remove-field:hover {
+  cursor: pointer;
+}
+
+/* end remove field fab */
+
+/* edit field fab */
+.btn-group-fab-edit-field {
+  position: relative; 
+  float: right;   
+  height: auto;  
+}
+
+.btn-group-fab-edit-field .btn-edit-field {
+  position: absolute;
+  bottom: 0;    
+  margin-bottom: 5px;  
+  right: 15%;
+}
+
+.btn-edit-field:hover {
+  cursor: pointer;
+}
+
+/* end edit field fab */
+
+.modal_new_field {
+  background-color: #ebf8e8;
+}
+
+.modal_new_field label{
+  font-size: 1rem;
+}
+
+.btn-add-field{
+  font-size: 12px;
+  width: 100%;  
+}
+
+.form-control-edited {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-row-modal-edited {
+  margin: 0.25rem;
+}
+
+.modal_detail_field {
+  background-color: #ebf8e8;
+}
+
+.modal_detail_field label{
+  font-size: 0.75rem; 
+  text-align: right;
+}
+
+.modal_detail_field input{
+  font-size: 0.75rem;  
+}
+
+.modal_check {
+  padding-bottom: 1rem;
+}
+
+.modal_check_label {
+  margin-left: 4rem;
+  text-align: left;
+}
+.modal_check_label_short {
+  margin-left: 6.5rem;
+  text-align: left;
+}
+
+.modal-footer-edited {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: .5rem;
+  border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: calc(.3rem - 1px);
+  border-bottom-left-radius: calc(.3rem - 1px);
+}
+
+.modal-footer-edited .btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+/* .div-times {
+
+} */
+
+.div-times p {
+  margin-left: 1.5rem;
+}
+
+.div-times input {
+  font-size: 1.2rem;
+  text-align: center;
+  color: black;
+}
+
+.service-boxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-box {   
+  margin: 10px;
+  text-align: center;    
+  width: 10rem;
+  height: 40px;
+  line-height: 40px;  
+}
+
+.servicio-agregado {
+  border: 1px solid rgb(30, 155, 35);
+  background-color: #4CAF50; 
+}
+
+.servicio-agregado p{
+  color: white;
+  font-weight: bold;
+}
+
+.servicio-disponible {
+  border: 1px solid grey;
+  background-color: grey;   
+}
+
+.servicio-disponible p{
+  color: black;
+  font-weight: bold;
+}
+
+.service-box :hover {
+  cursor: pointer;
+}
+.section-confirm {
+  background-color: lightgrey;
+  margin: 2rem;
+  position: relative;
+  border-radius: .5rem;
+}
+
+.section-confirm__data {
+  display: inline-block;
+  padding: 2rem;
+  width: 50%;
+}
+
+.section-confirm__court {
+  display: inline-block;
+  padding: 2rem;
+  width: 50%;
+}
+
+

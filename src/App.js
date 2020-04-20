@@ -7,30 +7,38 @@ import SingUpCliente from './components/auth/SingUpCliente';
 import SingUpDuenio from './components/auth/SingUpDuenio';
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
-import PrivateRoute from './components/routes/PrivateRoute';
-import DashClient from './components/users/pages/DashClient';
-import DashOwner from './components/users/pages/DashOwner';
-import MyAccountOwner from './components/users/pages/MyAccountOwner';
+import EstablishmentState from './context/establishment/establishmentState';
+import MyEstablishments from './components/establishment/MyEstablishments';
+import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
+import PrivateRouteClient from './components/routes/PrivateRouteClient';
+import DashClient from './components/users/DashClient';
+import DashOwner from './components/users/DashOwner';
+import ReservationClient from './components/reservation/client/ReservationClient';
+import MyAccountOwner from './components/users/MyAccountOwner';
 
 
 function App() {
   
   return (
-    <AlertState>
-      <AuthState>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/singup" component={SingUp} />
-            <Route exact path="/singup-client" component={SingUpCliente} />
-            <Route exact path="/singup-duenio" component={SingUpDuenio} />
-            <PrivateRoute exact path="/dash-client" component={DashClient} />
-            <PrivateRoute exact path="/dash-owner" component={DashOwner} />
-            <PrivateRoute exact path="/dash-owner/my-account" component={MyAccountOwner} />
-          </Switch>
-        </Router>
-      </AuthState>
+    <AlertState>      
+      <EstablishmentState>                    
+          <AuthState>
+            <Router>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/singup" component={SingUp} />
+                <Route exact path="/singup-client" component={SingUpCliente} />
+                <Route exact path="/singup-duenio" component={SingUpDuenio} />
+                <PrivateRouteClient exact path="/dash-client" component={DashClient} />
+                <Route exact path="/res-client" component={ReservationClient} />
+                <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
+                <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
+                <PrivateRouteOwner exact path="/my-account" component={MyAccountOwner} />
+              </Switch>
+            </Router>
+          </AuthState>        
+      </EstablishmentState>   
     </AlertState>    
   );
 }
