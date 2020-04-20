@@ -1,18 +1,25 @@
-import React, {useContext, useState, useEffect, Fragment} from 'react';
-import imagenTemp from '../../img/complejo_img_test1.jpg';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import Field from './Field';
 import FieldEmpty from './FieldEmpty';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
-import { ChevronDoubleUp, Pencil, Plus, PlusSquare} from 'react-bootstrap-icons';
+import { ChevronDoubleUp, Pencil, Plus } from 'react-bootstrap-icons';
 import Spinner from '../common/Spinner';
-import {backEndURL} from '../../config/urlBackEnd';
+import { backEndURL } from '../../config/urlBackEnd';
 import SinImagen from '../../img/sin_imagen.png';
+
+import { withStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Add from '@material-ui/icons/Add';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
 
 const Establishment = ({establishment}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
     const { listOfFields, amount_of_field, getFieldByStablishment, 
-            setSelectedEstablishment } = establishmentContext;
+            setSelectedEstablishment, setSelectedField } = establishmentContext;
 
     const [loading, setLoading] = useState(false);
 
@@ -39,8 +46,27 @@ const Establishment = ({establishment}) => {
 
     }
 
+    const handleNewField = () => {
+        setSelectedField(null);
+    }
+
+    const FabGreen = withStyles({
+        root: {
+          backgroundColor: '#10850e',
+          color : 'white',
+          marginBottom : 5         
+        }        
+    })(Fab);
+
+    const ButtonAdd = withStyles({
+        root: {
+          backgroundColor: '#10850e',
+          color : 'white'                    
+        }        
+    })(Button);
+
     return (  
-        <div className="card card-establishment">
+        <div className="card card-establishment polaroid">
             <div className="row no-gutters">                            
                 <div className="col-md-4">
                     <img src={
@@ -56,15 +82,16 @@ const Establishment = ({establishment}) => {
                     <div className="card-body establishment-details">
 
                         <div className="btn-group-fab-edit-establishment">
-                            <button type="button" 
-                                    className="btn btn-main btn-success d-flex d-flex justify-content-center" 
-                                    title="Editar Complejo"
-                                    data-toggle="modal"
-                                    data-target="#modal_new_stablishment"
-                                    onClick={handleEdit}                                          
-                            > 
-                                <Pencil color="white" size={20}/>
-                            </button>
+                            <FabGreen
+                                size="small"                                                                                                
+                                aria-label="edit"
+                                title="Editar Complejo"
+                                data-toggle="modal"
+                                data-target="#modal_new_stablishment"
+                                onClick={handleEdit} 
+                                >
+                                <EditIcon />
+                            </FabGreen>
                         </div>  
 
                         <h2 className="card-title">{establishment.name}</h2>
@@ -99,17 +126,18 @@ const Establishment = ({establishment}) => {
                         <div className="card">
                             <div className="card-header" id={`heading${establishment._id}`}>
                                 <h2 className="mb-0">
-                                    <button 
-                                        className="btn btn-success btn-sm collapsed" 
-                                        type="button" 
+                                    <ButtonAdd
+                                        variant="contained"
+                                        color="default"                            
+                                        startIcon={<ExpandMore />}
                                         data-toggle="collapse" 
                                         data-target={`#collapse${establishment._id}`}
                                         aria-expanded="false"    
                                         aria-controls={`#collapse${establishment._id}`}                                    
-                                        onClick={handleGetFields}                                        
+                                        onClick={handleGetFields}
                                     >
                                         Canchas
-                                    </button>
+                                    </ButtonAdd>
                                 </h2>
                             </div>
 
@@ -135,26 +163,27 @@ const Establishment = ({establishment}) => {
                                    
                                 </div>
 
-                                <div className="btn-group-fab">
-
-                                    <button type="button" 
-                                            className="btn-new-field btn btn-main btn-success d-flex d-flex justify-content-center collapsed" 
-                                            title="Nueva Cancha"
-                                            data-toggle="modal"
-                                            data-target="#modal_new_field"                                                                                
-                                    > 
-                                        <Plus color="white" size={20} />
-                                    </button>    
-
-                                    <button type="button" 
-                                            className="btn btn-main btn-success d-flex d-flex justify-content-center collapsed" 
-                                            title="Cerrar"
-                                            data-toggle="collapse" 
-                                            data-target={`#collapse${establishment._id}`}
-                                            aria-controls={`#collapse${establishment._id}`}                                            
-                                    > 
-                                        <ChevronDoubleUp color="white" size={20}/>
-                                    </button>
+                                <div className="btn-group-fab">  
+                                    <FabGreen
+                                        size="small"                                                                                                
+                                        aria-label="edit"
+                                        title="Nueva Cancha"
+                                        data-toggle="modal"
+                                        data-target="#modal_new_field" 
+                                        onClick={handleNewField}  
+                                        >
+                                        <Add/>
+                                    </FabGreen>                                    
+                                    <FabGreen
+                                        size="small"                                                                                                
+                                        aria-label="edit"
+                                        title="Cerrar"
+                                        data-toggle="collapse" 
+                                        data-target={`#collapse${establishment._id}`}
+                                        aria-controls={`#collapse${establishment._id}`}  
+                                        >
+                                        <KeyboardArrowUpIcon/>
+                                    </FabGreen>                                   
                                 </div> 
                                 </Fragment>
                             }              

@@ -3,14 +3,15 @@ import imagenFutbol from '../../img/foto-futbol.jpg';
 import imagenBasquet from '../../img/foto-basquet.jpg';
 import imagenPaddle from '../../img/foto_paddle.jpg';
 import SinImagen from '../../img/sin_imagen.png';
-import { Trash } from 'react-bootstrap-icons';
+import { Trash, Pencil } from 'react-bootstrap-icons';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import Swal from 'sweetalert2';
+import {backEndURL} from '../../config/urlBackEnd';
 
 const Field = ({field}) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { setSelectedField, removeAlertMessage, deleteField, alert_message }= establishmentContext;
+    const { setSelectedField, removeAlertMessage, deleteField, alert_message } = establishmentContext;
 
     let image = SinImagen;    
     
@@ -29,7 +30,7 @@ const Field = ({field}) => {
     const handleSetSelectedField = e => {
         setSelectedField(field);
     }
-
+   
     const handleDeleteField = field => {        
         Swal.fire({
             title: '¿Seguro de eliminar la cancha?',
@@ -67,7 +68,8 @@ const Field = ({field}) => {
     }
 
     useEffect(()=> {
-        if(alert_message && alert_message.category === 'alert-danger' ) {
+        if(alert_message && alert_message.category === 'alert-danger' 
+            && alert_message.error_type === 'ERROR_DELETING_FIELD') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error al eliminar',
@@ -78,8 +80,8 @@ const Field = ({field}) => {
     }, [alert_message])
 
     return (
-        <div className="card card-field"> 
-            <img className="card-img-top" src={image} alt="Card image"/>       
+        <div className="card card-field polaroid"> 
+            <img className="card-img-top" src={`${backEndURL}${field.photo_1}`} alt="Card image"/>       
             <div className="card-body">
                 <p className="card-title">{field.name} - {field.sport_type.description}</p>
                 <a href=""
@@ -88,10 +90,18 @@ const Field = ({field}) => {
                    onClick={handleSetSelectedField}
                 ><p>Ver detalle</p></a>
             </div>
+            <div className="btn-group-fab-edit-field">                 
+                <Pencil color="black" className="btn-edit-field" 
+                        size={15} 
+                        data-toggle="modal"
+                        data-target="#modal_new_field" 
+                        onClick={handleSetSelectedField}                                                   
+                />                
+            </div>
             <div className="btn-group-fab-remove-field">                 
-                    <Trash color="black" className="btn-remove-field" 
-                           size={15}                            
-                           onClick={ () => handleDeleteField(field)}/>                
+                <Trash color="black" className="btn-remove-field" 
+                        size={15}                            
+                        onClick={ () => handleDeleteField(field)}/>                
             </div>           
         </div>
     );

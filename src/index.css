@@ -232,8 +232,7 @@ body {
 }
 
 .header-my-establishment button{
-  font-size: 14px;    
-  height: 2.2rem;
+  font-size: 14px;      
 }
 
 .title-my-establishment{
@@ -329,48 +328,10 @@ body {
   right: 20px; bottom: 20px;
 }
 
-.btn-group-fab .btn {
-  position: absolute;
-  bottom: 0;
-  border-radius: 50%;
-  display: block;
-  margin-bottom: 4px;
-  width: 40px; height: 40px;
-  margin: 4px auto;
-}
-
-.btn-group-fab .btn-new-field {
-  position: absolute;
-  bottom: 0;
-  border-radius: 50%;
-  display: block;
-  margin-bottom: 80px;
-  width: 40px; height: 40px;
-  margin: 80px auto;
-}
-
-.btn-group-fab .btn-main {
-  width: 50px; height: 50px;
-  right: 50%; margin-right: -25px;
-}
-
 .btn-group-fab-edit-establishment {
   position: relative; 
   float: right;   
   height: auto;  
-}
-
-.btn-group-fab-edit-establishment .btn {
-  position: absolute;
-  bottom: 0;
-  border-radius: 50%;
-  display: block;
-  margin-bottom: -40px;  
-}
-
-.btn-group-fab-edit-establishment .btn-main {
-  width: 50px; height: 50px;
-  right: 50%; margin-right: -25px;
 }
 
 /* remove field fab */
@@ -392,6 +353,26 @@ body {
 }
 
 /* end remove field fab */
+
+/* edit field fab */
+.btn-group-fab-edit-field {
+  position: relative; 
+  float: right;   
+  height: auto;  
+}
+
+.btn-group-fab-edit-field .btn-edit-field {
+  position: absolute;
+  bottom: 0;    
+  margin-bottom: 5px;  
+  right: 15%;
+}
+
+.btn-edit-field:hover {
+  cursor: pointer;
+}
+
+/* end edit field fab */
 
 .modal_new_field {
   background-color: #ebf8e8;

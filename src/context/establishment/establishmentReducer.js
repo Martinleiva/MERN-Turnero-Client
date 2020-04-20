@@ -9,12 +9,15 @@ import {
     GET_CATEGORIES,
     GET_SERVICES,
     CREATE_FIELD,
+    UPDATE_FIELD,
     ERROR_CREATING_FIELD,
     ERROR_DELETING_FIELD,
+    ERROR_UPDATE_FIELD,
     SET_SELECTED_FIELD,    
     CREATE_ESTABLISHMENT,
     UPDATE_ESTABLISHMENT,
     ERROR_CREATING_ESTABLISHMENT,
+    ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE,
     REMOVE_ALERT_MESSAGE
@@ -75,9 +78,17 @@ export default (state, action) => {
                 ...state,                
                 alert_message : {msg :'Cancha creada con exito', category:'alert-success'}                
             } 
+        case UPDATE_FIELD:            
+        return {
+            ...state,                
+            alert_message : {msg : action.payload, category:'alert-success'},            
+            amount_of_field : null
+        }     
         case ERROR_CREATING_FIELD:
         case ERROR_DELETING_FIELD:
-        case ERROR_CREATING_ESTABLISHMENT:    
+        case ERROR_UPDATE_FIELD:
+        case ERROR_CREATING_ESTABLISHMENT:
+        case ERROR_UPDATING_ESTABLISHMENT:        
             return {
                 ...state,
                 alert_message : action.payload
@@ -91,15 +102,13 @@ export default (state, action) => {
         case CREATE_ESTABLISHMENT:            
             return {
                 ...state,                
-                alert_message : {msg :'Complejo creado con exito', category:'alert-success'},
-                alert_message : null,
+                alert_message : {msg :'Complejo creado con exito', category:'alert-success'},                
                 amount_of_field : null
             } 
         case UPDATE_ESTABLISHMENT:            
         return {
             ...state,                
-            alert_message : {msg :'Complejo modificado con exito', category:'alert-success'},
-            alert_message : null,
+            alert_message : {msg :'Complejo modificado con exito', category:'alert-success'},            
             amount_of_field : null
         }     
         case ADD_SERVICE:            

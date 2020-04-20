@@ -4,6 +4,7 @@ import EstablishmentContext from '../../context/establishment/establishmentConte
 import AlertContext from '../../context/alerts/alertContext';
 import image2base64 from 'image-to-base64';
 import Spinner from '../common/Spinner';
+import {backEndURL} from '../../config/urlBackEnd';
 
 const ModalNewField = () => {
     
@@ -12,8 +13,8 @@ const ModalNewField = () => {
     const { alert, showAlert } = alertContext;
 
     const establishmentContext = useContext(EstablishmentContext);    
-    const { selected_stablishment, listOfTypesSports, listOfTypesGrounds, 
-            createField, alert_message } = establishmentContext;
+    const { selected_stablishment, selected_field, listOfTypesSports, listOfTypesGrounds, 
+            createField, updateField, alert_message } = establishmentContext;
 
     const [loading, setLoading] = useState(false);             
 
@@ -26,10 +27,12 @@ const ModalNewField = () => {
     const [has_lighting, setHas_lighting] = useState(false);
     const [price, setPrice] = useState('');
     const [is_enabled, setIs_enabled] = useState(true);    
-    const [photo, setPhoto] = useState(null);    
+    const [photoUploaded, setPhotoUploaded] = useState(null);
+    
+    const [editionMode, setEditionMode] = useState(false);
 
-    const onChangeFoto = e => {
-        setPhoto(e.target.files[0]);                
+    const onChangePhoto = e => {
+        setPhotoUploaded(e.target.files[0]);                
     }
 
     const handleSaveField = async () => {
@@ -37,17 +40,18 @@ const ModalNewField = () => {
         setLoading(true);
 
         //verify required fields
-        if(name.trim() === '' || price.trim() === ''){            
+        if(name.trim() === '' || ground_type === '' || 
+           sport_type === '' || number_of_players === 0 || price === ''){            
             showAlert('Todos los campos son obligatorios!', 'alert-danger');
             setLoading(false); 
             return;
         }
 
-        /*
-        In this line we convert the uploaded image to base64 in order to send it to 
-        the back end as a string.         
-        */
-        const photo2base64 = await image2base64(URL.createObjectURL(photo));        
+        if(!selected_stablishment){
+            showAlert('No hay un complejo seleccionado.', 'alert-danger');
+            setLoading(false); 
+            return;
+        }
 
         const field = {
             'name' : name,
@@ -58,21 +62,72 @@ const ModalNewField = () => {
             'is_roofed' : is_roofed,
             'has_lighting' : has_lighting,
             'price' : price,
-            'is_enabled' : is_enabled,
-            'photo_1': photo2base64            
+            'is_enabled' : is_enabled            
         };
-        createField(field);
 
-        setTimeout(() => {                        
-            setLoading(false);            
+         /*
+        In this line we convert the uploaded image to base64 in order to send it to 
+        the back end as a string.         
+        */
+        let photo2base64 = '';
+        if(photoUploaded){
+            photo2base64 = await image2base64(URL.createObjectURL(photoUploaded));
+            field.photo_1 = photo2base64;
+        }         
+
+        if(!editionMode){
+            createField(field);
+        }else{
+            updateField(field, selected_field._id);
+        }
+
+        setTimeout(() => {    
+            cleanState();                    
+            setLoading(false);                        
         }, 800);
-    }
+    } 
 
     useEffect(()=> {
         if(alert_message){
             showAlert(alert_message.msg, alert_message.category);
+        }                 
+    }, [alert_message]);
+
+    useEffect (() => {
+        
+        //First of all we need to clean the state
+        cleanState();
+
+        //If there is a selected field, then we need to set up the state with the value of this..
+        //The edition mode needs to be set as well...
+        if(selected_field){             
+            setName(selected_field.name);
+            setEstablishment(selected_field.establishment);
+            setSport_type(selected_field.sport_type._id);
+            setGround_type(selected_field.ground_type._id);
+            setNumber_of_players(selected_field.number_of_players);
+            setIs_roofed(selected_field.is_roofed);
+            setHas_lighting(selected_field.has_lighting);
+            setPrice(selected_field.price);
+            setIs_enabled(selected_field.is_enabled);                        
+
+            setEditionMode(true);            
         }
-    }, [alert_message])
+    }, [selected_field]);
+
+    const cleanState = () => {
+        setName('');
+        setEstablishment(null);
+        setSport_type('');
+        setGround_type('');
+        setNumber_of_players(0);
+        setIs_roofed(false);
+        setHas_lighting(false);
+        setPrice('');
+        setIs_enabled(true);        
+        setEditionMode(false); 
+    }
+
 
     return (  
         <div className="modal" id="modal_new_field" role="dialog">
@@ -94,6 +149,7 @@ const ModalNewField = () => {
                                            id="inputField" 
                                            placeholder="Cancha Nº1"
                                            name={name}
+                                           value={name}
                                            onChange={(e) => { setName(e.target.value) }}
                                            />
                                 </div>                           
@@ -104,9 +160,10 @@ const ModalNewField = () => {
                                     <label for="inputSportType">Tipo de deporte</label>
                                     <select id="inputSportType" 
                                             className="form-control-edited"
-                                            onChange={(e) => { setSport_type(e.target.value) }}
+                                            value={sport_type}
+                                            onChange={(e) => { setSport_type(e.target.value) }}                                            
                                             >
-                                        <option selected>-- Seleccione tipo de deporte --</option>                                                                                
+                                        <option value="" selected>-- Seleccione tipo de deporte --</option>                                                                                
                                         {
                                           listOfTypesSports.map(type => (
                                             <option value={type._id}>{type.description}</option>
@@ -118,9 +175,10 @@ const ModalNewField = () => {
                                     <label for="inputGroundType">Tipo de suelo</label>
                                     <select id="inputGroundType" 
                                             className="form-control-edited"
-                                            onChange={(e) => { setGround_type(e.target.value) }}
+                                            value={ground_type}
+                                            onChange={(e) => { setGround_type(e.target.value) }}                                            
                                             >
-                                        <option selected>-- Seleccione tipo de suelo --</option>                                                                                
+                                        <option value="" selected>-- Seleccione tipo de suelo --</option>                                                                                
                                         {
                                           listOfTypesGrounds.map(type => (
                                             <option value={type._id}>{type.description}</option>
@@ -135,7 +193,8 @@ const ModalNewField = () => {
                                     <div className="custom-control custom-checkbox">
                                         <input type="checkbox" 
                                                className="custom-control-input" 
-                                               id="customRoofed"
+                                               id="customRoofed"   
+                                               checked={is_roofed}
                                                onChange={(e) => { setIs_roofed(e.target.checked) }}
                                                />
                                         <label className="custom-control-label" for="customRoofed">Cancha Techada</label>
@@ -147,6 +206,7 @@ const ModalNewField = () => {
                                         <input type="checkbox" 
                                                className="custom-control-input" 
                                                id="customLighting"
+                                               checked={has_lighting}                                              
                                                onChange={(e) => { setHas_lighting(e.target.checked) }}
                                                />
                                         <label className="custom-control-label" for="customLighting">Iluminación</label>
@@ -160,9 +220,10 @@ const ModalNewField = () => {
                                     <label for="inputNumberPlayers">Cantidad de Jugadores</label>
                                     <select id="inputNumberPlayers" 
                                             className="form-control-edited"
+                                            value={number_of_players}
                                             onChange={(e) => { setNumber_of_players(e.target.value) }}
                                             >
-                                        <option selected>-- Cantidad de Jugadores --</option>                                        
+                                        <option value="0" selected>-- Cantidad de Jugadores --</option>                                        
                                         <option>2</option>
                                         <option>5</option>
                                         <option>6</option>
@@ -181,6 +242,7 @@ const ModalNewField = () => {
                                                id="inputPrice" 
                                                placeholder="$150 por hora"
                                                name={price}
+                                               value={price}
                                                onChange={(e) => { setPrice(e.target.value) }}
                                                />
                                 </div>
@@ -190,10 +252,23 @@ const ModalNewField = () => {
                                 <div className="form-group col-md-12">
                                     <label for="inputPrice">Foto</label>
                                     <div className="card">
-                                        <img src={photo ? URL.createObjectURL(photo) : SinImagen} class="card-img-top" alt="..."/>    
+                                        <img src={
+                                                !selected_field
+                                                    ?
+                                                    photoUploaded
+                                                        ? URL.createObjectURL(photoUploaded) 
+                                                        : SinImagen
+                                                    : !photoUploaded  
+                                                      ? selected_field.photo_1 !== ''
+                                                         ? `${backEndURL}${selected_field.photo_1}`
+                                                         : SinImagen
+                                                      : URL.createObjectURL(photoUploaded)         
+                                                } 
+                                            class="card-img-top" alt="..."
+                                        />  
                                         <div class="card-body">
                                             <input type="file" accept="image/png, image/jpeg"
-                                                   name="photo" onChange={onChangeFoto}/>      
+                                                   name="photo" onChange={onChangePhoto}/>      
                                         </div>                                                      
                                     </div>                                    
                                 </div>                                
