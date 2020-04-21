@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { backEndURL } from '../../../config/urlBackEnd';
 import SinImagen from '../../../img/sin_imagen.png';
-//field.photo_1
+import { backEndURL } from '../../../config/urlBackEnd';
 
 import EstablishmentContext from '../../../context/establishment/establishmentContext';
 
@@ -9,18 +8,44 @@ import EstablishmentContext from '../../../context/establishment/establishmentCo
 const FieldCard = ({ establishment }) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { setSelectedEstablishment }= establishmentContext;
+    const { setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
+
+    const handleGetFields = async () => {
+
+        await getFieldByStablishment(establishment._id);
+
+        const actives = document.getElementsByClassName('field');
+        const actives2 = document.getElementsByClassName('contentField');
+
+        for(let i=1; i<actives.length; i++){           
+            actives[i].classList.remove("active");
+            actives2[i].classList.remove("show", "active");
+        }
+    }
 
     //Set establisment to state
-    const selectEstablisment = establishment => {
+    const selectEstablisment =  (establishment) => {
+
         setSelectedEstablishment(establishment);
+
+        handleGetFields();
     }
 
     return ( 
         <div className="card-establishment-client">
             <h4>Complejo: <span>{establishment.name}</span></h4>
             
-            <img src={ SinImagen } className="card-img-client" alt="Imagen complejo"/>
+            <img 
+                src={
+                        establishment.photo_1 !== ''
+                        ?
+                            `${backEndURL}${establishment.photo_1}`
+                        :   SinImagen                    
+                    }
+
+                className="card-img-client" 
+                alt="Imagen complejo"
+            />
 
             <h5>Dirección: <span>{establishment.address}</span></h5>
             <h5>Teléfono: <span>{establishment.tel}</span></h5>

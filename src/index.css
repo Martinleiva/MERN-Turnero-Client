@@ -556,3 +556,7 @@ body {
   text-transform: uppercase;
   font-size: 0.7rem;
 }
+
+table td:hover{
+  background-color: #ccc;
+}

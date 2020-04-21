@@ -161,7 +161,7 @@ const ModalNewEstablishment = () => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h4 className="modal-title">INGRESE DATOS DEL COMPLEJO</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

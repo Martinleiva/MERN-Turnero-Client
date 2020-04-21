@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import FieldsList from '../establishment/fields/FieldsList';
+import EstablishmentList from '../establishment/client/EstablishmentList';
 
 import AuthContext from '../../context/authentication/authContext';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 
-import ModalNewRes from '../establishment/fields/ModalNewRes';
+import ModalNewRes from '../establishment/client/ModalNewRes';
 
 const Container = () => {
 
@@ -28,7 +28,7 @@ const Container = () => {
             </div>
 
             <div className="container-establishments-client">
-                <FieldsList />
+                <EstablishmentList />
             </div>
 
             <ModalNewRes />
