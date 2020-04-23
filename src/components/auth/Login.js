@@ -18,7 +18,7 @@ const Login = (props) => {
     useEffect( () => {
 
         if(authenticated && type_usr === 'Cliente') {          
-            props.history.push('/dash-client'); // Screen user authenticated
+            props.history.push('/client-search'); // Screen user authenticated
         } 
 
         if (authenticated && type_usr === 'Dueño') {

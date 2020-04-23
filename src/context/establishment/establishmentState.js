@@ -4,7 +4,7 @@ import EstablishmentReducer from './establishmentReducer';
 import AxiosClient from '../../config/axios';
 
 import {
-    GET_ESTABLISHMENT_BY_OWNER,
+    GET_ESTABLISHMENT,
     GET_FIELDS_BY_ESTABLISHMENT,
     GET_FIELDS,
     SET_SELECTED_ESTABLISHMENT,
@@ -52,7 +52,19 @@ const EstablishmentState = props => {
         try {
             const results = await AxiosClient.get('/api/establishment-by-owner/');                        
             dispatch({
-                type : GET_ESTABLISHMENT_BY_OWNER,
+                type : GET_ESTABLISHMENT,
+                payload : results.data.establishments
+            });                        
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getStablishment = async () => {
+        try {
+            const results = await AxiosClient.get('/api/establishment');                        
+            dispatch({
+                type : GET_ESTABLISHMENT,
                 payload : results.data.establishments
             });                        
         } catch (error) {
@@ -314,6 +326,7 @@ const EstablishmentState = props => {
                 amount_of_establishment : state.amount_of_establishment,
                 amount_of_field: state.amount_of_field,
                 getStablishmentByOwner,
+                getStablishment,
                 getFieldByStablishment,
                 getFields,
                 setSelectedEstablishment,

@@ -15,6 +15,7 @@ import PrivateRoute from './components/routes/PrivateRoute';
 import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
 import ReservationClient from './components/reservation/client/ReservationClient';
+import ClientSearch from './components/search/ClientSearch';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 <Route exact path="/singup-client" component={SingUpCliente} />
                 <Route exact path="/singup-duenio" component={SingUpDuenio} />
                 <PrivateRouteClient exact path="/dash-client" component={DashClient} />
+                <PrivateRouteClient exact path="/client-search" component={ClientSearch} />
                 <Route exact path="/res-client" component={ReservationClient} />
                 <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
                 <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />

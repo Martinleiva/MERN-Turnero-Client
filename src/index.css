@@ -12,10 +12,9 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
+  /*background-image: url('../src/img/fondoturnero.png');*/
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: url('../src/img/fondoturnero.png');
-  
+  -moz-osx-font-smoothing: grayscale; 
   background-position-x: 0cm;
   background-position-y: -15cm;
   background-repeat: no-repeat;
@@ -149,6 +148,10 @@ body {
   /* font-family: 'Century Gothic'; */
 }
 
+.nav-bar-custom {
+  background-color: rgba(2, 28, 41, 0.6);  
+}
+
 .btn{
   text-transform: none;
   font-size: 1.3rem;
@@ -158,8 +161,21 @@ body {
   margin-bottom: 5em;
 }
 
+.dropdown-menu-logo {
+  left: -85px;
+}
+
+.nav-item-user-log {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
 .logo-footer{
   margin: 0 0 3rem 0;
+}
+
+.logo{
+  margin-right: 2rem;
 }
 
 .estilo-footer{
@@ -530,8 +546,149 @@ body {
   width: 50%;
 }
 
-.div-hidden {
-  visibility: hidden;
+.green-button {
+  background-color: '#10850e';
+  color : 'white';
 }
 
+.header-search-files {
+  background-image: url('./img/estadio.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.header-search-files .container {
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+
+.container-form-search-fields {
+  background-color: rgba(29,60,76,0.6);
+  padding: 20px 5px;  
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.form-search-fields{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titulo-home-search {  
+  margin-top: 0px;  
+}
+
+.titulo-home-search h1 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 42px;
+  text-shadow: 0 0 5px #2b4d3c;
+  color: #2b4d3c;  
+  font-weight: bold;
+}
+
+
+.titulo_form {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.select-search {
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main-establishment-search {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.card-establishment-main {
+  border-radius: 1px;
+}
+
+.card-establishment-main .card-image .card-title{
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;  
+  padding: 24px; 
+}
+
+.card-establishment-main .card-title {
+  font-size: 28px;
+  font-weight: bold;  
+}
+
+.card-establishment-main .card-address {
+  font-size: 15px;
+  font-weight: bold; 
+  color: #fff;
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  max-width: 100%;  
+  padding-left: 24px;
+  padding-bottom: 10px;
+}
+
+.card-establishment-main .card-image img {
+  width: 100%;
+  height: 20vw;
+  border-radius: 1px; 
+}
+
+.card-field-search {
+  width: 260px;
+  height: 280px;  
+  margin-bottom: 15px;      
+}
+
+.card-field-search:last-of-type {
+  margin-right : 0;
+}
+
+.card-field-search img {
+  width: 260px;
+  height: 230px; 
+}
+
+.card-field-search p {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.div-carousel {
+  margin-left: -3rem;
+  margin-right: -3.1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .card-establishment-main .card-image img {
+    width: 100%;
+    height: 60vw;    
+  }
+  .card-establishment-main .card-title {
+    font-size: 20px;
+    font-weight: bold;  
+  }
+  .div-carousel {
+    margin-left: 0px;
+    margin-right: 0px;
+  } 
+  .card-field-search {
+    width: 220px;
+    height: 280px;  
+      
+  } 
+  .card-field-search img {
+    width: 220px;
+    height: 230px; 
+  }
+}
 
