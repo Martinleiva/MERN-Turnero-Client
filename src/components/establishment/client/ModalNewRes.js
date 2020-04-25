@@ -62,7 +62,7 @@ const ModalNewRes = () => {
                                                 className="tab-pane fade show active contentField" 
                                                 id={`tab${index}`}>
                                                     {field.name}
-                                                    <EstablishmentTable field={field} />
+                                                    <EstablishmentTable />
                                             </div>
 
                                         </Fragment>

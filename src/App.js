@@ -15,6 +15,7 @@ import PrivateRoute from './components/routes/PrivateRoute';
 import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
 import ReservationClient from './components/reservation/client/ReservationClient';
+import EstablishmentTable from './components/establishment/client/EstablishmentTable';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Router>
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/prueba" component={EstablishmentTable} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/singup" component={SingUp} />
                 <Route exact path="/singup-client" component={SingUpCliente} />
