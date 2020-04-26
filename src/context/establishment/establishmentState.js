@@ -24,7 +24,8 @@ import {
     ERROR_CREATING_ESTABLISHMENT,
     ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
-    REMOVE_SERVICE
+    REMOVE_SERVICE,
+    GET_FIELDS_SEARCH
 } from '../types';
 
 const EstablishmentState = props => {
@@ -32,6 +33,7 @@ const EstablishmentState = props => {
     const initialState = {
         listOfStablishments : [],
         listOfFields : [], //list of field by stablishment
+        listOfSearchedFields : [], //list of field that was found by user search
         listOfTypesSports : [],
         listOfTypesGrounds : [],
         listOfCategories : [],
@@ -301,12 +303,27 @@ const EstablishmentState = props => {
         } catch (error) {
             console.log(error);
         }
-    }
+    }    
 
     const removeAlertMessage = () => {
         dispatch({
             type : REMOVE_ALERT_MESSAGE
         })
+    }
+
+    //Functions for search requirements
+
+    const getFieldsBySportType = async sportTypeId => {
+        try {
+            const resultado = await AxiosClient.get(`/api/field/sporttype/${sportTypeId}`);
+            console.log(resultado.data);
+            dispatch({
+                type : GET_FIELDS_SEARCH,
+                payload : resultado.data.fields
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -315,6 +332,7 @@ const EstablishmentState = props => {
                 listOfStablishments : state.listOfStablishments,
                 listOfFields : state.listOfFields,
                 fields : state.fields,
+                listOfSearchedFields: state.listOfSearchedFields,
                 selected_stablishment : state.selected_stablishment,
                 selected_field : state.selected_field,
                 listOfTypesSports : state.listOfTypesSports,
@@ -342,7 +360,8 @@ const EstablishmentState = props => {
                 updateEstablishment,
                 addService,
                 removeService,
-                removeAlertMessage
+                removeAlertMessage,
+                getFieldsBySportType
             }}
         >
             {props.children}

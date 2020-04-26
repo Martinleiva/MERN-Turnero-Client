@@ -554,7 +554,7 @@ body {
 .header-search-files {
   background-image: url('./img/estadio.jpg');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;  
 }
 
 .header-search-files .container {
@@ -582,7 +582,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 42px;
   text-shadow: 0 0 5px #2b4d3c;
-  color: #2b4d3c;  
+  color: white;  
   font-weight: bold;
 }
 
@@ -624,6 +624,11 @@ body {
   font-weight: bold;  
 }
 
+.card-establishment-main .card-title:hover {
+  font-size: 30px;
+  cursor: pointer;
+}
+
 .card-establishment-main .card-address {
   font-size: 15px;
   font-weight: bold; 
@@ -636,16 +641,46 @@ body {
   padding-bottom: 10px;
 }
 
+.card-establishment-main .card-address:hover {
+  font-size: 17px;
+  cursor: pointer;      
+}
+
 .card-establishment-main .card-image img {
   width: 100%;
   height: 20vw;
   border-radius: 1px; 
 }
 
+.location-icon {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 20px;
+  height: 35px;
+  background-image: url('./img/location5.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.location-icon:hover {
+  cursor: pointer;
+  width: 25px;
+  height: 45px;
+}
+
+.tooltip-see-location {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
 .card-field-search {
   width: 260px;
-  height: 280px;  
-  margin-bottom: 15px;      
+  height: 360px;  
+  margin-bottom: 15px;
+  border: 0px;
+  border-radius: 0px;      
 }
 
 .card-field-search:last-of-type {
@@ -655,6 +690,7 @@ body {
 .card-field-search img {
   width: 260px;
   height: 230px; 
+  border-radius: 0px;
 }
 
 .card-field-search p {
@@ -683,7 +719,7 @@ body {
   } 
   .card-field-search {
     width: 220px;
-    height: 280px;  
+    height: 350px;  
       
   } 
   .card-field-search img {
@@ -692,3 +728,111 @@ body {
   }
 }
 
+.card-field-search-footer {
+ display: flex;
+ justify-content: space-between; 
+ flex-direction: row;
+}
+
+.bui-review-score__badge {
+  background: #0e6e33;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  vertical-align: baseline;
+  border-radius: 6px 6px 6px 0;
+  height: 28px;
+  width: 28px;
+  min-width: 28px;
+}
+
+.btn-see-disponibility {
+  background: #9cca2f;
+  color: #1a3847;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  vertical-align: baseline;
+  border-radius: 6px 6px 6px 0;
+  height: 28px;
+  width: 40%;
+  min-width: 28px;
+}
+
+@media (max-width: 768px) {
+  .btn-see-disponibility {
+    font-size: 14px;
+  }
+}
+
+.btn-see-disponibility:hover {
+  cursor: pointer;
+  background: #b6da62
+}
+
+.container-search{
+  background-color: white;
+}
+
+.aside-search-fields  {
+  padding: 3rem;
+  background-color: #e4871c;
+}
+
+.main-seccion-search-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+}
+
+.card-search-fields {  
+  padding: 16px;
+  width: 100%;
+  margin: 16px 0;
+  border: 1px solid #c6c6c6;
+  border-radius: 3px;
+  background-color: bisque;  
+}
+
+.card-search-fields img {
+  width: 260px;
+  height: 230px; 
+  display: block;
+  border-radius: 3px;
+  margin-left: 10px;
+  margin-right: 18px;
+}
+
+.card-search-detail{
+  margin-left: 1rem;   
+  padding-top: 0px;
+}
+
+@media (max-width: 768px) {
+  .card-search-detail{
+    margin-left: 0rem;   
+    padding-top: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-search {
+      display: flex;
+      min-height: 100vh;
+  }
+
+  aside {
+      background-color: var(--blanco);
+      border: 1px solid grey;
+      flex: 0 0 300px;
+  }
+  .main-seccion-search-fields {
+      flex: 1;
+      padding: 1rem;
+  }
+}

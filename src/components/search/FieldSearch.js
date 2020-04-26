@@ -14,7 +14,12 @@ const FieldSearch = (field) => {
             }            
 
             <div className="card-body">
-                <p className="card-title">{field ? field.sport_type.description : ''}</p>                
+                <h5 className="card-title font-weight-bold">{field ? field.sport_type.description : ''}</h5>
+                <h5 className="card-title">{field ? field.establishment.name : ''}</h5>
+                <div className="card-field-search-footer">
+                    <div className="bui-review-score__badge" aria-label="Puntuación:  9,1 ">  9,1 </div>
+                    <div className="btn-see-disponibility">Reservar</div>                
+                </div>                
             </div>                     
         </div>
     );

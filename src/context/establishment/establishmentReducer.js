@@ -19,7 +19,8 @@ import {
     ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE,
-    REMOVE_ALERT_MESSAGE
+    REMOVE_ALERT_MESSAGE,
+    GET_FIELDS_SEARCH
 } from '../types';
 
 export default (state, action) => {
@@ -40,7 +41,12 @@ export default (state, action) => {
             return {
                 ...state,
                 fields: action.payload
-            }    
+            } 
+        case GET_FIELDS_SEARCH:
+            return {
+                ...state,
+                listOfSearchedFields: action.payload
+            }                             
         case SET_SELECTED_ESTABLISHMENT:
             return {
                 ...state,

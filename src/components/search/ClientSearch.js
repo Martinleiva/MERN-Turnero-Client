@@ -9,6 +9,8 @@ import Search from '@material-ui/icons/Search';
 import Spinner from '../common/Spinner';
 import Footer from '../inicio/Footer';
 
+import Swal from 'sweetalert2';
+
 import {Carousel} from 'primereact/carousel';
 import FieldSearch from './FieldSearch';
 
@@ -17,11 +19,11 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
 
-const ClientSearch = () => {
+const ClientSearch = (props) => {
 
     const establishmentContext = useContext(EstablishmentContext);    
-    const { listOfTypesSports, getTypesOfSports, listOfStablishments, fields,  
-            getStablishment, getFields } = establishmentContext;
+    const { listOfTypesSports, getTypesOfSports, listOfStablishments, fields, listOfSearchedFields,  
+            getStablishment, getFields, getFieldsBySportType } = establishmentContext;
 
     const [sport_type, setSport_type] = useState('');
 
@@ -30,6 +32,19 @@ const ClientSearch = () => {
         getStablishment();
         getFields();     
     }, []);
+
+    const handleSearchFields = () => {
+        if(sport_type === '-' || sport_type === ''){             
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Debes elegir un deporte'            
+            })
+            return;
+        }        
+        getFieldsBySportType(sport_type);
+        props.history.push('/search-result'); 
+    }
 
     const ButtonSearch = withStyles({
         root: {
@@ -67,7 +82,7 @@ const ClientSearch = () => {
             <div className="header-search-files">
                 <div className="container">                    
                     <div className="titulo-home-search">
-                        <h1 className="text-center">Buscá tu cancha</h1>    
+                        <h1 className="text-center">Buscá y reservá la cancha que más te convenga</h1>    
                     </div>    
                 
                     <div className="container-form-search-fields  col-md-12 col-xs-12">                
@@ -78,7 +93,8 @@ const ClientSearch = () => {
                                         className="form-control-edited select-search"
                                         value={sport_type}
                                         onChange={(e) => { setSport_type(e.target.value) }}                                            
-                                        >                    
+                                        >
+                                        <option value='-'>-Elije un deporte-</option>                        
                                         {
                                             listOfTypesSports.map(type => (
                                             <option value={type._id} key={type._id} >{type.description}</option>
@@ -91,7 +107,8 @@ const ClientSearch = () => {
                                     variant="contained"
                                     color="default"
                                     width="100%"                            
-                                    startIcon={<Search />}                                                        
+                                    startIcon={<Search />}
+                                    onClick={handleSearchFields}                                                        
                                 >
                                     Buscar Cancha
                                 </ButtonSearch>  
@@ -108,13 +125,22 @@ const ClientSearch = () => {
                 {
                     listOfStablishments.length > 0 
                     ?
-                    <div className="main-establishment-search">               
-                        <div className="card-deck">                                                                                         
+                    <div className="main-establishment-search">
+                        <h2 className="text-center mb-4 ">Conocé todos los complejos adheridos</h2>               
+                        <div className="card-deck mb-4">
                                 <EstablishmentMain
                                     establishment={listOfStablishments.length > 0 ? listOfStablishments[0] : null}
                                 />                                                 
                                 <EstablishmentMain
                                     establishment={listOfStablishments.length > 1 ? listOfStablishments[1] : null}
+                                />                                                        
+                        </div>                         
+                        <div className="card-deck">                                                                                         
+                                <EstablishmentMain
+                                    establishment={listOfStablishments.length > 2 ? listOfStablishments[2] : null}
+                                />                                                 
+                                <EstablishmentMain
+                                    establishment={listOfStablishments.length > 3 ? listOfStablishments[4] : null}
                                 />                                                        
                         </div>                                                     
                     </div>
