@@ -8,7 +8,7 @@ const Navbar = () => {
 
     //Extract the information from authentication
     const authContext = useContext(AuthContext);
-    const { user, setAuthenticatedUser, logOut } = authContext;    
+    const { user, type_usr, setAuthenticatedUser, logOut } = authContext;    
 
     useEffect(() => {
         setAuthenticatedUser();
@@ -26,15 +26,30 @@ const Navbar = () => {
                     </button>              
                     <div className="collapse navbar-collapse" id="navbarColor01">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <a className="nav-link" href="#/">Ir al inicio<span className="sr-only">(current)</span></a>
-                            </li>
                             <li className="nav-item active">
-                                <a className="nav-link" href="#/">Reservas</a>
-                            </li>
-                            <li className="nav-item active">
-                                <Link className="nav-link" to={'/my-establishments'}>Complejos</Link>
-                            </li>                                                                                 
+                                <a className="nav-link" href="#/">Acerca de<span className="sr-only">(current)</span></a>
+                            </li>                            
+                            {
+                             type_usr === 'Dueño' 
+                                ?
+                                <>
+                                 <li className="nav-item active">
+                                    <Link className="nav-link" to={'/reservas'}>Reservas</Link>
+                                  </li> 
+                                 <li className="nav-item active">
+                                    <Link className="nav-link" to={'/my-establishments'}>Mis complejos</Link>
+                                  </li>
+                                </>  
+                                : 
+                                <> 
+                                  <li className="nav-item active">
+                                    <Link className="nav-link" to={'/client-search'}>Buscá una cancha</Link>
+                                  </li>
+                                  <li className="nav-item active">
+                                    <a className="nav-link" href="#/">Tus reservas</a>
+                                  </li>
+                                </>                                    
+                            }                                                                                                             
                         </ul>
 
                         <ul className="navbar-nav">

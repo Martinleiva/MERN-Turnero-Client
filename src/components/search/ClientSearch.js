@@ -27,7 +27,7 @@ const ClientSearch = (props) => {
 
     const [sport_type, setSport_type] = useState('');
 
-    useEffect( ()=> {                 
+    useEffect( ()=> {        
         getTypesOfSports();   
         getStablishment();
         getFields();     
