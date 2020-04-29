@@ -126,7 +126,7 @@ const ClientSearch = (props) => {
                     listOfStablishments.length > 0 
                     ?
                     <div className="main-establishment-search">
-                        <h2 className="text-center mb-4 ">Conocé todos los complejos adheridos</h2>               
+                        <h2 className="text-center my-4">Conocé todos los complejos adheridos</h2>               
                         <div className="card-deck mb-4">
                                 <EstablishmentMain
                                     establishment={listOfStablishments.length > 0 ? listOfStablishments[0] : null}

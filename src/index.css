@@ -13,7 +13,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
   /*background-image: url('../src/img/fondoturnero.png');*/
-  background-color: #eee;
+  background-color: #f8f9fa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; 
   background-position-x: 0cm;
@@ -234,7 +234,7 @@ body {
 }
 
 .container-establishments {
-  background-color: #eee;
+  background-color: #f8f9fa;;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -249,7 +249,7 @@ body {
   width: 5rem;     
 }
 
-.header-my-establishment h3{     
+.header-my-establishment h3{       
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -612,15 +612,13 @@ body {
   margin-bottom: 80px;
 }
 
-.main-establishment-search h2 {  
-  font-family: Montserrat, sans-serif;
-  font-size:30px;
-  color:rgb(52, 73, 94);
-  line-height:41.6px;
-  font-weight:700;
-  text-size-adjust:100%;
-  letter-spacing:normal;
-  height:48.6563px;
+.main-establishment-search h2 {    
+  font-weight: 800;
+  text-transform: uppercase;
+  font-family: Nunito;
+  color: #000; 
+  letter-spacing: .03em;  
+  line-height: 1.2; 
 }
 
 .card-establishment-main {
@@ -724,6 +722,15 @@ body {
 .div-carousel {
   margin-left: -3rem;
   margin-right: -3.1rem;
+}
+
+.div-carousel h3 {    
+  font-weight: 800;
+  
+  font-family: Nunito;
+  color: #000; 
+  letter-spacing: .03em;  
+  line-height: 1.2; 
 }
 
 @media only screen and (max-width: 768px) {
