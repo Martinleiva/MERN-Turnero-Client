@@ -853,13 +853,6 @@ body {
   font-size: 22px;
 }
 
-.card-search-detail h6{
-  font-size: 12px;
-  color: #323b37;
-  margin-top: 0px;
-  margin-bottom: 20px;
-}
-
 .card-search-detail p{
   font-size: 14px;
   color: #323b37;
@@ -888,15 +881,43 @@ body {
   border-radius: 6px 6px 6px 6px;
 }
 
+.car-search-address{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 14px
+}
+
+.car-search-address h6{
+  font-size: 11px;
+  color: #a8a8a8;
+  margin-top: 0px;
+  margin-bottom: 14px;
+}
+.car-search-address h6:hover{
+  cursor: pointer;  
+}
+
 .card-search-icons{
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;   
 }
 
 .card-search-icons p{
-  margin-right: 10px;
-  color: #737775;
+  margin-right: 18px;
+  color: #737775; 
+}
+
+.card-search-icons p:hover{
+  cursor: pointer;  
+}
+
+.car-serch-roofed-lighting{
+  display: flex;
+  justify-content: flex-start;
+}
+.car-serch-roofed-lighting p{
+ margin-right: 40px;
 }
 
 .btn-make-reservation {
