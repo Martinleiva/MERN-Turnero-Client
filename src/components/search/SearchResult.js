@@ -11,7 +11,7 @@ const SearchResult = () => {
 
     return (
         <Fragment>
-            <Header/>>
+            <Header/>
             <div className="container container-search"> 
 
                 <aside>                   
