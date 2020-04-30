@@ -42,7 +42,7 @@ const ClientSearch = (props) => {
             })
             return;
         }        
-        getFieldsBySportType(sport_type);
+        localStorage.setItem('search_sport_type', sport_type);        
         props.history.push('/search-result'); 
     }
 

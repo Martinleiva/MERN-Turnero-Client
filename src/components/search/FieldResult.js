@@ -15,8 +15,7 @@ const FieldResult = ({fieldResult}) => {
 
     const [listIconService, setListaIconService] = useState([]);    
 
-    useEffect(()=>{        
-        console.log(fieldResult.name);
+    useEffect(()=>{                
         const addService = service => {
             console.log(service);
             switch(service) {
@@ -94,8 +93,10 @@ const FieldResult = ({fieldResult}) => {
                         <p className="card-text">Tipo de Sueldo: <span>{fieldResult.ground_type.description}</span></p>
                         <p className="card-text">Cantidad de Jugadores: <span> {fieldResult.number_of_players}</span></p>
                         
-                        <h3 className="card-text card-price">${fieldResult.price}</h3>
-                        <div  className="btn-make-reservation" >Reservar</div>   
+                        <div className="div-price-and-reservation">
+                            <h3 className="card-text card-price">${fieldResult.price}</h3>
+                            <div  className="btn-make-reservation" >Reservar</div>   
+                        </div>
                         </>                         
                     </div>
 

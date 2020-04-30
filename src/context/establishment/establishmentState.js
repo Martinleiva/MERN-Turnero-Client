@@ -33,7 +33,7 @@ const EstablishmentState = props => {
     const initialState = {
         listOfStablishments : [],
         listOfFields : [], //list of field by stablishment
-        listOfSearchedFields : [], //list of field that was found by user search
+        listOfSearchedFields : null, //list of field that was found by user search
         listOfTypesSports : [],
         listOfTypesGrounds : [],
         listOfCategories : [],

@@ -867,10 +867,7 @@ body {
 }
 
 .card-price{
-  color: #428500;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  color: #428500;    
   text-align: center;
   font-weight: bold;
   font-size: 20px;
@@ -924,10 +921,7 @@ body {
   background: #10850e;
   color:white;
   width: 7rem;
-  height: 30px;
-  position: absolute;
-  right: 0px;
-  bottom: 10px;
+  height: 30px;  
   text-align: center;
   font-weight: bold;
   font-size: 1rem;
@@ -942,6 +936,31 @@ body {
   cursor: pointer;
   background: #abcf57;  
 }
+
+@media (min-width: 768px) {
+  
+  .btn-make-reservation {    
+    position: absolute;
+    right: 0px;
+    bottom: 10px;    
+  }
+
+  .card-price{    
+    position: absolute;
+    right: 10px;
+    top: 0px;    
+  }
+
+}
+
+@media (max-width: 768px) {
+  .div-price-and-reservation{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+}
+
 
 
 @media (max-width: 768px) {
