@@ -41,7 +41,8 @@ export default (state, action) => {
             return{
                 ...state,
                 listOfFields : action.payload,
-                amount_of_field : action.payload.length
+                amount_of_field : action.payload.length,
+                selected_field: action.payload[0]
             }
         case GET_FIELDS:
             return {

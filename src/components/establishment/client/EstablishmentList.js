@@ -1,5 +1,5 @@
 import React, { useContext, Fragment } from 'react';
-import FieldCard from './EstablishmentCard';
+import EstablishmentCard from './EstablishmentCard';
 
 import EstablishmentContext from '../../../context/establishment/establishmentContext';
 
@@ -13,7 +13,7 @@ const FieldsList = () => {
         <Fragment>
             {establishments.map(establishment => (
 
-                <FieldCard key={establishment._id} establishment={establishment} /> 
+                <EstablishmentCard key={establishment._id} establishment={establishment} /> 
 
             ))}
         </Fragment>

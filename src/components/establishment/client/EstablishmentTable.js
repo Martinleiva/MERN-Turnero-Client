@@ -1,105 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import Paper from '@material-ui/core/Paper';
-import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
-import {
-  Scheduler,
-  WeekView,
-  Toolbar,
-  DateNavigator,
-  Appointments,
-  TodayButton,
-  AppointmentTooltip,
-  AppointmentForm,
-} from '@devexpress/dx-react-scheduler-material-ui';
+import React, { useState, useContext, useEffect } from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-const appointments = [
-    { 
-        id: 0,
-        title: 'Mail New Leads for Follow Up', 
-        startDate: '2020-04-23T15:00',
-        endDate: '2020-04-23T16:00' 
-    },
-    { 
-        id: 1,
-        title: 'Product Meeting', 
-        startDate: '2020-04-23T18:00', 
-        endDate: '2020-04-23T19:00' 
-    },
-    {
-        id: 2,
-        title: 'Send Territory Sales Breakdown', 
-        startDate: '2020-04-23T21:00',
-        endDate: '2020-04-23T22:00'
-    },
-  ];
+import reservationContext from '../../../context/reservations/reservationContext';
+import establishmentContext from '../../../context/establishment/establishmentContext';
+import AuthContext from '../../../context/authentication/authContext';
+
+
+const localizer = momentLocalizer(moment);
 
 const EstablishmentTable = () => {
 
-    const [ currentDate, setCurrentDate ] = useState(Date.now());
-    const [ data, setData ] = useState(appointments);
-    const [ addedAppointment, setAddedAppointment ] = useState(appointments);
+    const reservationsContext = useContext(reservationContext);
+    const { 
+        reservationsfield,
+        getReservationsByField,
+        addReservation 
+    } = reservationsContext;
 
-    const commitChanges = (added) => {
-    
-        if (added) {
-            const startingAddedId = data.length > 0 
-            ? 
-                data[data.length - 1].id + 1 
-            : 
-                0;
-    
-            setData([...data, { 
-                id: startingAddedId, 
-                title:
-                startDate: 
-                
-            }]);
+    const establishmentsContext = useContext(establishmentContext);
+    const { selected_field } = establishmentsContext;
+
+    const authContext = useContext(AuthContext);
+    const { user } = authContext;
+
+    //state of reservation
+    const [reservation, setReservation] = useState({
+        title: '',
+
+    });
+
+    const handleSelect = ({ start, end }) => {
+
+        const nombre = window.prompt('Su nombre: ');
+
+        if (nombre) {
+            reservation.field_id = selected_field._id;
+            setReservation({
+                ...reservation,
+                start,
+                end,
+                title: nombre,
+                field_id: selected_field._id, // id de la cancha actual
+                user_id: user._id //id del usuario actual
+            });
+            addReservation({
+                ...reservation,
+                start,
+                end,
+                title: nombre,
+                field_id: selected_field._id, // id de la cancha actual
+                user_id: user._id //id del usuario actual
+            });
         }
 
-        console.log(added, data);
+        //Obtain reservations 
+        getReservationsByField(selected_field._id);
     }
 
+    const eventStyleGetter = (event, start, end, isSelected) => {
+        //var backgroundColor = '#' + event.hexColor;
+        const style = {
+            backgroundColor: 'red',
+            borderRadius: '2px',
+            opacity: 0.9,
+            color: 'white',
+            border: '1px solid black',
+        };
+        return {
+            style: style
+        };
+    }
+
+    useEffect(() => {
+        getReservationsByField(selected_field._id);
+    }, []);
+
     return (
-        <Paper>
-            <Scheduler
-                data={data}
-            >
-
-                <ViewState
-                    currentDate={currentDate}
-                    onCurrentDateChange={(currentDate) => setCurrentDate(currentDate)}
-                />
-
-                <EditingState
-                    onCommitChanges={commitChanges}
-
-                    addedAppointment={addedAppointment}
-                    onAddedAppointmentChange={(addedAppointment) => setAddedAppointment(addedAppointment)}
-                />
-
-                <WeekView
-                    startDayHour={15}
-                    endDayHour={24}
-                    cellDuration={60}
-                />
-
-                <Toolbar />
-                <DateNavigator />
-                <TodayButton />
-                
-                <Appointments />
-
-                <AppointmentTooltip
-                    showCloseButton
-                    showOpenButton
-                />
-
-                <AppointmentForm
-                    
-                />
-
-            </Scheduler>
-        </Paper>
+        <div>
+            <Calendar
+                className="container"
+                localizer={localizer}
+                events={reservationsfield}
+                selectable={true}
+                defaultView={'week'}
+                views={{ week: true, day: true }}
+                startAccessor="start"
+                endAccessor="end"
+                style={{ height: 450 }}
+                onSelectEvent={event => alert(event.title)}
+                onSelectSlot={handleSelect}
+                messages={{
+                    next: "-->",
+                    previous: "<--",
+                    today: "Hoy",
+                    month: "Mes",
+                    week: "Semana",
+                    day: "Día"
+                }}
+                eventPropGetter={eventStyleGetter}
+            />
+        </div>
     );
 };
 

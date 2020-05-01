@@ -4,16 +4,22 @@ import { backEndURL } from '../../../config/urlBackEnd';
 
 import EstablishmentContext from '../../../context/establishment/establishmentContext';
 
+import ReservationContext from '../../../context/reservations/reservationContext';
 
-const FieldCard = ({ establishment }) => {
+const EstablishmentCard = ({ establishment }) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
+    const { selected_field, setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
+
+    const reservationContext = useContext(ReservationContext); 
+    const { getReservationsByField } = reservationContext;
 
     const handleGetFields = async () => {
 
         await getFieldByStablishment(establishment._id);
-
+        //await getReservationsByField(selected_field);
+        console.log(selected_field);
+        
         const actives = document.getElementsByClassName('field');
         const actives2 = document.getElementsByClassName('contentField');
 
@@ -65,4 +71,4 @@ const FieldCard = ({ establishment }) => {
     );
 }
  
-export default FieldCard;
+export default EstablishmentCard;

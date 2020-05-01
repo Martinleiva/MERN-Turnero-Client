@@ -1,11 +1,24 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useEffect } from 'react';
 import EstablishmentContext from '../../../context/establishment/establishmentContext';
 import EstablishmentTable from './EstablishmentTable';
+
+import ReservationContext from '../../../context/reservations/reservationContext';
 
 const ModalNewRes = () => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { selected_stablishment, selected_field, listOfFields, setSelectedField }= establishmentContext;
+    const { selected_stablishment, listOfFields, setSelectedField }= establishmentContext;
+
+    const reservationContext = useContext(ReservationContext); 
+    const { getReservationsByField } = reservationContext;
+
+    const handleSelectField = (field) => {
+        setSelectedField(field); //Select actual field
+        
+        getReservationsByField(field._id);//Filter reservations 
+
+        console.log('reservas de ',field._id);
+    }
 
     return (
         <div className="modal fade" id="modal_new_reservation" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -23,28 +36,31 @@ const ModalNewRes = () => {
                     <div className="modal-body">
                         <ul className="nav nav-tabs">
 
-                            {
+                            { 
                             listOfFields.length === 0 
                                 ? 
                                     <div>No hay Canchas Cargadas!</div>                                                  
                                 :
-                                    listOfFields.map((field, index) => (
-                                        field.establishment === selected_stablishment._id ? 
-                                        <Fragment key={field._id}>
-                                            <li className="nav-item">
-                                                <a 
-                                                    className="nav-link field active" 
-                                                    data-toggle="tab" 
-                                                    href={`#tab${index}`}
-                                                    onClick={() => setSelectedField(field)}
-                                                >
-                                                    {field.name}
-                                                </a>
-                                            </li>
-                                        </Fragment>
-                                        : 
-                                            null
-                                    ))
+                                    listOfFields.map((field, index) => {
+                                        return (
+                                            field.establishment === selected_stablishment._id ? 
+                                            <Fragment key={field._id}>
+                                                <li className="nav-item">
+                                                    <a 
+                                                        className="nav-link field active" 
+                                                        data-toggle="tab" 
+                                                        href={`#tab${index}`}
+                                                        onClick={() => handleSelectField(field)}
+                                                    >
+                                                        {field.name}
+                                                    </a>
+                                                </li>
+                                            </Fragment>
+                                            : 
+                                                null
+                                        );
+                                        
+                                    })
                             }
                         </ul>
 
@@ -61,7 +77,6 @@ const ModalNewRes = () => {
                                             <div 
                                                 className="tab-pane fade show active contentField" 
                                                 id={`tab${index}`}>
-                                                    {field.name}
                                                     <EstablishmentTable />
                                             </div>
 
@@ -73,10 +88,10 @@ const ModalNewRes = () => {
                         </div>
 
                     </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-success">Save changes</button>
-                    </div>
+                    {/* <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" className="btn btn-success">Confirmar Reserva</button>
+                    </div> */}
                 </div>
             </div>
         </div>

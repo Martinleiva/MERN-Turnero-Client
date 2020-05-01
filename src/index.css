@@ -14,7 +14,7 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('../src/img/fondoturnero.png');
+  /*background-image: url('../src/img/fondoturnero.png');*/
   
   background-position-x: 0cm;
   background-position-y: -15cm;

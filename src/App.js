@@ -15,31 +15,32 @@ import PrivateRoute from './components/routes/PrivateRoute';
 import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
 import ReservationClient from './components/reservation/client/ReservationClient';
-import EstablishmentTable from './components/establishment/client/EstablishmentTable';
 
+import ReservationState from './context/reservations/reservationState';
 
 function App() {
   
   return (
     <AlertState>      
-      <EstablishmentState>                    
-          <AuthState>
-            <Router>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/prueba" component={EstablishmentTable} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/singup" component={SingUp} />
-                <Route exact path="/singup-client" component={SingUpCliente} />
-                <Route exact path="/singup-duenio" component={SingUpDuenio} />
-                <PrivateRouteClient exact path="/dash-client" component={DashClient} />
-                <Route exact path="/res-client" component={ReservationClient} />
-                <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
-                <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
-              </Switch>
-            </Router>
-          </AuthState>        
-      </EstablishmentState>   
+      <ReservationState>
+        <EstablishmentState>                    
+            <AuthState>
+              <Router>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/singup" component={SingUp} />
+                  <Route exact path="/singup-client" component={SingUpCliente} />
+                  <Route exact path="/singup-duenio" component={SingUpDuenio} />
+                  <PrivateRouteClient exact path="/dash-client" component={DashClient} />
+                  <PrivateRouteClient exact path="/res-client" component={ReservationClient} />
+                  <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
+                  <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
+                </Switch>
+              </Router>
+            </AuthState>        
+        </EstablishmentState>   
+      </ReservationState>
     </AlertState>    
   );
 }
