@@ -8,10 +8,12 @@ const PrivateRoute = ({ component: Component, ...props }) => {
     const { authenticated, loading, setAuthenticatedUser } = authContext;
 
     useEffect(()=>{
-        setAuthenticatedUser();
+        setAuthenticatedUser();        
+        console.log('authenticated', authenticated);        
+        console.log('loading', loading);             
     }, []);
 
-    return (
+    return (                                                
         <Route {...props} render={ props => !authenticated && !loading ? (
             <Redirect to={'/'} />
         ) : (

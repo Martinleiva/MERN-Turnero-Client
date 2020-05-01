@@ -1,17 +1,12 @@
 import React, { Fragment } from 'react';
 import Header from '../common/Header';
-import Container from './Container';
-import NavbarOwner from '../common/NavbarOwner';
-import ContainerOwner from '../usuarios/ContainerOwner';
-
+import ContainerOwner from './ContainerOwner';
 
 const DashOwner = () => {
     return (         
         <Fragment>
-            <NavbarOwner />
-            
-            <ContainerOwner />
-              
+            <Header />
+            <h1>Bienvenido Dueño</h1>
         </Fragment>
      );
 }

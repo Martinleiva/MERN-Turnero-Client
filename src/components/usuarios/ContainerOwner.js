@@ -1,4 +1,10 @@
 import React, {useContext, useEffect, Fragment} from 'react';
+import { Link } from 'react-router-dom';
+import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/authentication/authContext';
+import Header from '../inicio/Header';
+import Footer from '../inicio/Footer';
+
 
 
 const ContainerOwner = () => {
@@ -7,6 +13,15 @@ const ContainerOwner = () => {
     const onChange = () =>{
 
     }
+
+    //Extract values from context
+    const alertContext = useContext(AlertContext);
+    const { alert, showAlert } = alertContext;
+
+    const authContext = useContext(AuthContext);
+    const { message, authenticated, type_usr, startSession } = authContext;
+
+
 
     return ( 
         <Fragment>

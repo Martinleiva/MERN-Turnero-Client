@@ -7,15 +7,22 @@ import SingUpCliente from './components/auth/SingUpCliente';
 import SingUpDuenio from './components/auth/SingUpDuenio';
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
+import EstablishmentState from './context/establishment/establishmentState';
+import MyEstablishments from './components/establishment/MyEstablishments';
+import ReservationOwner from './components/reservation/owner/ReservationOwner';
+import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
+import PrivateRouteClient from './components/routes/PrivateRouteClient';
 import PrivateRoute from './components/routes/PrivateRoute';
 import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
+import ReservationClient from './components/reservation/client/ReservationClient';
+import ContainerOwner from './components/usuarios/ContainerOwner';
 
 
 function App() {
   
   return (
-    <AlertState>
+    /* <AlertState>
       <AuthState>
         <Router>
           <Switch>
@@ -26,10 +33,32 @@ function App() {
             <Route exact path="/singup-duenio" component={SingUpDuenio} />
             <PrivateRoute exact path="/dash-client" component={DashClient} />
             <PrivateRoute exact path="/dash-owner" component={DashOwner} />
-            {/* <Route exact path="/dash-owner" component={DashOwner} /> */}
+          <Route exact path="/dash-owner" component={DashOwner} />
           </Switch>
         </Router>
       </AuthState>
+    <AlertState>  */
+    
+    <AlertState>
+      <EstablishmentState>                    
+          <AuthState>
+            <Router>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/singup" component={SingUp} />
+                <Route exact path="/singup-client" component={SingUpCliente} />
+                <Route exact path="/singup-duenio" component={SingUpDuenio} />
+                <PrivateRouteClient exact path="/dash-client" component={DashClient} />
+                <Route exact path="/res-client" component={ReservationClient} />
+                <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
+                <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
+                <PrivateRouteOwner exact path="/reservation-owner" component={ReservationOwner}/>
+                <PrivateRouteOwner exact path="/container-owner" component={ContainerOwner} />
+              </Switch>
+            </Router>
+          </AuthState>        
+      </EstablishmentState>   
     </AlertState>    
   );
 }
