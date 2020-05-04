@@ -90,7 +90,7 @@ const Login = (props) => {
                             </label>
                         </div>
                         <div className="checkbox mb-4 mb-3">
-                            <a href="#!">Olvide mi contraseña</a>
+                            <a href="/forget-pass">Olvide mi contraseña</a>
                         </div>
                         <button 
                             className="btn btn-lg btn-success btn-block mb-4" 

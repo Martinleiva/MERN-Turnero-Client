@@ -114,7 +114,6 @@ const AuthState = props => {
     const updateUser = async data => {
         try {
             const response = await clienteAxios.put(`/api/users/${data._id}`, data);
-            console.log(response);
             dispatch({
                 type: UPDATE_USER,
                 payload : response.data.user
@@ -124,6 +123,26 @@ const AuthState = props => {
         }
     }
 
+    // send mail
+    const sendMail = async data => {
+        try {
+            const res = await clienteAxios.post('/api/send-mail', data);
+            dispatch({
+                type : LOGIN_SUCCESS, //cambiar?
+                payload : res.data
+            });
+
+        }catch (error) {            
+            const alert = {
+                msg : error.response.data.msg, //get the backend's message error
+                category : 'alert-danger'
+            }
+            dispatch({
+                type : LOGIN_ERROR,
+                payload : alert
+            });            
+        }
+    }
 
     return(
         <AuthContext.Provider
@@ -138,7 +157,8 @@ const AuthState = props => {
                 setAuthenticatedUser,
                 startSession,
                 logOut,
-                updateUser
+                updateUser,
+                sendMail
             }}
         >
             {props.children}

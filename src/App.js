@@ -5,6 +5,8 @@ import Login from './components/auth/Login';
 import SingUp from './components/auth/SingUp';
 import SingUpCliente from './components/auth/SingUpCliente';
 import SingUpDuenio from './components/auth/SingUpDuenio';
+import ForgetPass from './components/auth/ForgetPass';
+import ResetPass from './components/auth/ResetPass';
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
 import EstablishmentState from './context/establishment/establishmentState';
@@ -31,6 +33,8 @@ function App() {
                 <Route exact path="/singup" component={SingUp} />
                 <Route exact path="/singup-client" component={SingUpCliente} />
                 <Route exact path="/singup-duenio" component={SingUpDuenio} />
+                <Route exact path="/forget-pass" component={ForgetPass} />
+                <Route exact path="/reset-pass" component={ResetPass} />
                 <PrivateRouteClient exact path="/dash-client" component={DashClient} />
                 <PrivateRouteClient exact path="/my-account-client" component={MyAccountClient} />
                 <Route exact path="/res-client" component={ReservationClient} />
