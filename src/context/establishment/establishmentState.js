@@ -25,7 +25,8 @@ import {
     ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE,
-    GET_FIELDS_SEARCH
+    GET_FIELDS_SEARCH,
+    CLEAN_ESTABLISHMENT_DATA
 } from '../types';
 
 const EstablishmentState = props => {
@@ -326,6 +327,27 @@ const EstablishmentState = props => {
         }
     }
 
+    const getFieldsByFilters = async filters => {
+        console.log('llamada a filter');
+        try {
+            const resultado = await AxiosClient.post(`/api/field/filter/`, filters);
+            console.log(resultado);
+            dispatch({
+                type : GET_FIELDS_SEARCH,
+                payload : resultado.data.filteredFields
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    /*This function is for clean all data belong to establishment. It is import when the user log out */
+    const cleanEstablishmentData = () => {
+        dispatch({
+            type : CLEAN_ESTABLISHMENT_DATA            
+        })
+    }
+
     return (
         <EstablishmentContext.Provider
             value={{
@@ -361,7 +383,9 @@ const EstablishmentState = props => {
                 addService,
                 removeService,
                 removeAlertMessage,
-                getFieldsBySportType
+                getFieldsBySportType,
+                getFieldsByFilters,
+                cleanEstablishmentData
             }}
         >
             {props.children}

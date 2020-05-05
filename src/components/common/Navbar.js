@@ -3,12 +3,21 @@ import { Link } from 'react-router-dom';
 import Logo from '../../img/logo-turnero5.png';
 
 import AuthContext from '../../context/authentication/authContext';
+import EstablishmentContext from '../../context/establishment/establishmentContext';
 
 const Navbar = () => {
 
     //Extract the information from authentication
     const authContext = useContext(AuthContext);
-    const { user, type_usr, setAuthenticatedUser, logOut } = authContext;    
+    const { user, type_usr, setAuthenticatedUser, logOut } = authContext; 
+
+    const establishmentContext = useContext(EstablishmentContext);
+    const {cleanEstablishmentData} = establishmentContext;
+    
+    const handleLogOut = () => {
+        cleanEstablishmentData();
+        logOut();
+    }
 
     useEffect(() => {
         setAuthenticatedUser();
@@ -63,8 +72,8 @@ const Navbar = () => {
                                         <img src="https://www.show.news/__export/1567201752167/sites/debate/img/2019/08/30/gato_png_crop1567201738546.jpg_554688468.jpg" width={45} height={40} className="rounded-circle" />
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-logo" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" onClick={() => logOut()} href="#">Mi Cuenta</a>
-                                        <a className="dropdown-item" onClick={() => logOut()} href="#">Cerrar Sesión</a>                                        
+                                    <a className="dropdown-item" onClick={handleLogOut} href="#">Mi Cuenta</a>
+                                        <a className="dropdown-item" onClick={handleLogOut} href="#">Cerrar Sesión</a>                                        
                                     </div>
                             </li>
                         </ul>

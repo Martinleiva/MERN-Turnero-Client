@@ -20,7 +20,8 @@ import {
     ADD_SERVICE,
     REMOVE_SERVICE,
     REMOVE_ALERT_MESSAGE,
-    GET_FIELDS_SEARCH
+    GET_FIELDS_SEARCH,
+    CLEAN_ESTABLISHMENT_DATA
 } from '../types';
 
 export default (state, action) => {
@@ -126,7 +127,25 @@ export default (state, action) => {
             return {
                 ...state,
                 alert_message : null
-            }                                           
+            }
+        case CLEAN_ESTABLISHMENT_DATA:
+            return {
+                ...state,
+                listOfStablishments : [],
+                listOfFields : [], 
+                listOfSearchedFields : null, 
+                listOfTypesSports : [],
+                listOfTypesGrounds : [],
+                listOfCategories : [],
+                listOfServices : [],
+                listOfAddedServices : [],
+                fields: [], 
+                amount_of_establishment : null,
+                amount_of_field : null,
+                selected_stablishment : null,
+                selected_field : null,
+                alert_message : null
+            }                                               
         default :
             return state;        
     }

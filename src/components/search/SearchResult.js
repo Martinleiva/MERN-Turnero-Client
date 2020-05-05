@@ -8,10 +8,35 @@ const SearchResult = () => {
 
     const establishmentContext = useContext(EstablishmentContext);    
     const { listOfTypesSports, listOfTypesGrounds, listOfServices, listOfSearchedFields, 
-            getFieldsBySportType, getTypesOfSports, getTypesOfGrounds, getServices } = establishmentContext; 
+            getFieldsBySportType, getTypesOfSports, getTypesOfGrounds, 
+            getServices, getFieldsByFilters } = establishmentContext; 
     
     const [sport_type, setSport_type] = useState('');
     const [ground_type, setGround_type] = useState('');
+    const [roofed, setRoofed] = useState(false);
+    const [lighted, setLighted] = useState(false);
+    const [selectedServices, setSelectedServices] = useState([]);
+
+    const handleAddService = (service, checked) => {
+        if(checked) {
+            setSelectedServices(selectedServices => [...selectedServices, service._id]);
+        }
+        else {
+            setSelectedServices(selectedServices => selectedServices.filter(s => s !== service._id));     
+        }
+    }
+
+    const handleSearch = () => {
+        const filters = {
+            sport_type,
+            ground_type,
+            roofed,
+            lighted,
+            'services' : selectedServices
+        }
+
+        getFieldsByFilters(filters);
+    }
 
     useEffect(()=> {
         const search_sport_type = localStorage.getItem('search_sport_type');
@@ -20,6 +45,8 @@ const SearchResult = () => {
             getTypesOfGrounds(); 
             getServices();
             getFieldsBySportType(search_sport_type);
+            setSport_type(search_sport_type);
+            setGround_type('all');            
         }        
     }, []);
 
@@ -37,7 +64,7 @@ const SearchResult = () => {
 
                             <select id="inputSportType" 
                                     className="form-control"
-                                    value={sport_type}
+                                    value={sport_type == '' ? localStorage.getItem('search_sport_type') : sport_type}
                                     onChange={(e) => { setSport_type(e.target.value) }}                                            
                                     >                                        
                                     {
@@ -52,12 +79,12 @@ const SearchResult = () => {
                     <div className="card border-light mt-4">                        
                         <div className="card-header">Tipo de Suelo</div>
                         <div className="card-body">                                                       
-
                             <select id="inputGroundType" 
                                     className="form-control"
                                     value={ground_type}
                                     onChange={(e) => { setGround_type(e.target.value) }}                                            
-                                    >                                        
+                                    >
+                                    <option value="all" key="all" >Todos</option>                                            
                                     {
                                         listOfTypesGrounds.map(type => (
                                         <option value={type._id} key={type._id} >{type.description}</option>
@@ -73,7 +100,10 @@ const SearchResult = () => {
                             {
                                 listOfServices.map(service => (
                                     <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id={`service${service._id}`}/>
+                                        <input type="checkbox" 
+                                               className="custom-control-input" 
+                                               id={`service${service._id}`} 
+                                               onClick={(e)=>handleAddService(service, e.target.checked)}/>
                                         <label className="custom-control-label" for={`service${service._id}`}>{service.description}</label>
                                     </div>
                                 ))
@@ -85,17 +115,27 @@ const SearchResult = () => {
                         <div className="card-header">Extras</div>
                         <div className="card-body">                                                           
                             <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="roffed"/>
+                                <input type="checkbox" 
+                                       className="custom-control-input" 
+                                       id="roffed"
+                                       checked={roofed}
+                                       onClick={(e) => { setRoofed(e.target.checked) }}
+                                       />
                                 <label className="custom-control-label" for="roffed">Cancha techada</label>
                             </div>
                             <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="lighting"/>
+                                <input type="checkbox" 
+                                       className="custom-control-input" 
+                                       id="lighting"
+                                       checked={lighted}
+                                       onClick={(e) => { setLighted(e.target.checked) }}
+                                       />
                                 <label className="custom-control-label" for="lighting">Con iluminación</label>
                             </div>                                
                         </div>
                     </div>
 
-                    <div className="btn-search-by-filter">
+                    <div className="btn-search-by-filter" onClick={handleSearch}>
                         Buscar
                     </div>
                         

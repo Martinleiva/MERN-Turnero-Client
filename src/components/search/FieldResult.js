@@ -8,53 +8,21 @@ import Cake from '@material-ui/icons/Cake';
 import RestaurantMenuOutlined from '@material-ui/icons/RestaurantMenuOutlined';
 import LiveTv from '@material-ui/icons/LiveTv';
 import Security from '@material-ui/icons/Security';
-import Bathtub from '@material-ui/icons/Bathtub';
+import MeetingRoom from '@material-ui/icons/MeetingRoom';
 import DriveEta from '@material-ui/icons/DriveEta';
 
 const FieldResult = ({fieldResult}) => {
-
-    const [listIconService, setListaIconService] = useState([]);    
-
-    useEffect(()=>{                
-        const addService = service => {
-            console.log(service);
-            switch(service) {
-                case "5e8753e27086622ea490f158":
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="WiFi"> <Wifi style={{ fontSize: 18 }}/> </p>])                    
-                    break; 
-                case "5e8753b37086622ea490f152": 
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="Vestuario"> <Bathtub style={{ fontSize: 18 }}/> </p>])                                       
-                    break;
-                case "5e8753d67086622ea490f156":
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="Estacionamiento"> <DriveEta style={{ fontSize: 18 }}/> </p>])                
-                    break;    
-                case "5e8753c17086622ea490f153":
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="Bar"> <RestaurantMenuOutlined style={{ fontSize: 18 }}/> </p>])                    
-                    break; 
-                case "5e8753c97086622ea490f154":
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="Cumpleaños"> <Cake style={{ fontSize: 18 }}/> </p>])                    
-                    break;
-                case "5e8753d17086622ea490f155":                    
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="Parrilla"> <OutdoorGrill style={{ fontSize: 18 }}/> </p>])                    
-                    break;
-                case "5e8753db7086622ea490f157":           
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="Seguridad"> <Security style={{ fontSize: 18 }}/> </p>])                    
-                    break; 
-                case "5e8753e97086622ea490f159":
-                    setListaIconService(listIconService => [...listIconService, <p data-toggle="tooltip" title="TV"> <LiveTv style={{ fontSize: 18 }}/> </p>])                    
-                    break;                    
-                default:
-                    break;
-            }
-        }
-
-        fieldResult.establishment.services.map(service => (            
-            addService(service)
-        ));
-
-    }, []);
-
-
+    
+    const icons = {
+        '5e8753e27086622ea490f158' : <p data-toggle="tooltip" title="WiFi"> <Wifi style={{ fontSize: 18 }}/> </p>,
+        '5e8753b37086622ea490f152' : <p data-toggle="tooltip" title="Vestuario"> <MeetingRoom style={{ fontSize: 18 }}/> </p>,
+        '5e8753d67086622ea490f156' : <p data-toggle="tooltip" title="Estacionamiento"> <DriveEta style={{ fontSize: 18 }}/> </p>,
+        '5e8753c17086622ea490f153' :  <p data-toggle="tooltip" title="Bar"> <RestaurantMenuOutlined style={{ fontSize: 18 }}/> </p>,
+        '5e8753c97086622ea490f154' : <p data-toggle="tooltip" title="Cumpleaños"> <Cake style={{ fontSize: 18 }}/> </p>,
+        '5e8753d17086622ea490f155' : <p data-toggle="tooltip" title="Parrilla"> <OutdoorGrill style={{ fontSize: 18 }}/> </p>,
+        '5e8753db7086622ea490f157' : <p data-toggle="tooltip" title="Seguridad"> <Security style={{ fontSize: 18 }}/> </p>,
+        '5e8753e97086622ea490f159' : <p data-toggle="tooltip" title="TV"> <LiveTv style={{ fontSize: 18 }}/> </p>
+    }
 
     return ( 
 
@@ -78,8 +46,8 @@ const FieldResult = ({fieldResult}) => {
                         
                         <div className="card-search-icons">
                             {
-                                listIconService.map(service=>(
-                                    service
+                                fieldResult.establishment.services.map(service=>(
+                                    icons[service]                                    
                                 ))
                             }                       
                        </div>                  
