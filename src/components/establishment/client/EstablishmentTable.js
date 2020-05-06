@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Calendar, momentLocalizer, View, Navigate } from 'react-big-calendar';
+import React, { useState, useContext } from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
@@ -69,7 +69,7 @@ const EstablishmentTable = () => {
         //var backgroundColor = '#' + event.hexColor;
 
         const style = {
-            backgroundColor: 'red',
+            backgroundColor: '#10850e',
             borderRadius: '2px',
             opacity: 0.9,
             color: 'white',
@@ -80,12 +80,8 @@ const EstablishmentTable = () => {
         };
     }
 
-    // useEffect(() => {
-    //     getReservationsByField(selected_field._id);
-    // }, []);
-
     return (
-        <div>
+        <div>        
             <Calendar
                 className="container"
                 localizer={localizer}

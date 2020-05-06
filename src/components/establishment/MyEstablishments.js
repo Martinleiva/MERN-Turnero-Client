@@ -8,6 +8,7 @@ import ModalDetailOfField from './ModalDetailOfField';
 import ModalNewEstablishment from './ModalNewEstablishment';
 import EstablishmentEmpty from './EstablishmentEmpty';
 import Spinner from '../common/Spinner';
+import Footer from '../inicio/Footer';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -83,11 +84,13 @@ const MyEstablishments = () => {
                             :
                             listOfStablishments.length === 0 
                                 ? <EstablishmentEmpty/>
-                                : listOfStablishments.map(establisment => (
-                                    <Establishment 
-                                        establishment = {establisment}
-                                    />
-                                ))                       
+                                :                                 
+                                listOfStablishments.map(establisment => (
+                                        <Establishment
+                                            key={establisment._id}                                         
+                                            establishment = {establisment}                                        
+                                        />                                                                      
+                                ))                                
                     }     
                                   
                     <ModalNewEstablishment/>                                  
@@ -95,6 +98,7 @@ const MyEstablishments = () => {
                     <ModalNewField/>                    
 
                 </div>
+                <Footer/>   
             </div>            
         </Fragment>
      );

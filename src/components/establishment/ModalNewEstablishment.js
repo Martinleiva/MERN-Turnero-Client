@@ -28,7 +28,7 @@ const ModalNewEstablishment = () => {
     const [address, setAddress] = useState('');
     const [tel, setTel] = useState('');
     const [coordinates, setCoordinates] = useState('');    
-    const [category, setCategory] = useState(null);
+    const [category, setCategory] = useState('');
     const [services, setServices] = useState([]); 
     const [photoUploaded, setPhotoUploaded] = useState(null);
     
@@ -210,10 +210,10 @@ const ModalNewEstablishment = () => {
                                             value={category}
                                             onChange={(e) => { setCategory(e.target.value) }}
                                             >
-                                        <option selected>-- Seleccione Categoría --</option>                                                                                
+                                        <option value="">-- Seleccione Categoría --</option>                                                                                
                                         {
                                           listOfCategories.map(type => (
-                                            <option value={type._id}>{type.description}</option>
+                                            <option value={type._id} key={type._id}>{type.description}</option>
                                           ))  
                                         }
                                     </select>
@@ -258,7 +258,7 @@ const ModalNewEstablishment = () => {
                                                 <div className="card-body service-boxes">                                                    
                                                     { listOfServices.map(service => (                                                        
                                                         <div className={listOfAddedServices.includes(service._id) ? "service-box servicio-agregado" : "service-box servicio-disponible"}
-                                                             onClick={ ()=> handleAddService(service)}>
+                                                             onClick={ ()=> handleAddService(service)} key={service._id}  >
                                                               <p>{service.description}</p>  
                                                         </div>
                                                     ))
@@ -272,7 +272,7 @@ const ModalNewEstablishment = () => {
 
                             <div className="form-row">
                                 <div className="form-group col-md-12">
-                                    <label for="inputPrice">Foto</label>
+                                    <label htmlFor="inputPrice">Foto</label>
                                     <div className="card">               
                                         <img src={
                                                 !selected_stablishment
@@ -286,9 +286,9 @@ const ModalNewEstablishment = () => {
                                                          : SinImagen
                                                       : URL.createObjectURL(photoUploaded)         
                                                 } 
-                                            class="card-img-top" alt="..."
+                                                className="card-img-top" alt="..."
                                         />    
-                                        <div class="card-body">
+                                        <div className="card-body">
                                             <input type="file" accept="image/png, image/jpeg"                                                   
                                                    name="photo" onChange={onChangeFoto}/>                                                         
                                         </div>                                                      
@@ -311,7 +311,7 @@ const ModalNewEstablishment = () => {
 
                     </div>
                     <div className="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm" onClick={handleSaveEstablishment}>Guardar</button>
+                        <button type="button" className="btn btn-primary btn-sm" onClick={handleSaveEstablishment}>Guardar</button>
                         <button type="button" className="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>            

@@ -2,6 +2,8 @@ import React, { useContext, Fragment, useEffect } from 'react';
 import EstablishmentContext from '../../../context/establishment/establishmentContext';
 import EstablishmentTable from './EstablishmentTable';
 
+import Spinner from '../../common/Spinner';
+
 import ReservationContext from '../../../context/reservations/reservationContext';
 
 const ModalNewRes = () => {
@@ -39,7 +41,8 @@ const ModalNewRes = () => {
                             { 
                             listOfFields.length === 0 
                                 ? 
-                                    <div>No hay Canchas Cargadas!</div>                                                  
+                                    // <div>No hay Canchas Cargadas!</div>                                                 
+                                    <Spinner /> 
                                 :
                                     listOfFields.map((field, index) => {
                                         return (
@@ -69,7 +72,9 @@ const ModalNewRes = () => {
                             {
                             listOfFields.length === 0 
                                 ? 
-                                    <div>No hay Canchas Cargadas!</div>                                                  
+                                    // <div>No hay Canchas Cargadas!</div>
+                                    
+                                    <Spinner />
                                 :
                                     listOfFields.map((field, index) => (
                                         field.establishment === selected_stablishment._id ? 

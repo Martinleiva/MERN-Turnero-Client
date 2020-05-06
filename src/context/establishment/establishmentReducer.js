@@ -1,6 +1,7 @@
 import {
     GET_ESTABLISHMENTS,
     GET_ESTABLISHMENT_BY_OWNER, 
+    GET_ESTABLISHMENT, 
     GET_FIELDS_BY_ESTABLISHMENT,
     GET_FIELDS,
     SET_SELECTED_ESTABLISHMENT,
@@ -20,7 +21,9 @@ import {
     ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
     REMOVE_SERVICE,
-    REMOVE_ALERT_MESSAGE
+    REMOVE_ALERT_MESSAGE,
+    GET_FIELDS_SEARCH,
+    CLEAN_ESTABLISHMENT_DATA
 } from '../types';
 
 export default (state, action) => {
@@ -32,6 +35,7 @@ export default (state, action) => {
             }
 
         case GET_ESTABLISHMENT_BY_OWNER :
+        case GET_ESTABLISHMENT :
             return {
                 ...state,
                 listOfStablishments : action.payload,
@@ -48,7 +52,12 @@ export default (state, action) => {
             return {
                 ...state,
                 fields: action.payload
-            }    
+            } 
+        case GET_FIELDS_SEARCH:
+            return {
+                ...state,
+                listOfSearchedFields: action.payload
+            }                             
         case SET_SELECTED_ESTABLISHMENT:
             return {
                 ...state,
@@ -128,7 +137,25 @@ export default (state, action) => {
             return {
                 ...state,
                 alert_message : null
-            }                                           
+            }
+        case CLEAN_ESTABLISHMENT_DATA:
+            return {
+                ...state,
+                listOfStablishments : [],
+                listOfFields : [], 
+                listOfSearchedFields : null, 
+                listOfTypesSports : [],
+                listOfTypesGrounds : [],
+                listOfCategories : [],
+                listOfServices : [],
+                listOfAddedServices : [],
+                fields: [], 
+                amount_of_establishment : null,
+                amount_of_field : null,
+                selected_stablishment : null,
+                selected_field : null,
+                alert_message : null
+            }                                               
         default :
             return state;        
     }
