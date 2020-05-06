@@ -36,8 +36,6 @@ const ReservationState = props => {
                 reservation.end = moment(reservation.end).toDate();
                 return(reservation);
             }); //Format dates for each reservation to display in calendar
-    
-            console.log(reservations);
 
             dispatch({
                 type: GET_RESERVATIONS_FIELD,

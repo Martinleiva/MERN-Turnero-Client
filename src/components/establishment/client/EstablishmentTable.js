@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
+import { Calendar, momentLocalizer, View, Navigate } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
@@ -28,39 +28,46 @@ const EstablishmentTable = () => {
     //state of reservation
     const [reservation, setReservation] = useState({
         title: '',
-
     });
 
     const handleSelect = ({ start, end }) => {
 
-        const nombre = window.prompt('Su nombre: ');
+        console.log(moment(Date.now()).format('LL'));
+        console.log(localizer);
 
-        if (nombre) {
-            reservation.field_id = selected_field._id;
-            setReservation({
-                ...reservation,
-                start,
-                end,
-                title: nombre,
-                field_id: selected_field._id, // id de la cancha actual
-                user_id: user._id //id del usuario actual
-            });
-            addReservation({
-                ...reservation,
-                start,
-                end,
-                title: nombre,
-                field_id: selected_field._id, // id de la cancha actual
-                user_id: user._id //id del usuario actual
-            });
+        if (start > moment(Date.now()).toDate()) {
+            const nombre = window.prompt('Su nombre: ');
+            if (nombre) {
+                reservation.field_id = selected_field._id;
+                setReservation({
+                    ...reservation,
+                    start,
+                    end,
+                    title: nombre,
+                    field_id: selected_field._id, // id de la cancha actual
+                    user_id: user._id //id del usuario actual
+                });
+                addReservation({
+                    ...reservation,
+                    start,
+                    end,
+                    title: nombre,
+                    field_id: selected_field._id, // id de la cancha actual
+                    user_id: user._id //id del usuario actual
+                });
+            }
+
+            //Obtain reservations 
+            getReservationsByField(selected_field._id);
+        } else {
+            window.alert('No se puede reservar antes de la hora actual');
+            return;
         }
-
-        //Obtain reservations 
-        getReservationsByField(selected_field._id);
     }
 
     const eventStyleGetter = (event, start, end, isSelected) => {
         //var backgroundColor = '#' + event.hexColor;
+
         const style = {
             backgroundColor: 'red',
             borderRadius: '2px',
@@ -69,13 +76,13 @@ const EstablishmentTable = () => {
             border: '1px solid black',
         };
         return {
-            style: style
+            style
         };
     }
 
-    useEffect(() => {
-        getReservationsByField(selected_field._id);
-    }, []);
+    // useEffect(() => {
+    //     getReservationsByField(selected_field._id);
+    // }, []);
 
     return (
         <div>

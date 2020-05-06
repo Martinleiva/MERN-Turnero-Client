@@ -78,7 +78,7 @@ const EstablishmentState = props => {
     //Get fields by establishmentId
     const getFieldByStablishment = async establishmentId => {
         try {
-            const fields = await AxiosClient.get(`/api/field/establishment/${establishmentId}`);            
+            const fields = await AxiosClient.get(`/api/field/establishment/${establishmentId}`);
             dispatch({
                 type: GET_FIELDS_BY_ESTABLISHMENT,
                 payload: fields.data.fields

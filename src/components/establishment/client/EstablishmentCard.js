@@ -9,7 +9,7 @@ import ReservationContext from '../../../context/reservations/reservationContext
 const EstablishmentCard = ({ establishment }) => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { selected_field, setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
+    const { selected_field, listOfFields, setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
 
     const reservationContext = useContext(ReservationContext); 
     const { getReservationsByField } = reservationContext;
@@ -17,8 +17,9 @@ const EstablishmentCard = ({ establishment }) => {
     const handleGetFields = async () => {
 
         await getFieldByStablishment(establishment._id);
+        
         //await getReservationsByField(selected_field);
-        console.log(selected_field);
+        //console.log(selected_field);
         
         const actives = document.getElementsByClassName('field');
         const actives2 = document.getElementsByClassName('contentField');

@@ -22,8 +22,8 @@ function App() {
   
   return (
     <AlertState>      
-      <ReservationState>
-        <EstablishmentState>                    
+        <EstablishmentState>
+          <ReservationState>                    
             <AuthState>
               <Router>
                 <Switch>
@@ -39,8 +39,8 @@ function App() {
                 </Switch>
               </Router>
             </AuthState>        
+          </ReservationState>
         </EstablishmentState>   
-      </ReservationState>
     </AlertState>    
   );
 }
