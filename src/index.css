@@ -164,7 +164,7 @@ body {
 
 .estilo-footer{
   width: 100%;
-  margin: 18rem 0 0 0;
+  margin: 3rem 0 0 0;
   background-color: white;
   padding: 4rem 0 3rem 0;
   /* font-family: 'Century Gothic'; */
@@ -224,7 +224,7 @@ body {
  /* margin-bottom: 2rem;
 }*/
 
-.establishment-details p attr{
+.establishment-details p .attr{
   color: black;
   font-weight: bold;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -502,9 +502,38 @@ body {
   width: 50%;
 }
 
+.container-establishments-client {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .1rem;
+  background-color: #eee;
+  border-radius: .3rem;
+}
+
+.card-establishment-client {
+  width: 25rem;
+  height: 27.5rem;
+  margin: .5rem;
+  padding: .8rem;
+  background-color: #fff;
+  box-shadow: 0 .4rem .8rem 0;
+  border-radius: .3rem;
+}
+
+.card-img-client {
+  width: 100%;
+}
+
+.card-service {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
 
 /* Reservation Owner*/
 .container-owner{
   background-color: white;
   padding: 1.5rem;
+}
+table td:hover{
+  background-color: #ccc;
 }

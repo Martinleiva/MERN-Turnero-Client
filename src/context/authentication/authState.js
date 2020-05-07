@@ -31,7 +31,6 @@ const AuthState = props => {
     const userRegister = async data => {
         try {
             const response = await clienteAxios.post('/api/users', data);
-            console.log(response);
 
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -67,7 +66,6 @@ const AuthState = props => {
         try {
                 //call api in order to get the user
             const res = await clienteAxios.get('/api/auth');
-            console.log(res.data.user);
             dispatch({
                 type : GET_USER,
                 payload : res.data.user

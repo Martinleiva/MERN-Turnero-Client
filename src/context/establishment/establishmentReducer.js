@@ -1,4 +1,5 @@
 import {
+    GET_ESTABLISHMENTS,
     GET_ESTABLISHMENT_BY_OWNER, 
     GET_FIELDS_BY_ESTABLISHMENT,
     GET_FIELDS,
@@ -24,6 +25,12 @@ import {
 
 export default (state, action) => {
     switch(action.type) {
+        case GET_ESTABLISHMENTS:
+            return {
+                ...state,
+                establishments: action.payload,
+            }
+
         case GET_ESTABLISHMENT_BY_OWNER :
             return {
                 ...state,
@@ -34,7 +41,8 @@ export default (state, action) => {
             return{
                 ...state,
                 listOfFields : action.payload,
-                amount_of_field : action.payload.length
+                amount_of_field : action.payload.length,
+                selected_field: action.payload[0]
             }
         case GET_FIELDS:
             return {

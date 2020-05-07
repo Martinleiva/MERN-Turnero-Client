@@ -1,29 +1,42 @@
 import React, {useContext, useEffect, Fragment} from 'react';
 import { Link } from 'react-router-dom';
-import Establishment from './Establishment';
-import EstablishmentContext from '../../context/establishment/establishmentContext';
-import AuthContext from '../../context/authentication/authContext';
+import Establishment from '../../establishment/Establishment';
+import EstablishmentContext from '../../../context/establishment/establishmentContext';
+import AuthContext from '../../../context/authentication/authContext';
+import EstablishmentEmpty from '../../establishment/EstablishmentEmpty';
+import Spinner from '../../common/Spinner';
+import EstablishmentCard from '../../establishment/client/EstablishmentCard';
+
+import ReservationCard from './ReservationCard';
+import ContentResOwner from './ContentResOwner';
 
 
 const MyReservationOwner = () => {
+    
+
     const establishmentContext = useContext(EstablishmentContext);
-    const authContext = useContext(AuthContext);
 
-    const [loading, setLoading] = useState(true); 
-
-    const { user } = authContext;
     const { listOfStablishments, amount_of_establishment, 
-            getStablishmentByOwner, getTypesOfSports,            
-            getTypesOfGrounds, getCategories, getServices,
-            setSelectedEstablishment } = establishmentContext;
-            
+        getStablishmentByOwner, getTypesOfSports,            
+        getTypesOfGrounds, getCategories, getServices,
+        setSelectedEstablishment, establishments } = establishmentContext;
+
+    
     return (
         <Fragment>
-        <div className="container">
-        <div className="row">
-            <div className="col col-lg-12">
-                <h1>Bienvenido Dueño</h1>
-                <div className="container-owner">
+            <div className="container container-establishments-client">
+                
+                {
+                listOfStablishments.map(establishment => (
+                    <ReservationCard key={establishment._id} establishment = {establishment}/>
+                                ))
+                }
+
+                <ContentResOwner />
+                
+            </div>
+                
+                {/* <div className="container-owner">
 
                         <input id="myInput" type="text" placeholder="Search.."/>
                             
@@ -33,7 +46,7 @@ const MyReservationOwner = () => {
                                 <option value="COMPLEJO 2">complejo 2</option>
                                 <option value="COMPLEJO 3">complejo 3</option>
                                 <option value="COMPLEJO 4">complejo 4</option>
-                           </select>*/}
+                           </select>
 
                           
                         
@@ -98,7 +111,7 @@ const MyReservationOwner = () => {
                                 <td>a_r@test.com</td>
                             </tr>
                             </tbody>
-                            {/*<tfoot>
+                            <tfoot>
             <tr>
                 <th>COMPLEJO</th>
                 <th>CANCHA</th>
@@ -107,17 +120,14 @@ const MyReservationOwner = () => {
                 <th>DURACION</th>
                 <th>CLIENTE</th>
             </tr>
-                            </tfoot>*/}
+                            </tfoot>
     </table>
                         
    
 
-            </div>
-           </div>
-        </div>
-        </div>
-        </Fragment>
+            </div> */}
+          </Fragment>
       );
-}
+};
  
 export default MyReservationOwner;
