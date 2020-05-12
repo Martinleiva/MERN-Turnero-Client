@@ -108,7 +108,6 @@ const EstablishmentState = props => {
     const getFields = async () => {
         try {
             const res = await AxiosClient.get('/api/field');
-            console.log(res);
             dispatch({
                 type: GET_FIELDS,
                 payload: res.data.fields
@@ -198,9 +197,9 @@ const EstablishmentState = props => {
         }
     }
 
-    const setSelectedField = async (field) => {
+    const setSelectedField = (field) => {
         try {                                    
-            await dispatch({
+            dispatch({
                 type : SET_SELECTED_FIELD,
                 payload : field
             });

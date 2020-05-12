@@ -5,6 +5,7 @@ import AuthContext from '../../context/authentication/authContext';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 
 import ModalNewRes from '../establishment/client/ModalNewRes';
+import ModalReservation from '../establishment/client/ModalReservation';
 
 const Container = () => {
 
@@ -31,7 +32,7 @@ const Container = () => {
                 <EstablishmentList />
             </div>
 
-            <ModalNewRes />
+            <ModalReservation />
             
         </div> 
      );

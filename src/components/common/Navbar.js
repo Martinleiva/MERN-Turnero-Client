@@ -55,9 +55,6 @@ const Navbar = () => {
                                     <Link className="nav-link" to={'/client-search'}>Buscá una cancha</Link>
                                   </li>
                                   <li className="nav-item active">
-                                    <Link className="nav-link" to={'/dash-client'}>Complejos</Link>
-                                  </li>
-                                  <li className="nav-item active">
                                     <a className="nav-link" href="#/">Tus reservas</a>
                                   </li>
                                 </>                                    

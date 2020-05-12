@@ -4,7 +4,7 @@ import EstablishmentContext from '../../context/establishment/establishmentConte
 import FieldResult from './FieldResult';
 import Spinner from '../common/Spinner';
 
-import ModalNewRes from '../establishment/client/ModalNewRes';
+import ModalReservation from '../reservation/client/ModalReservation';
 
 const SearchResult = () => {
 
@@ -160,7 +160,7 @@ const SearchResult = () => {
                    
             </div>  
 
-            <ModalNewRes />
+            <ModalReservation />
 
         </Fragment>
       );

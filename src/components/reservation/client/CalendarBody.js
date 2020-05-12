@@ -10,7 +10,7 @@ import AuthContext from '../../../context/authentication/authContext';
 
 const localizer = momentLocalizer(moment);
 
-const EstablishmentTable = () => {
+const CalendarBody = () => {
 
     const reservationsContext = useContext(reservationContext);
     const { 
@@ -108,4 +108,4 @@ const EstablishmentTable = () => {
     );
 };
 
-export default EstablishmentTable;
+export default CalendarBody;

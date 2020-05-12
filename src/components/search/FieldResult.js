@@ -15,6 +15,8 @@ import EstablishmentContext from '../../context/establishment/establishmentConte
 
 import ReservationContext from '../../context/reservations/reservationContext';
 
+import ModalContext from '../../context/modal/modalContext';
+
 const FieldResult = ({fieldResult}) => {
 
     const icons = {
@@ -28,30 +30,26 @@ const FieldResult = ({fieldResult}) => {
         '5e8753e97086622ea490f159' : <p data-toggle="tooltip" title="TV"> <LiveTv style={{ fontSize: 18 }}/> </p>
     }
 
+    const modalContext = useContext(ModalContext);
+    const { handleShow } = modalContext;
+
     const establishmentContext = useContext(EstablishmentContext); 
-    const { setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
+    const { setSelectedField, setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
 
     const reservationContext = useContext(ReservationContext); 
     const { getReservationsByField } = reservationContext;
 
     const selectEstablisment = (field) => {
+        handleShow(); //Open modal
+
         setSelectedEstablishment(field.establishment);
 
+        setSelectedField(field);
+
+        getFieldByStablishment(field.establishment._id);
+
         getReservationsByField(field._id);
-        handleGetFields(field.establishment);
-    }
 
-    const handleGetFields = async (establishment) => {
-
-        await getFieldByStablishment(establishment._id);
-            
-        const actives = document.getElementsByClassName('field');
-        const actives2 = document.getElementsByClassName('contentField');
-
-        for(let i=1; i<actives.length; i++){           
-            actives[i].classList.remove("active");
-            actives2[i].classList.remove("show", "active");
-        }
     }
 
     return ( 
@@ -95,8 +93,6 @@ const FieldResult = ({fieldResult}) => {
                             <h3 className="card-text card-price">${fieldResult.price}</h3>
                             <button  
                                 className="btn-make-reservation"
-                                data-toggle="modal" 
-                                data-target="#modal_new_reservation"
                                 onClick={() => selectEstablisment(fieldResult)}
                             >Reservar</button>   
                         </div>
