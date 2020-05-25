@@ -31,7 +31,8 @@ function App() {
   return (
     <AlertState>  
       <ModalState>
-      <EstablishmentState>                    
+      <EstablishmentState> 
+      <ReservationState>                    
           <AuthState>
             <Router>
               <Switch>
@@ -48,7 +49,8 @@ function App() {
                 <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
               </Switch>
             </Router>
-          </AuthState>        
+          </AuthState>   
+        </ReservationState>      
       </EstablishmentState> 
       </ModalState>                   
     </AlertState>    
