@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import EstablishmentList from '../establishment/client/EstablishmentList';
+import FieldsList from '../establishment/fields/FieldsList';
 
 import AuthContext from '../../context/authentication/authContext';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 
-import ModalNewRes from '../establishment/client/ModalNewRes';
-import ModalReservation from '../establishment/client/ModalReservation';
+import ModalNewRes from '../establishment/fields/ModalNewRes';
 
 const Container = () => {
 
@@ -14,25 +13,25 @@ const Container = () => {
     const { user } = authContext;        
 
     const establishmentContext = useContext(EstablishmentContext);
-    const { getAllEstablishments } = establishmentContext;
+    const { getFields } = establishmentContext;
 
     useEffect( () => {
-        getAllEstablishments();
+        getFields();
     }, []);
 
     return (
         <div id="contenedorNavbar" className="container col">
             <div className="jumbotron text-center">
                 <h3 className="display-4">Bienvenido {user ? user.names : ''}!</h3>
-                <p className="lead">En esta sección vas a poder ver todos los complejos registrados y consultar por los horarios disponibles para reservar tu cancha!.</p>
+                <p className="lead">En esta sección podra ver sus reservas vigentes, crear nuevas reservaciones y borrar las actuales.</p>
 
             </div>
 
-            <div className="container-establishments-client">
-                <EstablishmentList />
+            <div className="card-columns">
+                <FieldsList />
             </div>
 
-            <ModalReservation />
+            <ModalNewRes />
             
         </div> 
      );
