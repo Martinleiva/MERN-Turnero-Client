@@ -1,10 +1,16 @@
 import React, {useContext, Fragment, useEffect, useState} from 'react';
-import Header from '../common/Header';
+import PrivateHeader from '../common/Header';
+import PublicHeader from '../inicio/Header';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
+import AuthContext from '../../context/authentication/authContext';
 import FieldResult from './FieldResult';
 import Spinner from '../common/Spinner';
 
 const SearchResult = () => {
+
+
+    const authContext = useContext(AuthContext);
+    const { user } = authContext; 
 
     const establishmentContext = useContext(EstablishmentContext);    
     const { listOfTypesSports, listOfTypesGrounds, listOfServices, listOfSearchedFields, 
@@ -50,11 +56,10 @@ const SearchResult = () => {
         }        
     }, []);
 
-    return (
-        <Fragment>
-            <Header/>
-            <div className="container container-search"> 
-
+    return (            
+            <Fragment>                                   
+            {user ? <PrivateHeader/> : <PublicHeader/>}         
+            <div className="container container-search">                 
                 <aside className="aside-search-fields">                   
                     <h4>Filtrar</h4> 
                     

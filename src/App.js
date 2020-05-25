@@ -11,7 +11,7 @@ import EstablishmentState from './context/establishment/establishmentState';
 import MyEstablishments from './components/establishment/MyEstablishments';
 import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
 import PrivateRouteClient from './components/routes/PrivateRouteClient';
-import PrivateRoute from './components/routes/PrivateRoute';
+import MixRoute from './components/routes/MixRoute';
 import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
 import ReservationClient from './components/reservation/client/ReservationClient';
@@ -34,7 +34,7 @@ function App() {
                 <Route exact path="/singup-duenio" component={SingUpDuenio} />
                 <PrivateRouteClient exact path="/dash-client" component={DashClient} />
                 <PrivateRouteClient exact path="/client-search" component={ClientSearch} />
-                <PrivateRouteClient exact path="/search-result" component={SearchResult} />
+                <MixRoute exact path="/search-result" component={SearchResult} />
                 <Route exact path="/res-client" component={ReservationClient} />
                 <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
                 <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />

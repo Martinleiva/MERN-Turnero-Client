@@ -148,7 +148,7 @@ body {
   width: 100%;
   padding: 0.3rem 2rem 0.3rem 2rem;  
   background-color: white;
-  margin: 0 0 8rem 0;
+  margin: 0 0 0 0;
   /* font-family: 'Verdana'; */
   font-style: normal;
   /* font-family: 'Century Gothic'; */
@@ -555,6 +555,18 @@ body {
 .green-button {
   background-color: '#10850e';
   color : 'white';
+}
+
+.header-home {
+  background-image: url('./img/estadio.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
+
+.header-home .container {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  margin-bottom: 3rem;
 }
 
 .header-search-files {
