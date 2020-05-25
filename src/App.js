@@ -1,28 +1,36 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+//Components
 import Home from './components/inicio/Home';
 import Login from './components/auth/Login';
 import SingUp from './components/auth/SingUp';
 import SingUpCliente from './components/auth/SingUpCliente';
 import SingUpDuenio from './components/auth/SingUpDuenio';
-import AlertState from './context/alerts/alertState';
-import AuthState from './context/authentication/authState';
-import EstablishmentState from './context/establishment/establishmentState';
+import ClientSearch from './components/search/ClientSearch';
+import SearchResult from './components/search/SearchResult';
+import DashOwner from './components/usuarios/DashOwner';
 import MyEstablishments from './components/establishment/MyEstablishments';
+import DashClient from './components/usuarios/DashClient';
+import ReservationClient from './components/reservation/client/ReservationClient';
+
+//Private Routes
 import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
 import PrivateRouteClient from './components/routes/PrivateRouteClient';
 import MixRoute from './components/routes/MixRoute';
-import DashClient from './components/usuarios/DashClient';
-import DashOwner from './components/usuarios/DashOwner';
-import ReservationClient from './components/reservation/client/ReservationClient';
-import ClientSearch from './components/search/ClientSearch';
-import SearchResult from './components/search/SearchResult';
 
+//Context
+import AlertState from './context/alerts/alertState';
+import ModalState from './context/modal/modalState';
+import EstablishmentState from './context/establishment/establishmentState';
+import ReservationState from './context/reservations/reservationState';
+import AuthState from './context/authentication/authState';
 
 function App() {
   
   return (
-    <AlertState>      
+    <AlertState>  
+      <ModalState>
       <EstablishmentState>                    
           <AuthState>
             <Router>
@@ -41,7 +49,8 @@ function App() {
               </Switch>
             </Router>
           </AuthState>        
-      </EstablishmentState>   
+      </EstablishmentState> 
+      </ModalState>                   
     </AlertState>    
   );
 }

@@ -153,8 +153,15 @@ const ClientSearch = (props) => {
                     ?                                            
                     <div className="div-carousel">
                         <h3 className="text-center mb-4">Te puede interesar</h3>
-                        <Carousel value={fields} itemTemplate={FieldSearch} numVisible={4} numScroll={1}
-                                responsiveOptions={responsiveSettings} circular={true} autoplayInterval={3000}></Carousel>                            
+                        <Carousel 
+                            value={fields} 
+                            itemTemplate={FieldSearch} 
+                            numVisible={4} 
+                            numScroll={1}
+                            responsiveOptions={responsiveSettings} 
+                            circular={true} 
+                            autoplayInterval={3000}
+                        />                            
                     </div>        
                     : <Spinner/>
                 }                                                                     

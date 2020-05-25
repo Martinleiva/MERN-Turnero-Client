@@ -6,6 +6,8 @@ import AuthContext from '../../context/authentication/authContext';
 import FieldResult from './FieldResult';
 import Spinner from '../common/Spinner';
 
+import ModalReservation from '../reservation/client/ModalReservation';
+
 const SearchResult = () => {
 
 
@@ -109,7 +111,7 @@ const SearchResult = () => {
                                                className="custom-control-input" 
                                                id={`service${service._id}`} 
                                                onClick={(e)=>handleAddService(service, e.target.checked)}/>
-                                        <label className="custom-control-label" for={`service${service._id}`}>{service.description}</label>
+                                        <label className="custom-control-label" htmlFor={`service${service._id}`}>{service.description}</label>
                                     </div>
                                 ))
                             }
@@ -126,7 +128,7 @@ const SearchResult = () => {
                                        checked={roofed}
                                        onClick={(e) => { setRoofed(e.target.checked) }}
                                        />
-                                <label className="custom-control-label" for="roffed">Cancha techada</label>
+                                <label className="custom-control-label" htmlFor="roffed">Cancha techada</label>
                             </div>
                             <div className="custom-control custom-checkbox">
                                 <input type="checkbox" 
@@ -135,7 +137,7 @@ const SearchResult = () => {
                                        checked={lighted}
                                        onClick={(e) => { setLighted(e.target.checked) }}
                                        />
-                                <label className="custom-control-label" for="lighting">Con iluminación</label>
+                                <label className="custom-control-label" htmlFor="lighting">Con iluminación</label>
                             </div>                                
                         </div>
                     </div>
@@ -162,6 +164,8 @@ const SearchResult = () => {
                 </div>
                    
             </div>  
+
+            <ModalReservation />
 
         </Fragment>
       );

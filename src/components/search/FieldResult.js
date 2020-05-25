@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import SinImagen from '../../img/sin_imagen.png';
 import {backEndURL} from '../../config/urlBackEnd';
 import RoomOutlined from '@material-ui/icons/RoomOutlined';
@@ -11,8 +11,14 @@ import Security from '@material-ui/icons/Security';
 import MeetingRoom from '@material-ui/icons/MeetingRoom';
 import DriveEta from '@material-ui/icons/DriveEta';
 
+import EstablishmentContext from '../../context/establishment/establishmentContext';
+
+import ReservationContext from '../../context/reservations/reservationContext';
+
+import ModalContext from '../../context/modal/modalContext';
+
 const FieldResult = ({fieldResult}) => {
-    
+
     const icons = {
         '5e8753e27086622ea490f158' : <p data-toggle="tooltip" title="WiFi"> <Wifi style={{ fontSize: 18 }}/> </p>,
         '5e8753b37086622ea490f152' : <p data-toggle="tooltip" title="Vestuario"> <MeetingRoom style={{ fontSize: 18 }}/> </p>,
@@ -22,6 +28,28 @@ const FieldResult = ({fieldResult}) => {
         '5e8753d17086622ea490f155' : <p data-toggle="tooltip" title="Parrilla"> <OutdoorGrill style={{ fontSize: 18 }}/> </p>,
         '5e8753db7086622ea490f157' : <p data-toggle="tooltip" title="Seguridad"> <Security style={{ fontSize: 18 }}/> </p>,
         '5e8753e97086622ea490f159' : <p data-toggle="tooltip" title="TV"> <LiveTv style={{ fontSize: 18 }}/> </p>
+    }
+
+    const modalContext = useContext(ModalContext);
+    const { handleShow } = modalContext;
+
+    const establishmentContext = useContext(EstablishmentContext); 
+    const { setSelectedField, setSelectedEstablishment, getFieldByStablishment } = establishmentContext;
+
+    const reservationContext = useContext(ReservationContext); 
+    const { getReservationsByField } = reservationContext;
+
+    const selectEstablisment = (field) => {
+        handleShow(); //Open modal
+
+        setSelectedEstablishment(field.establishment);
+
+        setSelectedField(field);
+
+        getFieldByStablishment(field.establishment._id);
+
+        getReservationsByField(field._id);
+
     }
 
     return ( 
@@ -63,7 +91,10 @@ const FieldResult = ({fieldResult}) => {
                         
                         <div className="div-price-and-reservation">
                             <h3 className="card-text card-price">${fieldResult.price}</h3>
-                            <div  className="btn-make-reservation" >Reservar</div>   
+                            <button  
+                                className="btn-make-reservation"
+                                onClick={() => selectEstablisment(fieldResult)}
+                            >Reservar</button>   
                         </div>
                         </>                         
                     </div>
@@ -76,5 +107,5 @@ const FieldResult = ({fieldResult}) => {
         </div>
      );
 }
- 
+
 export default FieldResult;
