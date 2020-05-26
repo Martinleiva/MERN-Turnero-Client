@@ -8,7 +8,7 @@ import Spinner from '../common/Spinner';
 
 import ModalReservation from '../reservation/client/ModalReservation';
 
-const SearchResult = () => {
+const SearchResult = (props) => {
 
 
     const authContext = useContext(AuthContext);
@@ -156,7 +156,8 @@ const SearchResult = () => {
                         ?           
                             listOfSearchedFields.map(fieldResult => (
                             <FieldResult
-                                fieldResult={fieldResult}                                        
+                                fieldResult={fieldResult}
+                                history={props.history}                                        
                             />                        
                         ))
                         :  <Spinner/>                                                                        
