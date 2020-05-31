@@ -21,6 +21,7 @@ const Navbar = () => {
 
     useEffect(() => {
         setAuthenticatedUser();
+        //eslint-disable-next-line
     }, []);
 
     return (
@@ -68,11 +69,13 @@ const Navbar = () => {
                             </li>
                                                       
                             <li className="nav-item dropdown">                                    
-                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="https://www.show.news/__export/1567201752167/sites/debate/img/2019/08/30/gato_png_crop1567201738546.jpg_554688468.jpg" width={45} height={40} className="rounded-circle" />
+                                    <a className="nav-link dropdown-toggle" href="!#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="https://www.show.news/__export/1567201752167/sites/debate/img/2019/08/30/gato_png_crop1567201738546.jpg_554688468.jpg" width={45} height={40} className="rounded-circle" alt="perfil" />
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-logo" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" onClick={handleLogOut} href="#">Mi Cuenta</a>
+                                    {/*eslint-disable-next-line*/}
+                                    <a className="dropdown-item" onClick={handleLogOut} href="!#">Mi Cuenta</a>
+                                        {/*eslint-disable-next-line*/}
                                         <a className="dropdown-item" onClick={handleLogOut} href="#">Cerrar Sesión</a>                                        
                                     </div>
                             </li>

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import AuthContext from '../../context/authentication/authContext';
-import Spinner from '../common/Spinner';
 
 const PrivateRouteClient = ({ component: Component, ...props }) => {
 
@@ -11,7 +10,8 @@ const PrivateRouteClient = ({ component: Component, ...props }) => {
     useEffect(()=>{  
         if(localStorage.getItem('token')){
             setAuthenticatedUser();                
-        }                      
+        }         
+        //eslint-disable-next-line             
     }, []);
 
     return (                     

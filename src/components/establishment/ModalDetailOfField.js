@@ -6,7 +6,7 @@ import {backEndURL} from '../../config/urlBackEnd';
 const ModalDetailOfField = () => {
 
     const establishmentContext = useContext(EstablishmentContext); 
-    const { selected_field, setSelectedField}= establishmentContext;
+    const { selected_field }= establishmentContext;
 
     return (
 
@@ -28,7 +28,7 @@ const ModalDetailOfField = () => {
                         <div className="form-row-modal-edited">
                             <div className="form-group col-md-12">
                                 <div className="card">
-                                    <img className="card-img-top" 
+                                    <img className="card-img-top" alt="field" 
                                             src={selected_field 
                                                  ? 
                                                     selected_field.photo_1 !== '' 

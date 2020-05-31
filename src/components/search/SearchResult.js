@@ -56,6 +56,7 @@ const SearchResult = (props) => {
             setSport_type(search_sport_type);
             setGround_type('all');            
         }        
+        //eslint-disable-next-line
     }, []);
 
     return (            
@@ -71,7 +72,7 @@ const SearchResult = (props) => {
 
                             <select id="inputSportType" 
                                     className="form-control"
-                                    value={sport_type == '' ? localStorage.getItem('search_sport_type') : sport_type}
+                                    value={sport_type === '' ? localStorage.getItem('search_sport_type') : sport_type}
                                     onChange={(e) => { setSport_type(e.target.value) }}                                            
                                     >                                        
                                     {

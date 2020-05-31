@@ -34,7 +34,7 @@ const Login = (props) => {
             setLoading(false);
             showAlert(message.msg, message.category);
         }
-
+        //eslint-disable-next-line
     }, [message, authenticated,props.history]);
 
     const [user, saveUser] = useState({

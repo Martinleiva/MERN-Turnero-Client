@@ -18,6 +18,7 @@ const DayOfWeen = ({day, fnSetTimes, value}) => {
         if(times.start !== '' && times.end !== ''){
             fnSetTimes(`${times.start}-${times.end}`); 
         }        
+        //eslint-disable-next-line
     }, [times]);    
 
     useEffect(()=>{

@@ -2,9 +2,6 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-import Img1 from '../../img/cancha1.jpg';
-import Img2 from '../../img/cancha2.jpg';
-import Img3 from '../../img/cancha3.jpg';
 import ImgCard1 from '../../img/img-card1.png';
 import ImgCard2 from '../../img/img-card2.png';
 import ImgCard3 from '../../img/img-card3.png';
@@ -13,7 +10,6 @@ import EstablishmentMain from '../search/EstablishmentMain';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import {Carousel} from 'primereact/carousel';
 import FieldSearch from '../search/FieldSearch';
-import { backEndURL } from '../../config/urlBackEnd';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
 import Button from '@material-ui/core/Button';
@@ -32,7 +28,8 @@ const Home = (props) => {
     useEffect( ()=> {        
         getTypesOfSports();   
         getStablishment();
-        getFields();     
+        getFields();   
+        //eslint-disable-next-line  
     }, []);
 
     const handleSearchFields = () => {
@@ -58,6 +55,7 @@ const Home = (props) => {
         }        
     })(Button);
 
+    //eslint-disable-next-line
     const [responsiveSettings, setResponsiveSettings] = useState([
         {
             breakpoint: '1024px',

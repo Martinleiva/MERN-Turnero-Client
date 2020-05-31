@@ -5,7 +5,6 @@ import AxiosClient from '../../config/axios';
 
 import {
     GET_ESTABLISHMENTS,
-    GET_ESTABLISHMENT_BY_OWNER,
     GET_ESTABLISHMENT,
     GET_FIELDS_BY_ESTABLISHMENT,
     GET_FIELDS,
@@ -210,6 +209,7 @@ const EstablishmentState = props => {
 
     const deleteField = async field => {
         try {
+            //eslint-disable-next-line
             const response = await AxiosClient.delete(`/api/field/${field._id}`);            
             //update list of field
             getFieldByStablishment(field.establishment);                        
