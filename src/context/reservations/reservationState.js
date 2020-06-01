@@ -5,7 +5,10 @@ import AxiosClient from '../../config/axios';
 import moment from 'moment';
 import 'moment/locale/es.js';
 
-import { GET_RESERVATIONS_FIELD, ADD_RESERVATION } from '../types';
+import { 
+    GET_RESERVATIONS_FIELD, 
+    ADD_RESERVATION,
+    DELETE_RESERVATION } from '../types';
 
 const ReservationState = props => {
     const initialState = {
@@ -65,6 +68,22 @@ const ReservationState = props => {
         }
     }
 
+    // Delete a reservation
+    const deleteReservation =  async id => {
+        try {
+            await AxiosClient.delete(`/api/reservation/${id}`);
+
+            dispatch({
+                type : DELETE_RESERVATION,
+                payload : id 
+            })
+            
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
 
     return (
         <ReservationContext.Provider
@@ -72,7 +91,8 @@ const ReservationState = props => {
                 //reservations: state.reservations,
                 reservationsfield: state.reservationsfield,
                 getReservationsByField,
-                addReservation
+                addReservation,
+                deleteReservation
             }}
         >
             {props.children}

@@ -26,7 +26,10 @@ const ContentResOwner = () => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">
-                            {selected_stablishment ? selected_stablishment.name : '' }
+                           {selected_stablishment ? selected_stablishment.name : '' }<br/>
+                           <p>Al hacer click y arrastrar podes realizar una reseva, 
+                                o al presionar en algunas de ellas tendreas más opciones.
+                            </p>
                         </h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -53,6 +56,7 @@ const ContentResOwner = () => {
                                                         onClick={() => handleSelectField(field)}
                                                     >
                                                         {field.name}
+
                                                     </a>
                                                 </li>
                                             </Fragment>

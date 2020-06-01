@@ -9,6 +9,7 @@ import EstablishmentCard from '../../establishment/client/EstablishmentCard';
 
 import ReservationCard from './ReservationCard';
 import ContentResOwner from './ContentResOwner';
+import reservationContext from '../../../context/reservations/reservationContext';
 
 
 const MyReservationOwner = () => {
@@ -20,6 +21,19 @@ const MyReservationOwner = () => {
         getStablishmentByOwner, getTypesOfSports,            
         getTypesOfGrounds, getCategories, getServices,
         setSelectedEstablishment, establishments } = establishmentContext;
+
+    //////
+    const reservationsContext = useContext(reservationContext);
+    const { 
+            reservationsfield,
+            getReservationsByField,
+            addReservation ,
+            deleteReservation
+    } = reservationsContext;
+
+    useEffect( ()=> {                 
+        getReservationsByField();
+    }, [])
 
     
     return (

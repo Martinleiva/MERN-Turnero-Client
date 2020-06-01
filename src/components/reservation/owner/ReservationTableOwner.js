@@ -17,8 +17,15 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Add from '@material-ui/icons/Add';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
+import Modal from 'react-bootstrap/Modal';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import ModalFooter from 'react-bootstrap/ModalFooter';
+import ModalBody from 'react-bootstrap/ModalBody';
+import ModalTitle from 'react-bootstrap/ModalTitle';
 
 const localizer = momentLocalizer(moment);
+
+let id_reserva = null;
 
 const ReservationTableOwner = () => {
 
@@ -26,7 +33,8 @@ const ReservationTableOwner = () => {
     const { 
         reservationsfield,
         getReservationsByField,
-        addReservation 
+        addReservation ,
+        deleteReservation
     } = reservationsContext;
 
     const establishmentsContext = useContext(establishmentContext);
@@ -40,6 +48,9 @@ const ReservationTableOwner = () => {
         title: '',
 
     });
+
+    //id de reservation on click
+    const [id_res, setId_res] = useState({});
 
     const handleSelect = ({ start, end }) => {
 
@@ -67,6 +78,7 @@ const ReservationTableOwner = () => {
 
         //Obtain reservations 
         getReservationsByField(selected_field._id);
+        
     }
 
     const eventStyleGetter = (event, start, end, isSelected) => {
@@ -87,6 +99,26 @@ const ReservationTableOwner = () => {
         getReservationsByField(selected_field._id);
     }, []);
 
+
+    
+
+    const handleShow = id => { 
+        id_reserva = id; 
+        //console.log(id_reserva);
+        setShow(true);
+      }
+  
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+
+  const handleDelete = (id) => {
+    deleteReservation(id);
+    console.log(id);
+    getReservationsByField(selected_field._id);
+    setShow(false)
+    
+}
     
     return ( 
         <Fragment>
@@ -101,7 +133,7 @@ const ReservationTableOwner = () => {
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 450 }}
-                onSelectEvent={event => alert(event.title)}
+                onSelectEvent={event => handleShow(event._id)}
                 onSelectSlot={handleSelect}
                 messages={{
                     next: "-->",
@@ -115,6 +147,43 @@ const ReservationTableOwner = () => {
             >
             </Calendar>
         </div>
+
+        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Elija las opciones para la Reserva</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <Button type="button" className="btn btn-success" variant="secondary" onClick={handleClose}>
+                            Aceptar
+                        </Button>
+                    </div>
+                    <div className="col">
+                        <Button className="btn btn-warning" variant="secondary" onClick={handleClose}>
+                            Modificar
+                        </Button>
+                    </div>
+                    <div className="col">
+                        <Button type="button" className="btn btn-danger" variant="secondary" onClick={() => {handleDelete(id_reserva)}}>
+                            Eliminar
+                        </Button>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="btn btn-secondary" variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
         </Fragment>
      );
 }
