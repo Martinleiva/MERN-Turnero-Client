@@ -21,8 +21,12 @@ const Login = (props) => {
     useEffect( () => {
 
         if(authenticated && type_usr === 'Cliente') {
-            setLoading(false);          
-            props.history.push('/client-search'); // Screen user authenticated
+            setLoading(false);         
+            if(localStorage.getItem('filters') || localStorage.getItem('search_sport_type')) {
+                props.history.push('/search-result'); 
+            } else {
+                props.history.push('/client-search'); // Screen user authenticated
+            }            
         } 
 
         if (authenticated && type_usr === 'Dueño') {

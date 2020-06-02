@@ -42,20 +42,36 @@ const SearchResult = (props) => {
             lighted,
             'services' : selectedServices
         }
-
+        localStorage.setItem('filters', JSON.stringify(filters));        
         getFieldsByFilters(filters);
     }
 
     useEffect(()=> {
+        let filtros = localStorage.getItem('filters');
+        if(filtros) {
+            filtros = JSON.parse(filtros);
+        }
+
         const search_sport_type = localStorage.getItem('search_sport_type');
-        if(search_sport_type){            
-            getTypesOfSports();
-            getTypesOfGrounds(); 
-            getServices();
+        
+        getTypesOfSports();
+        getTypesOfGrounds(); 
+        getServices();
+        setGround_type('all');            
+        if(search_sport_type && !filtros){                        
             getFieldsBySportType(search_sport_type);
-            setSport_type(search_sport_type);
-            setGround_type('all');            
-        }        
+            setSport_type(search_sport_type);            
+        }
+
+        if(filtros) {
+            setSelectedServices(filtros.services);
+            setSport_type(filtros.sport_type);
+            setGround_type(filtros.ground_type);
+            setLighted(filtros.lighted);
+            setRoofed(filtros.roofed);
+            getFieldsByFilters(filtros);
+        }
+
     }, []);
 
     return (            
@@ -110,6 +126,7 @@ const SearchResult = (props) => {
                                         <input type="checkbox" 
                                                className="custom-control-input" 
                                                id={`service${service._id}`} 
+                                               checked={selectedServices.includes(service._id)}
                                                onClick={(e)=>handleAddService(service, e.target.checked)}/>
                                         <label className="custom-control-label" htmlFor={`service${service._id}`}>{service.description}</label>
                                     </div>

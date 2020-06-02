@@ -29,7 +29,8 @@ const Home = (props) => {
 
     const [sport_type, setSport_type] = useState('');
 
-    useEffect( ()=> {        
+    useEffect( ()=> {    
+        localStorage.removeItem('filters');                  
         getTypesOfSports();   
         getStablishment();
         getFields();     
@@ -43,9 +44,9 @@ const Home = (props) => {
             text: 'Debes elegir un deporte'            
             })
             return;
-        }        
+        }                
         localStorage.setItem('search_sport_type', sport_type);        
-        props.history.push('/search-result'); 
+        props.history.push('/search-result');         
     }
 
     const ButtonSearch = withStyles({

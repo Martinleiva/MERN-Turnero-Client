@@ -27,10 +27,11 @@ const ClientSearch = (props) => {
 
     const [sport_type, setSport_type] = useState('');
 
-    useEffect( ()=> {        
+    useEffect( ()=> {  
+        localStorage.removeItem('filters');                 
         getTypesOfSports();   
         getStablishment();
-        getFields();     
+        getFields();         
     }, []);
 
     const handleSearchFields = () => {
@@ -41,8 +42,8 @@ const ClientSearch = (props) => {
             text: 'Debes elegir un deporte'            
             })
             return;
-        }        
-        localStorage.setItem('search_sport_type', sport_type);        
+        }                  
+        localStorage.setItem('search_sport_type', sport_type);                
         props.history.push('/search-result'); 
     }
 
