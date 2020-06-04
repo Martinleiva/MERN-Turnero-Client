@@ -1,9 +1,9 @@
-import React, { useState, useContext, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 import Header from '../inicio/Header';
 import Footer from '../inicio/Footer';
+
 
 const ResetPass = (props) => {
 
@@ -12,11 +12,21 @@ const ResetPass = (props) => {
     const { alert, showAlert } = alertContext;
 
     const authContext = useContext(AuthContext);
-    const {  } = authContext;
+    const { setAuthenticatedUser, sendNewPass, message} = authContext;
+
+    useEffect(() => {
+        setAuthenticatedUser();
+    }, []);
+
+    useEffect( () => {
+        if(message) {
+            showAlert(message.msg, message.category);
+        }
+    }, [message]);
 
     const [pass, setPass] = useState({
         password : '',
-        password2 : '',
+        password2 : ''
     });
 
 
@@ -42,9 +52,9 @@ const ResetPass = (props) => {
             showAlert('Las contraseñas ingresadas no son iguales', 'alert-danger');
             return;
         }
-        
-        console.log(`enviando los passwords ${password} y ${password2}`);
-        
+
+        // enviar password algun context para que viaje al backend
+        sendNewPass(pass);
     }
         
     return (

@@ -11,7 +11,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
     LOG_OUT,
-    UPDATE_USER
+    UPDATE_USER,
+    PASSWORD_RETRIEVAL
 } from '../types';
 
 
@@ -128,7 +129,7 @@ const AuthState = props => {
         try {
             const res = await clienteAxios.post('/api/send-mail', data);
             dispatch({
-                type : LOGIN_SUCCESS, //cambiar?
+                type : LOGIN_SUCCESS,
                 payload : res.data
             });
 
@@ -139,6 +140,42 @@ const AuthState = props => {
             }
             dispatch({
                 type : LOGIN_ERROR,
+                payload : alert
+            });            
+        }
+    }
+
+    // send new password for update the user password.
+    const sendNewPass = async data => {
+        
+        console.log('ver el contenido de data...');
+        console.log(data);
+        
+        // const token = localStorage.getItem('token');
+        // console.log("el token extraido es...");
+        // console.log(token);
+
+        // if(token){ 
+        //     console.log("adentro del if... si este mensaje aparece es por que el token existe.");
+        //     tokenAuth(token);
+        // }
+
+        // console.log("por fuera del if... NO EXISTE EL TOKEN.");
+
+        try {
+            const res = await clienteAxios.post(`/api/reset-pass/${data._id}`, data);
+            dispatch({
+                type : PASSWORD_RETRIEVAL,
+                payload : res.data
+            });
+
+        }catch (error) {            
+            const alert = {
+                msg : error.response.data.msg, //get the backend's message error
+                category : 'alert-danger'
+            }
+            dispatch({
+                type : LOG_OUT,
                 payload : alert
             });            
         }
@@ -158,7 +195,8 @@ const AuthState = props => {
                 startSession,
                 logOut,
                 updateUser,
-                sendMail
+                sendMail,
+                sendNewPass,
             }}
         >
             {props.children}

@@ -4,7 +4,7 @@ import Header from '../common/Header';
 import AuthContext from '../../context/authentication/authContext';
 import AlertContext from '../../context/alerts/alertContext';
 import Swal from 'sweetalert2';
-import image2base64 from 'image-to-base64';
+
 
 
 const MyAccountClient = () => {
@@ -47,14 +47,14 @@ const MyAccountClient = () => {
                 return;
             }  
 
-        // user data save changer
-        updateUser(data);
-
         Swal.fire(
             'Modificación exitosa!',
             'Tus cambios se guardaron de manera correcta.',
             'success'
           )
+
+        // user data save changer
+        updateUser(data);
     }
 
     return ( 

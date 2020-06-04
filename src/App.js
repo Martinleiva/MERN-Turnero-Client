@@ -13,6 +13,7 @@ import EstablishmentState from './context/establishment/establishmentState';
 import MyEstablishments from './components/establishment/MyEstablishments';
 import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
 import PrivateRouteClient from './components/routes/PrivateRouteClient';
+import PrivateRoute from './components/routes/PrivateRoute';
 import DashClient from './components/users/DashClient';
 import DashOwner from './components/users/DashOwner';
 import ReservationClient from './components/reservation/client/ReservationClient';

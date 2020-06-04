@@ -4,6 +4,7 @@ import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 import Header from '../inicio/Header';
 import Footer from '../inicio/Footer';
+import Swal from 'sweetalert2';
 
 
 const ForgetPass = () => {
@@ -26,6 +27,8 @@ const ForgetPass = () => {
         email : ''
     });
 
+    const [resetPass, setResetPass ] = useState(false)
+
     const handleOnChange = e => {
         setUserMail({
             ...usermail,
@@ -47,8 +50,14 @@ const ForgetPass = () => {
 
         //send the email to the registered user
         sendMail(usermail);
+
+        Swal.fire(
+            'Correo enviado!',
+            'Revisa tu cuenta de correo electronico y continua con las instrucciones.',
+            'success'
+        )
     }
-        
+
     return (
         <Fragment>
             <Header />

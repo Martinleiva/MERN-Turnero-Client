@@ -6,7 +6,8 @@ import {
     LOGIN_ERROR,
     LOG_OUT,
     SHOW_ALERT,
-    UPDATE_USER
+    UPDATE_USER,
+    PASSWORD_RETRIEVAL
 } from '../types';
 
 export default (state, action) => {
@@ -46,7 +47,19 @@ export default (state, action) => {
                 loading : false,
                 user : action.payload,
                 type_usr: action.payload.user_type
-            }    
+            }
+
+        case PASSWORD_RETRIEVAL:
+            localStorage.getItem('token', action.payload.token);
+            return {
+                ...state,
+                authenticated : true,
+                message : null,
+                loading : false,
+                user : action.payload,
+                type_usr: action.payload.user_type
+            }
+
         case SHOW_ALERT:    
             return {
                 ...state,
