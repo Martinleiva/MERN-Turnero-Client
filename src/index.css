@@ -12,15 +12,19 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
+  /*background-image: url('../src/img/fondoturnero.png');*/
+  background-color: #f8f9fa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('../src/img/fondoturnero.png');
+  /*background-image: url('../src/img/fondoturnero.png');*/
   
+  -moz-osx-font-smoothing: grayscale; 
   background-position-x: 0cm;
   background-position-y: -15cm;
   background-repeat: no-repeat;
   background-size: 100%;
 }
+
 
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -77,6 +81,10 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.nav-link:hover {
+  font-weight: bold;
 }
 
 .alert {
@@ -141,12 +149,16 @@ body {
 
 .contenedor-header{
   width: 100%;
-  padding: 0.3rem 2rem 0.3rem 2rem;
+  padding: 0.3rem 2rem 0.3rem 2rem;  
   background-color: white;
-  margin: 0 0 8rem 0;
+  margin: 0 0 0 0;
   /* font-family: 'Verdana'; */
   font-style: normal;
   /* font-family: 'Century Gothic'; */
+}
+
+.nav-bar-custom {
+  background-color: rgba(2, 28, 41, 0.6);  
 }
 
 .btn{
@@ -158,13 +170,26 @@ body {
   margin-bottom: 5em;
 }
 
+.dropdown-menu-logo {
+  left: -85px;
+}
+
+.nav-item-user-log {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
 .logo-footer{
   margin: 0 0 3rem 0;
 }
 
+.logo{
+  margin-right: 2rem;
+}
+
 .estilo-footer{
   width: 100%;
-  margin: 18rem 0 0 0;
+  margin: 3rem 0 0 0;
   background-color: white;
   padding: 4rem 0 3rem 0;
   /* font-family: 'Century Gothic'; */
@@ -235,7 +260,7 @@ body {
 }
 /* END MyAccountOwner */
 .container-establishments {
-  background-color: var(--blanco);
+  background-color: #f8f9fa;;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -250,7 +275,7 @@ body {
   width: 5rem;     
 }
 
-.header-my-establishment h3{     
+.header-my-establishment h3{       
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -275,7 +300,7 @@ body {
   margin-bottom: 2rem;
 }
 
-.establishment-details p attr{
+.establishment-details p .attr{
   color: black;
   font-weight: bold;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -553,8 +578,498 @@ body {
   width: 50%;
 }
 
-.div-hidden {
-  visibility: hidden;
+.container-establishments-client {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .1rem;
+  background-color: #eee;
+  border-radius: .3rem;
+}
+
+.card-establishment-client {
+  width: 25rem;
+  height: 27.5rem;
+  margin: .5rem;
+  padding: .8rem;
+  background-color: #fff;
+  box-shadow: 0 .4rem .8rem 0;
+  border-radius: .3rem;
+}
+
+.card-img-client {
+  width: 100%;
+}
+
+.card-service {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+table td:hover{
+  background-color: #ccc;
+  .green-button {
+    background-color: '#10850e';
+    color : 'white';
+  } 
+}
+
+.header-home {
+  background-image: url('./img/estadio.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
+
+.header-home .container {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  margin-bottom: 3rem;
+}
+
+.header-search-files {
+  background-image: url('./img/estadio.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
+
+.header-search-files .container {
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+
+.container-form-search-fields {
+  background-color: rgba(29,60,76,0.6);
+  padding: 20px 5px;  
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.form-search-fields{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titulo-home-search {  
+  margin-top: 0px;  
+}
+
+.titulo-home-search h1 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 42px;
+  text-shadow: 0 0 5px #2b4d3c;
+  color: white;  
+  font-weight: bold;
 }
 
 
+.titulo_form {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.select-search {
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main-establishment-search {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.main-establishment-search h2 {    
+  font-weight: 800;
+  text-transform: uppercase;
+  font-family: Nunito;
+  color: #000; 
+  letter-spacing: .03em;  
+  line-height: 1.2; 
+}
+
+.card-establishment-main {
+  border-radius: 1px;
+}
+
+.card-establishment-main .card-image .card-title{
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;  
+  padding: 24px; 
+}
+
+.card-establishment-main .card-title {
+  font-size: 28px;
+  font-weight: bold;  
+}
+
+.card-establishment-main .card-title:hover {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.card-establishment-main .card-address {
+  font-size: 15px;
+  font-weight: bold; 
+  color: #fff;
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  max-width: 100%;  
+  padding-left: 24px;
+  padding-bottom: 10px;
+}
+
+.card-establishment-main .card-address:hover {
+  font-size: 17px;
+  cursor: pointer;      
+}
+
+.card-establishment-main .card-image img {
+  width: 100%;
+  height: 20vw;
+  border-radius: 1px; 
+}
+
+.location-icon {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 20px;
+  height: 35px;
+  background-image: url('./img/location5.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.location-icon:hover {
+  cursor: pointer;
+  width: 25px;
+  height: 45px;
+}
+
+.tooltip-see-location {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.card-field-search {
+  width: 260px;
+  height: 360px;  
+  margin-bottom: 15px;
+  border: 0px;
+  border-radius: 0px;  
+}
+
+.card-field-search .card-body {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.card-field-search:last-of-type {
+  margin-right : 0;
+}
+
+.card-field-search img {
+  width: 260px;
+  height: 230px; 
+  border-radius: 0px;
+}
+
+.card-field-search p {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.div-carousel {
+  margin-left: -3rem;
+  margin-right: -3.1rem;
+}
+
+.div-carousel h3 {    
+  font-weight: 800;
+  
+  font-family: Nunito;
+  color: #000; 
+  letter-spacing: .03em;  
+  line-height: 1.2; 
+}
+
+@media only screen and (max-width: 768px) {
+  .card-establishment-main .card-image img {
+    width: 100%;
+    height: 60vw;    
+  }
+  .card-establishment-main .card-title {
+    font-size: 20px;
+    font-weight: bold;  
+  }
+  .div-carousel {
+    margin-left: 0px;
+    margin-right: 0px;
+  } 
+  .card-field-search {
+    width: 220px;
+    height: 350px;  
+      
+  } 
+  .card-field-search img {
+    width: 220px;
+    height: 230px; 
+  }
+}
+
+.card-field-search-footer {
+ display: flex;
+ justify-content: space-between; 
+ flex-direction: row;
+}
+
+.bui-review-score__badge {
+  background: #0e6e33;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  vertical-align: baseline;
+  border-radius: 6px 6px 6px 0;
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
+}
+
+.btn-see-disponibility {
+  background: #9cca2f;
+  color: #1a3847;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  vertical-align: baseline;
+  border-radius: 6px 6px 6px 0;
+  height: 30px;
+  width: 40%;
+  min-width: 28px;
+}
+
+@media (max-width: 768px) {
+  .btn-see-disponibility {
+    font-size: 14px;
+  }
+}
+
+.btn-see-disponibility:hover {
+  cursor: pointer;
+  background: #b6da62
+}
+
+.container-search{
+  background-color: white;
+}
+
+.main-seccion-search-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+}
+
+.main-seccion-search-fields h4{
+ text-align: left;
+}
+
+.card-search-fields {  
+  padding: 18px;
+  width: 100%;
+  margin: 16px 0;
+  border: 1px solid #c6c6c6;
+  border-radius: 3px;
+  background: #ecf3e6;
+  }
+
+.card-search-fields img {
+  width: 260px;
+  height: 230px; 
+  display: block;
+  border-radius: 3px;
+  margin-left: 8px;
+  margin-right: 16px;  
+}
+
+.card-search-detail{
+  padding-top: 0px;   
+  padding-bottom: 0px;
+  margin-left: 40px;
+}
+
+.card-search-detail h2{
+  color: #1e20c5;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.card-search-detail p{
+  font-size: 14px;
+  color: #323b37;
+  margin-bottom: 6px;
+}
+
+.card-search-detail span{
+  font-size: 14px;
+  font-weight: bold;
+  color: #323b37;
+  margin-bottom: 6px;
+}
+
+.card-price{
+  color: #428500;    
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+  border-radius: 6px 6px 6px 6px;
+}
+
+.car-search-address{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 14px
+}
+
+.car-search-address h6{
+  font-size: 11px;
+  color: #a8a8a8;
+  margin-top: 0px;
+  margin-bottom: 14px;
+}
+.car-search-address h6:hover{
+  cursor: pointer;  
+}
+
+.card-search-icons{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;   
+}
+
+.card-search-icons p{
+  margin-right: 18px;
+  color: #737775; 
+}
+
+.card-search-icons p:hover{
+  cursor: pointer;  
+}
+
+.car-serch-roofed-lighting{
+  display: flex;
+  justify-content: flex-start;
+}
+.car-serch-roofed-lighting p{
+ margin-right: 40px;
+}
+
+.btn-make-reservation {
+  background: #10850e;
+  color:white;
+  width: 7rem;
+  height: 30px;  
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+  border-radius: 6px 6px 6px 6px;
+}
+
+.btn-make-reservation:hover{
+  cursor: pointer;
+  background: #677c37; 
+}
+
+@media (min-width: 768px) {
+  
+  .btn-make-reservation {    
+    position: absolute;
+    right: 0px;
+    bottom: 10px;    
+  }
+
+  .card-price{    
+    position: absolute;
+    right: 10px;
+    top: 0px;    
+  }
+
+}
+
+@media (max-width: 768px) {
+  .div-price-and-reservation{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+}
+
+.aside-search-fields {  
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .card-search-detail{
+    margin-left: 0rem;   
+    padding-top: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-search {
+      display: flex;
+      min-height: 100vh;
+  }
+
+  aside {
+      background-color: var(--blanco);      
+      flex: 0 0 300px;
+      padding: 1rem;  
+      margin-top: 0;    
+  }
+  .main-seccion-search-fields {
+      flex: 1;
+      padding: 1rem;
+  }
+}
+
+.btn-search-by-filter {
+  margin-top: 1.5rem;  
+  background: #10850e;
+  color:white;  
+  width: 100%;
+  height: 40px;  
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+  border-radius: 6px 6px 6px 6px;
+}
+
+.btn-search-by-filter:hover {
+  cursor: pointer;
+  background: #677c37;
+}

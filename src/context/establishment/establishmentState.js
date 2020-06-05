@@ -4,7 +4,9 @@ import EstablishmentReducer from './establishmentReducer';
 import AxiosClient from '../../config/axios';
 
 import {
+    GET_ESTABLISHMENTS,
     GET_ESTABLISHMENT_BY_OWNER,
+    GET_ESTABLISHMENT,
     GET_FIELDS_BY_ESTABLISHMENT,
     GET_FIELDS,
     SET_SELECTED_ESTABLISHMENT,
@@ -24,7 +26,9 @@ import {
     ERROR_CREATING_ESTABLISHMENT,
     ERROR_UPDATING_ESTABLISHMENT,
     ADD_SERVICE,
-    REMOVE_SERVICE
+    REMOVE_SERVICE,
+    GET_FIELDS_SEARCH,
+    CLEAN_ESTABLISHMENT_DATA
 } from '../types';
 
 const EstablishmentState = props => {
@@ -32,12 +36,14 @@ const EstablishmentState = props => {
     const initialState = {
         listOfStablishments : [],
         listOfFields : [], //list of field by stablishment
+        listOfSearchedFields : null, //list of field that was found by user search
         listOfTypesSports : [],
         listOfTypesGrounds : [],
         listOfCategories : [],
         listOfServices : [],
         listOfAddedServices : [],
         fields: [], //list of fields that will be shown to registed clients...
+        establishments: [],
         amount_of_establishment : null,
         amount_of_field : null,
         selected_stablishment : null,
@@ -48,11 +54,36 @@ const EstablishmentState = props => {
     const [state, dispatch] = useReducer(EstablishmentReducer, initialState);
 
     //functions
+
+    const getAllEstablishments = async () => { //REPETIDA
+        try {
+            const response = await AxiosClient.get('/api/establishment');              
+            dispatch({
+                type : GET_ESTABLISHMENTS,
+                payload : response.data.establishments
+            });                        
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const getStablishmentByOwner = async () => {
         try {
             const results = await AxiosClient.get('/api/establishment-by-owner/');                        
             dispatch({
-                type : GET_ESTABLISHMENT_BY_OWNER,
+                type : GET_ESTABLISHMENT,
+                payload : results.data.establishments
+            });                        
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getStablishment = async () => {
+        try {
+            const results = await AxiosClient.get('/api/establishment');                        
+            dispatch({
+                type : GET_ESTABLISHMENT,
                 payload : results.data.establishments
             });                        
         } catch (error) {
@@ -63,7 +94,7 @@ const EstablishmentState = props => {
     //Get fields by establishmentId
     const getFieldByStablishment = async establishmentId => {
         try {
-            const fields = await AxiosClient.get(`/api/field/establishment/${establishmentId}`);            
+            const fields = await AxiosClient.get(`/api/field/establishment/${establishmentId}`);
             dispatch({
                 type: GET_FIELDS_BY_ESTABLISHMENT,
                 payload: fields.data.fields
@@ -77,7 +108,6 @@ const EstablishmentState = props => {
     const getFields = async () => {
         try {
             const res = await AxiosClient.get('/api/field');
-            console.log(res);
             dispatch({
                 type: GET_FIELDS,
                 payload: res.data.fields
@@ -167,7 +197,7 @@ const EstablishmentState = props => {
         }
     }
 
-    const setSelectedField = async (field) => {
+    const setSelectedField = (field) => {
         try {                                    
             dispatch({
                 type : SET_SELECTED_FIELD,
@@ -289,11 +319,47 @@ const EstablishmentState = props => {
         } catch (error) {
             console.log(error);
         }
-    }
+    }    
 
     const removeAlertMessage = () => {
         dispatch({
             type : REMOVE_ALERT_MESSAGE
+        })
+    }
+
+    //Functions for search requirements
+
+    const getFieldsBySportType = async sportTypeId => {
+        try {
+            const resultado = await AxiosClient.get(`/api/field/sporttype/${sportTypeId}`);
+            console.log(resultado.data);
+            dispatch({
+                type : GET_FIELDS_SEARCH,
+                payload : resultado.data.fields
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getFieldsByFilters = async filters => {
+        console.log('llamada a filter');
+        try {
+            const resultado = await AxiosClient.post(`/api/field/filter/`, filters);
+            console.log(resultado);
+            dispatch({
+                type : GET_FIELDS_SEARCH,
+                payload : resultado.data.filteredFields
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    /*This function is for clean all data belong to establishment. It is import when the user log out */
+    const cleanEstablishmentData = () => {
+        dispatch({
+            type : CLEAN_ESTABLISHMENT_DATA            
         })
     }
 
@@ -303,6 +369,8 @@ const EstablishmentState = props => {
                 listOfStablishments : state.listOfStablishments,
                 listOfFields : state.listOfFields,
                 fields : state.fields,
+                establishments: state.establishments,
+                listOfSearchedFields: state.listOfSearchedFields,
                 selected_stablishment : state.selected_stablishment,
                 selected_field : state.selected_field,
                 listOfTypesSports : state.listOfTypesSports,
@@ -313,7 +381,9 @@ const EstablishmentState = props => {
                 alert_message : state.alert_message,
                 amount_of_establishment : state.amount_of_establishment,
                 amount_of_field: state.amount_of_field,
+                getAllEstablishments,
                 getStablishmentByOwner,
+                getStablishment,
                 getFieldByStablishment,
                 getFields,
                 setSelectedEstablishment,
@@ -329,7 +399,10 @@ const EstablishmentState = props => {
                 updateEstablishment,
                 addService,
                 removeService,
-                removeAlertMessage
+                removeAlertMessage,
+                getFieldsBySportType,
+                getFieldsByFilters,
+                cleanEstablishmentData
             }}
         >
             {props.children}

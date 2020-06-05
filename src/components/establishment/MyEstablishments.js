@@ -8,7 +8,7 @@ import ModalDetailOfField from './ModalDetailOfField';
 import ModalNewEstablishment from './ModalNewEstablishment';
 import EstablishmentEmpty from './EstablishmentEmpty';
 import Spinner from '../common/Spinner';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import Footer from '../inicio/Footer';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -98,6 +98,7 @@ const MyEstablishments = () => {
                     <ModalNewField/>                    
 
                 </div>
+                <Footer/>   
             </div>            
         </Fragment>
      );
