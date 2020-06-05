@@ -7,6 +7,7 @@ import reservationContext from '../../../context/reservations/reservationContext
 import establishmentContext from '../../../context/establishment/establishmentContext';
 import AuthContext from '../../../context/authentication/authContext';
 
+import MyWeek from './MyWeek';
 
 const localizer = momentLocalizer(moment);
 
@@ -88,7 +89,7 @@ const CalendarBody = () => {
                 events={reservationsfield}
                 selectable={true}
                 defaultView={'week'}
-                views={{ week: true, day: true }}
+                views={{ week: MyWeek, day: true }}
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 450 }}
