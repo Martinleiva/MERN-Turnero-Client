@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect } from 'react';
 import imagenFutbol from '../../img/foto-futbol.jpg';
 import imagenBasquet from '../../img/foto-basquet.jpg';
 import imagenPaddle from '../../img/foto_paddle.jpg';
@@ -13,6 +13,7 @@ const Field = ({field}) => {
     const establishmentContext = useContext(EstablishmentContext); 
     const { setSelectedField, removeAlertMessage, deleteField, alert_message } = establishmentContext;
 
+    //eslint-disable-next-line
     let image = SinImagen;    
     
     switch(field.sport_type._id) {
@@ -25,6 +26,8 @@ const Field = ({field}) => {
         case '5e87672286caa812e42a4140':
             image = imagenPaddle;
             break;
+        default:
+            
     }
     
     const handleSetSelectedField = e => {
@@ -77,14 +80,15 @@ const Field = ({field}) => {
               })
             removeAlertMessage();      
         }
+        //eslint-disable-next-line
     }, [alert_message])
 
     return (
         <div className="card card-field polaroid"> 
-            <img className="card-img-top" src={`${backEndURL}${field.photo_1}`} alt="Card image"/>       
+            <img className="card-img-top" src={`${backEndURL}${field.photo_1}`} alt="Field"/>       
             <div className="card-body">
                 <p className="card-title">{field.name} - {field.sport_type.description}</p>
-                <a href=""
+                <a href="!#"
                    data-toggle="modal"
                    data-target="#modal_detail_of_field"
                    onClick={handleSetSelectedField}

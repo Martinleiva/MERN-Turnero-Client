@@ -112,7 +112,6 @@ const FieldResult = ({fieldResult, history}) => {
 
                 </div>
 
-                                                                                                
             </div>
                                   
         </div>

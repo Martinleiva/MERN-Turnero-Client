@@ -1050,3 +1050,9 @@ table td:hover{
   cursor: pointer;
   background: #677c37;
 }
+
+.nav-bar-log-user {
+  display: flex !important;
+  justify-content: flex-end !important;
+  flex-direction: row !important;
+}

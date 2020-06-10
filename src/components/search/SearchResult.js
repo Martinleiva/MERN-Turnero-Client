@@ -70,8 +70,8 @@ const SearchResult = (props) => {
             setLighted(filtros.lighted);
             setRoofed(filtros.roofed);
             getFieldsByFilters(filtros);
-        }
-
+        }        
+        //eslint-disable-next-line
     }, []);
 
     return (            
@@ -87,7 +87,7 @@ const SearchResult = (props) => {
 
                             <select id="inputSportType" 
                                     className="form-control"
-                                    value={sport_type == '' ? localStorage.getItem('search_sport_type') : sport_type}
+                                    value={sport_type === '' ? localStorage.getItem('search_sport_type') : sport_type}
                                     onChange={(e) => { setSport_type(e.target.value) }}                                            
                                     >                                        
                                     {

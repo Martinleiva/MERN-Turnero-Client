@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import AuthContext from '../../context/authentication/authContext';
 import Spinner from '../common/Spinner';
@@ -9,7 +9,8 @@ const PrivateRouteOwner = ({ component: Component, ...props }) => {
     const { authenticated, loading, type_usr, setAuthenticatedUser } = authContext;
 
     useEffect(()=>{        
-        setAuthenticatedUser();                 
+        setAuthenticatedUser(); 
+        //eslint-disable-next-line                
     }, []);
 
     return (                     

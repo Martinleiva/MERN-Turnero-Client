@@ -2,7 +2,6 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Header from '../common/Header';
 import Establishment from './Establishment';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
-import AuthContext from '../../context/authentication/authContext';
 import ModalNewField from './ModalNewField';
 import ModalDetailOfField from './ModalDetailOfField';
 import ModalNewEstablishment from './ModalNewEstablishment';
@@ -17,11 +16,11 @@ import Add from '@material-ui/icons/Add';
 const MyEstablishments = () => {
 
     const establishmentContext = useContext(EstablishmentContext);
-    const authContext = useContext(AuthContext);
+    //const authContext = useContext(AuthContext);
 
     const [loading, setLoading] = useState(true); 
 
-    const { user } = authContext;
+    //const { user } = authContext;
     const { listOfStablishments, amount_of_establishment, 
             getStablishmentByOwner, getTypesOfSports,            
             getTypesOfGrounds, getCategories, getServices,
@@ -32,7 +31,8 @@ const MyEstablishments = () => {
         getTypesOfSports();
         getTypesOfGrounds();
         getCategories();
-        getServices();        
+        getServices();      
+        //eslint-disable-next-line  
     }, [])
     
     useEffect( ()=> {        

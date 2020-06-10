@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect, Fragment } from 'react';
 import Field from './Field';
 import FieldEmpty from './FieldEmpty';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
-import { ChevronDoubleUp, Pencil, Plus } from 'react-bootstrap-icons';
 import Spinner from '../common/Spinner';
 import { backEndURL } from '../../config/urlBackEnd';
 import SinImagen from '../../img/sin_imagen.png';

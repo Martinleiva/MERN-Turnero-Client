@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {backEndURL} from '../../config/urlBackEnd';
 import Spinner from '../common/Spinner';
 import SinImagen from '../../img/sin_imagen.png';
 
-import ReservationContext from '../../context/reservations/reservationContext';
-import EstablishmentContext from '../../context/establishment/establishmentContext';
+//import ReservationContext from '../../context/reservations/reservationContext';
+//import EstablishmentContext from '../../context/establishment/establishmentContext';
 
 const FieldSearch = (field) => {
 
@@ -20,30 +20,30 @@ const FieldSearch = (field) => {
         console.log(establishment);
 
         return;
-        handleGetFields();
+        //handleGetFields();
     }
 
-    const handleGetFields = async () => {
+    // const handleGetFields = async () => {
 
-        //await getFieldByStablishment(establishment._id);
+    //     //await getFieldByStablishment(establishment._id);
         
-        //await getReservationsByField(selected_field);
-        //console.log(selected_field);
+    //     //await getReservationsByField(selected_field);
+    //     //console.log(selected_field);
         
-        const actives = document.getElementsByClassName('field');
-        const actives2 = document.getElementsByClassName('contentField');
+    //     const actives = document.getElementsByClassName('field');
+    //     const actives2 = document.getElementsByClassName('contentField');
 
-        for(let i=1; i<actives.length; i++){           
-            actives[i].classList.remove("active");
-            actives2[i].classList.remove("show", "active");
-        }
-    }
+    //     for(let i=1; i<actives.length; i++){           
+    //         actives[i].classList.remove("active");
+    //         actives2[i].classList.remove("show", "active");
+    //     }
+    // }
     
     return (        
         <div className="card card-field-search"> 
             
             {
-                field ?  <img className="card-img-top" src={field.photo_1 !== '' ?  `${backEndURL}${field.photo_1}` : SinImagen} alt="Card image"/>
+                field ?  <img className="card-img-top" src={field.photo_1 !== '' ?  `${backEndURL}${field.photo_1}` : SinImagen} alt="field"/>
                       : <Spinner/>
             }            
 

@@ -2,7 +2,6 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Header from '../common/Header';
 import EstablishmentMain from './EstablishmentMain';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
-import { backEndURL } from '../../config/urlBackEnd';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Search from '@material-ui/icons/Search';
@@ -22,16 +21,17 @@ import 'primeicons/primeicons.css';
 const ClientSearch = (props) => {
 
     const establishmentContext = useContext(EstablishmentContext);    
-    const { listOfTypesSports, getTypesOfSports, listOfStablishments, fields, listOfSearchedFields,  
-            getStablishment, getFields, getFieldsBySportType } = establishmentContext;
+    const { listOfTypesSports, getTypesOfSports, listOfStablishments, fields,  
+            getStablishment, getFields } = establishmentContext;
 
     const [sport_type, setSport_type] = useState('');
 
     useEffect( ()=> {  
         localStorage.removeItem('filters');                 
         getTypesOfSports();   
-        getStablishment();
-        getFields();         
+        getStablishment();              
+        getFields();    
+        //eslint-disable-next-line 
     }, []);
 
     const handleSearchFields = () => {
@@ -57,6 +57,7 @@ const ClientSearch = (props) => {
         }        
     })(Button);
 
+    //eslint-disable-next-line
     const [responsiveSettings, setResponsiveSettings] = useState([
         {
             breakpoint: '1024px',

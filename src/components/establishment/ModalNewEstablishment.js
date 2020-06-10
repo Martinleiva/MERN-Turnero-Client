@@ -27,9 +27,9 @@ const ModalNewEstablishment = () => {
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [tel, setTel] = useState('');
-    const [coordinates, setCoordinates] = useState('');    
+    //const [coordinates, setCoordinates] = useState('');    
     const [category, setCategory] = useState('');
-    const [services, setServices] = useState([]); 
+    //const [services, setServices] = useState([]); 
     const [photoUploaded, setPhotoUploaded] = useState(null);
     
     const [monday, setMonday] = useState('');
@@ -109,6 +109,7 @@ const ModalNewEstablishment = () => {
         if(alert_message){
             showAlert(alert_message.msg, alert_message.category);
         }
+        //eslint-disable-next-line
     }, [alert_message]);
     
     useEffect( ()=> { 
@@ -153,6 +154,7 @@ const ModalNewEstablishment = () => {
 
             setEditionMode(true);
         }
+        //eslint-disable-next-line
     }, [selected_stablishment]);
 
     return (  
