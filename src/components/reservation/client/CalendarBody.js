@@ -93,7 +93,10 @@ const CalendarBody = () => {
                         end,
                         title: user.names,
                         field_id: selected_field._id, // id de la cancha actual
-                        user_id: user._id //id del usuario actual
+                        fieldName: selected_field.name, 
+                        establishment: selected_stablishment.name,
+                        user_id: user._id, //id del usuario actual
+                        state: 'Pendiente'
                     });
 
                     addReservation({
@@ -102,7 +105,10 @@ const CalendarBody = () => {
                         end,
                         title: user.names,
                         field_id: selected_field._id, // id de la cancha actual
-                        user_id: user._id //id del usuario actual
+                        fieldName: selected_field.name,
+                        establishment: selected_stablishment.name,
+                        user_id: user._id, //id del usuario actual
+                        state: 'Pendiente'
                     });
 
                     //Obtain reservations 
@@ -126,16 +132,129 @@ const CalendarBody = () => {
     const eventStyleGetter = (event, start, end, isSelected) => {
         //var backgroundColor = '#' + event.hexColor;
 
-        const style = {
-            backgroundColor: '#10850e',
-            borderRadius: '2px',
-            opacity: 0.9,
-            color: 'white',
-            border: '1px solid black',
-        };
-        return {
-            style
-        };
+        if (event.user_id === user._id && event.state === 'Pendiente') {
+            const style = {
+                backgroundColor: '#3085d6',
+                borderRadius: '2px',
+                opacity: 0.9,
+                color: 'white',
+                border: '1px solid black',
+            };
+            return {
+                style
+            };
+        } else if (event.user_id === user._id && event.state === 'Aceptado') {
+            const style = {
+                backgroundColor: '#10850e',
+                borderRadius: '2px',
+                opacity: 0.9,
+                color: 'white',
+                border: '1px solid black',
+            };
+            return {
+                style
+            };
+        } else {
+            const style = {
+                backgroundColor: 'red',
+                borderRadius: '2px',
+                opacity: 0.9,
+                color: 'white',
+                border: '1px solid black',
+            };
+            return {
+                style
+            };
+        }
+    }
+
+    const handleSelectEvent = event => {
+
+        if(event.user_id === user._id) {
+            let hourCount = dates.diff(event.start, event.end, "hours", true);
+
+            Swal.fire({
+                title: 'Información de la Reserva',
+                html: `
+                    <div class="text-left pl-5 pt-4" style="border: 1px solid #3085d6">
+                        <p>
+                            <b>Fecha:</b> ${moment(event.start).format('LL')}    
+                        </p>
+                        <p>
+                            <b>Horario del turno:</b> De ${moment(event.start).format('LT')} a ${moment(event.end).format('LT')} <b style="color: #10850e">(${hourCount} hs)</b>
+                        </p>
+                        <p>
+                            <b>A nombre de:</b> 
+                            <span style="color: #3085d6">
+                                <b>${event.title}</b>
+                            <span>
+                        </p>
+                        <p>
+                            <b>Complejo:</b> 
+                            <span style="color: #10850e">
+                                <b>${event.establishment}</b>
+                            <span>
+                        </p>
+                        <p>
+                            <b>Cancha:</b>
+                            <span style="color: #10850e">
+                                <b>${event.fieldName}</b>
+                            <span>
+                        </p>
+                        <p>
+                            <b>Estado:</b>
+                            <span style="color: #3085d6; font-weight: bold">
+                                <b>${event.state}</b>
+                            <span>
+                        </p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Ok!',
+            })
+        } else {
+            let hourCount = dates.diff(event.start, event.end, "hours", true);
+
+            Swal.fire({
+                title: 'Información de la Reserva',
+                html: `
+                    <div class="text-left pl-5 pt-4" style="border: 1px solid #3085d6">
+                        <p>
+                            <b>Fecha:</b> ${moment(event.start).format('LL')}    
+                        </p>
+                        <p>
+                            <b>Horario del turno:</b> De ${moment(event.start).format('LT')} a ${moment(event.end).format('LT')} <b style="color: #10850e">(${hourCount} hs)</b>
+                        </p>
+                        <p>
+                            <b>A nombre de:</b> 
+                            <span style="color: #3085d6">
+                                <b>${event.title}</b>
+                            <span>
+                        </p>
+                        <p>
+                            <b>Complejo:</b> 
+                            <span style="color: #10850e">
+                                <b>${event.establishment}</b>
+                            <span>
+                        </p>
+                        <p>
+                            <b>Cancha:</b>
+                            <span style="color: #10850e">
+                                <b>${event.fieldName}</b>
+                            <span>
+                        </p>
+                        <p>
+                            <b>Estado:</b>
+                            <span style="color: #3085d6; font-weight: bold">
+                                <b>${event.state}</b>
+                            <span>
+                        </p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Ok!',
+            })
+        }
     }
 
     return (
@@ -150,7 +269,7 @@ const CalendarBody = () => {
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 450 }}
-                onSelectEvent={event => alert(event.title)}
+                onSelectEvent={event => handleSelectEvent(event)}
                 onSelectSlot={handleSelect}
                 messages={{
                     next: "-->",
