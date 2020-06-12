@@ -34,7 +34,8 @@ const ReservationTableOwner = () => {
         reservationsfield,
         getReservationsByField,
         addReservation ,
-        deleteReservation
+        deleteReservation,
+        updateReservationStatus
     } = reservationsContext;
 
     const establishmentsContext = useContext(establishmentContext);
@@ -56,6 +57,13 @@ const ReservationTableOwner = () => {
 
         const nombre = window.prompt('Su nombre: ');
 
+        let estado_res='';
+        if(!id_res.estado){
+            estado_res='Pendiente';
+        }else{
+            estado_res='Aprobada';
+        }
+
         if (nombre) {
             reservation.field_id = selected_field._id;
             setReservation({
@@ -64,7 +72,8 @@ const ReservationTableOwner = () => {
                 end,
                 title: nombre,
                 field_id: selected_field._id, // id de la cancha actual
-                user_id: user._id //id del usuario actual
+                user_id: user._id, //id del usuario actual
+                
             });
             addReservation({
                 ...reservation,
@@ -72,7 +81,7 @@ const ReservationTableOwner = () => {
                 end,
                 title: nombre,
                 field_id: selected_field._id, // id de la cancha actual
-                user_id: user._id //id del usuario actual
+                user_id: user._id, //id del usuario actual 
             });
         }
 
@@ -83,13 +92,46 @@ const ReservationTableOwner = () => {
 
     const eventStyleGetter = (event, start, end, isSelected) => {
         //var backgroundColor = '#' + event.hexColor;
-        const style = {
-            backgroundColor: 'red',
+        let style = {};
+        reservationsfield.map((reservation) => {
+            if(reservation.estado === true ){
+                style = {
+                    backgroundColor: 'yellow',
+                    borderRadius: '2px',
+                    opacity: 0.9,
+                    color: 'black',
+                    border: '1px solid black',
+                    fontWeight: 'bold',
+                    height: '50%'
+                };
+                
+            }else{
+                style = {
+                    backgroundColor: 'yellow',
+                    borderRadius: '2px',
+                    opacity: 0.9,
+                    color: 'black',
+                    border: '1px solid black',
+                    fontWeight: 'bold',
+                    height: '50%'
+                };
+            }
+            
+        })
+        /*if(!reservation.estado) { 
+            color='yellow';
+        }else {
+            color='green';
+        }*/
+        /*const style = {
+            backgroundColor: color,
             borderRadius: '2px',
             opacity: 0.9,
-            color: 'white',
+            color: 'black',
             border: '1px solid black',
-        };
+            fontWeight: 'bold',
+            height: '50%'
+        };*/
         return {
             style: style
         };
@@ -97,6 +139,7 @@ const ReservationTableOwner = () => {
 
     useEffect(() => {
         getReservationsByField(selected_field._id);
+        
     }, []);
 
 
@@ -114,11 +157,29 @@ const ReservationTableOwner = () => {
 
   const handleDelete = (id) => {
     deleteReservation(id);
-    console.log(id);
+    //console.log(id);
     getReservationsByField(selected_field._id);
     setShow(false)
     
-}
+    }
+  const handleChangeStatusRes = (id) => {
+
+    //getReservationsByField(selected_field._id);
+
+    /*reservationsfield.map(reservation => reservation._id === id 
+        ? setReservation({estado:true})  : reservation)*/
+
+    
+
+    updateReservationStatus(id);
+
+    // console.log(id_reserva);
+
+    setShow(false)
+
+  }
+
+       console.log(reservationsfield);
     
     return ( 
         <Fragment>
@@ -156,7 +217,7 @@ const ReservationTableOwner = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <Button type="button" className="btn btn-success" variant="secondary" onClick={handleClose}>
+                        <Button type="button" className="btn btn-success" variant="secondary" onClick={() => {handleChangeStatusRes(id_reserva)}}>
                             Aceptar
                         </Button>
                     </div>

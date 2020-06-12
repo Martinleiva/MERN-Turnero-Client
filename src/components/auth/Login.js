@@ -4,6 +4,7 @@ import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 import Header from '../../components/inicio/Header';
 import Footer from '../../components/inicio/Footer';
+import Spinner from '../common/Spinner';
 
 const Login = (props) => {
 
@@ -14,18 +15,23 @@ const Login = (props) => {
     const authContext = useContext(AuthContext);
     const { message, authenticated, type_usr, startSession } = authContext;
 
+    const [loading, setLoading] = useState(false);
+
     // In case of the user has been authenticated or registred or duplicate register 
     useEffect( () => {
 
-        if(authenticated && type_usr === 'Cliente') {          
-            props.history.push('/dash-client'); // Screen user authenticated
+        if(authenticated && type_usr === 'Cliente') {
+            setLoading(false);          
+            props.history.push('/client-search'); // Screen user authenticated
         } 
 
         if (authenticated && type_usr === 'Dueño') {
+            setLoading(false);
             props.history.push('/my-establishments');
         }
 
         if(message) {
+            setLoading(false);
             showAlert(message.msg, message.category);
         }
 
@@ -48,11 +54,13 @@ const Login = (props) => {
 
     const onSubmit = e => {
         e.preventDefault();
+        setLoading(true);
         
         //verify if email and user are not empty
         if(email.trim() === '' || password.trim() === ''){
             
             showAlert('Todos los campos son obligatorios!', 'alert-danger');
+            setLoading(false);
             return;
         }
 
@@ -63,8 +71,11 @@ const Login = (props) => {
     return (
         <Fragment>
             <Header />
-            <div className="div-form-signin">  
+            <div className="div-form-signin">                  
                 <div className="contenedor-form-signin polaroid">
+                    {
+                        loading ? <Spinner/> : null
+                    }
                     <form 
                         className="form-login"
                         onSubmit={onSubmit}

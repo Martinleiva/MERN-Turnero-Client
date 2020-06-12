@@ -5,7 +5,7 @@ import MyReservationOwner from './MyReservationOwner';
 
 import AuthContext from '../../../context/authentication/authContext';
 import EstablishmentContext from '../../../context/establishment/establishmentContext';
-import ModalNewRes from '../../establishment/client/ModalNewRes';
+//import ModalNewRes from '../../establishment/client/ModalNewRes';
 
 const ReservationOwner = () => {
 

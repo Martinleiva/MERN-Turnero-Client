@@ -1,6 +1,6 @@
 import React, { useContext, Fragment, useEffect } from 'react';
 import EstablishmentContext from '../../../context/establishment/establishmentContext';
-import EstablishmentTable from '../../establishment/client/EstablishmentTable';
+//import EstablishmentTable from '../../establishment/client/EstablishmentTable';
 import ReservationTableOwner from './ReservationTableOwner';
 
 import ReservationContext from '../../../context/reservations/reservationContext';

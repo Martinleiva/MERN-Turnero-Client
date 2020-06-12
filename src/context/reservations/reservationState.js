@@ -8,7 +8,8 @@ import 'moment/locale/es.js';
 import { 
     GET_RESERVATIONS_FIELD, 
     ADD_RESERVATION,
-    DELETE_RESERVATION } from '../types';
+    DELETE_RESERVATION,
+    ESTATUS_RESERVATION } from '../types';
 
 const ReservationState = props => {
     const initialState = {
@@ -39,8 +40,6 @@ const ReservationState = props => {
                 reservation.end = moment(reservation.end).toDate();
                 return(reservation);
             }); //Format dates for each reservation to display in calendar
-    
-            console.log(reservations);
 
             dispatch({
                 type: GET_RESERVATIONS_FIELD,
@@ -84,6 +83,23 @@ const ReservationState = props => {
 
     }
 
+    // Change the status of the reservation
+    const updateReservationStatus = async id => {
+        try {
+            //const resultado = await AxiosClient.put(`/api/reservation/${reservation._id}`, reservation);
+            //console.log(resultado);
+            await AxiosClient.put(`/api/reservation/${id}`);
+
+            dispatch({
+                type: ESTATUS_RESERVATION,
+                //payload: resultado.data.reservation
+                payload: id
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     return (
         <ReservationContext.Provider
@@ -92,7 +108,8 @@ const ReservationState = props => {
                 reservationsfield: state.reservationsfield,
                 getReservationsByField,
                 addReservation,
-                deleteReservation
+                deleteReservation,
+                updateReservationStatus
             }}
         >
             {props.children}

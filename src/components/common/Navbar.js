@@ -1,13 +1,23 @@
 import React, {useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../../img/logo-turnero5.png';
 
 import AuthContext from '../../context/authentication/authContext';
+import EstablishmentContext from '../../context/establishment/establishmentContext';
 
 const Navbar = () => {
 
     //Extract the information from authentication
     const authContext = useContext(AuthContext);
-    const { user, setAuthenticatedUser, logOut } = authContext;    
+    const { user, type_usr, setAuthenticatedUser, logOut } = authContext; 
+
+    const establishmentContext = useContext(EstablishmentContext);
+    const {cleanEstablishmentData} = establishmentContext;
+    
+    const handleLogOut = () => {
+        cleanEstablishmentData();
+        logOut();
+    }
 
     useEffect(() => {
         setAuthenticatedUser();
@@ -15,33 +25,60 @@ const Navbar = () => {
 
     return (
         <div> 
-            <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-                <a className="navbar-brand" href="#">Tu Cancha Ya!</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon" />
-                </button>
-                <div className="collapse navbar-collapse" id="navbarColor01">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#/">Ir al inicio<span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item active">
-                            <Link className="nav-link" to={''}>Reservas</Link>
-                        </li>
-                        <li className="nav-item active">
-                            <Link className="nav-link" to={'/dash-client'}>Complejos</Link>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#/">Mi cuenta</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" onClick={() => logOut()}  href="#/">Cerrar sesion</a>                            
-                        </li>
-                    </ul>
-                    <form className="form-inline my-2 my-lg-0">
-                        <input className="form-control mr-sm-2" type="text" placeholder="Buscar por deporte" />
-                        <button className="btn btn-secondary mx-4" type="submit">Buscar</button>
-                    </form>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light nav-bar-custom">
+                <div className="container">
+                    <Link to={'/'}>
+                        <img src={Logo} className="rounded float-left logo" alt="..."/>
+                    </Link> 
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon" />
+                    </button>              
+                    <div className="collapse navbar-collapse" id="navbarColor01">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item active">
+                                <a className="nav-link" href="#/">Acerca de<span className="sr-only">(current)</span></a>
+                            </li>                            
+                            {
+                             type_usr === 'Dueño' 
+                                ?
+                                <>
+                                 <li className="nav-item active">
+                                    <Link className="nav-link" to={'/reservas'}>Reservas</Link>
+                                  </li> 
+                                 <li className="nav-item active">
+                                    <Link className="nav-link" to={'/my-establishments'}>Mis complejos</Link>
+                                  </li>
+                                </>  
+                                : 
+                                <> 
+                                  <li className="nav-item active">
+                                    <Link className="nav-link" to={'/client-search'}>Buscá una cancha</Link>
+                                  </li>
+                                  <li className="nav-item active">
+                                    <a className="nav-link" href="#/">Tus reservas</a>
+                                  </li>
+                                </>                                    
+                            }                                                                                                             
+                        </ul>
+
+                        <ul className="navbar-nav">
+                           
+                            <li className="nav-item nav-item-user-log">
+                                <p>{user ? user.names : ''}</p>
+                            </li>
+                                                      
+                            <li className="nav-item dropdown">                                    
+                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="https://www.show.news/__export/1567201752167/sites/debate/img/2019/08/30/gato_png_crop1567201738546.jpg_554688468.jpg" width={45} height={40} className="rounded-circle" />
+                                    </a>
+                                    <div className="dropdown-menu dropdown-menu-logo" aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" onClick={handleLogOut} href="#">Mi Cuenta</a>
+                                        <a className="dropdown-item" onClick={handleLogOut} href="#">Cerrar Sesión</a>                                        
+                                    </div>
+                            </li>
+                        </ul>
+                        
+                    </div>                    
                 </div>
             </nav>            
         </div>

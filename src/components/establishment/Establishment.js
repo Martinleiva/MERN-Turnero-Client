@@ -100,7 +100,7 @@ const Establishment = ({establishment}) => {
                         <p className="card-text"><attr>Servicios: </attr>
                             {
                                 establishment.services.map(service => (
-                                    <span className="badge badge-success mr-2">{service.description}</span>
+                                    <span className="badge badge-success mr-2"  key={service._id}>{service.description}</span>
                                 ))
                             }                                                                
                         </p>
