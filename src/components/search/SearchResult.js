@@ -1,12 +1,18 @@
 import React, {useContext, Fragment, useEffect, useState} from 'react';
-import Header from '../common/Header';
+import PrivateHeader from '../common/Header';
+import PublicHeader from '../inicio/Header';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
+import AuthContext from '../../context/authentication/authContext';
 import FieldResult from './FieldResult';
 import Spinner from '../common/Spinner';
 
 import ModalReservation from '../reservation/client/ModalReservation';
 
-const SearchResult = () => {
+const SearchResult = (props) => {
+
+
+    const authContext = useContext(AuthContext);
+    const { user } = authContext; 
 
     const establishmentContext = useContext(EstablishmentContext);    
     const { listOfTypesSports, listOfTypesGrounds, listOfServices, listOfSearchedFields, 
@@ -36,27 +42,42 @@ const SearchResult = () => {
             lighted,
             'services' : selectedServices
         }
-
+        localStorage.setItem('filters', JSON.stringify(filters));        
         getFieldsByFilters(filters);
     }
 
     useEffect(()=> {
+        let filtros = localStorage.getItem('filters');
+        if(filtros) {
+            filtros = JSON.parse(filtros);
+        }
+
         const search_sport_type = localStorage.getItem('search_sport_type');
-        if(search_sport_type){            
-            getTypesOfSports();
-            getTypesOfGrounds(); 
-            getServices();
+        
+        getTypesOfSports();
+        getTypesOfGrounds(); 
+        getServices();
+        setGround_type('all');            
+        if(search_sport_type && !filtros){                        
             getFieldsBySportType(search_sport_type);
-            setSport_type(search_sport_type);
-            setGround_type('all');            
+            setSport_type(search_sport_type);            
+        }
+
+        if(filtros) {
+            setSelectedServices(filtros.services);
+            setSport_type(filtros.sport_type);
+            setGround_type(filtros.ground_type);
+            setLighted(filtros.lighted);
+            setRoofed(filtros.roofed);
+            getFieldsByFilters(filtros);
         }        
+        //eslint-disable-next-line
     }, []);
 
-    return (
-        <Fragment>
-            <Header/>
-            <div className="container container-search"> 
-
+    return (            
+            <Fragment>                                   
+            {user ? <PrivateHeader/> : <PublicHeader/>}         
+            <div className="container container-search">                 
                 <aside className="aside-search-fields">                   
                     <h4>Filtrar</h4> 
                     
@@ -66,7 +87,7 @@ const SearchResult = () => {
 
                             <select id="inputSportType" 
                                     className="form-control"
-                                    value={sport_type == '' ? localStorage.getItem('search_sport_type') : sport_type}
+                                    value={sport_type === '' ? localStorage.getItem('search_sport_type') : sport_type}
                                     onChange={(e) => { setSport_type(e.target.value) }}                                            
                                     >                                        
                                     {
@@ -105,6 +126,7 @@ const SearchResult = () => {
                                         <input type="checkbox" 
                                                className="custom-control-input" 
                                                id={`service${service._id}`} 
+                                               checked={selectedServices.includes(service._id)}
                                                onClick={(e)=>handleAddService(service, e.target.checked)}/>
                                         <label className="custom-control-label" htmlFor={`service${service._id}`}>{service.description}</label>
                                     </div>
@@ -151,7 +173,8 @@ const SearchResult = () => {
                         ?           
                             listOfSearchedFields.map(fieldResult => (
                             <FieldResult
-                                fieldResult={fieldResult}                                        
+                                fieldResult={fieldResult}
+                                history={props.history}                                        
                             />                        
                         ))
                         :  <Spinner/>                                                                        

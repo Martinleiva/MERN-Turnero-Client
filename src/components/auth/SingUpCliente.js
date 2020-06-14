@@ -27,7 +27,7 @@ const SingUpCliente = (props) => {
             console.log('desde msg');
             
         }
-
+        //eslint-disable-next-line
     }, [message, authenticated, props.history]);
 
     //State for singup

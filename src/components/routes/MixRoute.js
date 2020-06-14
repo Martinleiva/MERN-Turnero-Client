@@ -1,24 +1,25 @@
 import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import AuthContext from '../../context/authentication/authContext';
-import Spinner from '../common/Spinner';
 
 const PrivateRouteClient = ({ component: Component, ...props }) => {
 
     const authContext = useContext(AuthContext);
     const { authenticated, loading, type_usr, setAuthenticatedUser } = authContext;
 
-    useEffect(()=>{
-        setAuthenticatedUser();
-        //eslint-disable-next-line
+    useEffect(()=>{  
+        if(localStorage.getItem('token')){
+            setAuthenticatedUser();                
+        }         
+        //eslint-disable-next-line             
     }, []);
 
     return (                     
-        <Route {...props} render={ props => 
+        <Route {...props} render={ props =>                
                 
-               !loading
+                !loading
                 ?             
-                    !authenticated 
+                    !authenticated
                         ? 
                         <Redirect to={'/'} />
                         : 
@@ -29,7 +30,8 @@ const PrivateRouteClient = ({ component: Component, ...props }) => {
                                 :
                                 <Component {...props} />
                         )
-                : <Spinner/>        
+                :
+                <Component {...props} />                
         }            
         />                
     );

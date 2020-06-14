@@ -9,20 +9,15 @@ import SingUpCliente from './components/auth/SingUpCliente';
 import SingUpDuenio from './components/auth/SingUpDuenio';
 import ClientSearch from './components/search/ClientSearch';
 import SearchResult from './components/search/SearchResult';
-//import DashOwner from './components/usuarios/DashOwner';
-import MyEstablishments from './components/establishment/MyEstablishments';
-import ReservationOwner from './components/reservation/owner/ReservationOwner';
-import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
-import PrivateRouteClient from './components/routes/PrivateRouteClient';
-import PrivateRoute from './components/routes/PrivateRoute';
-import DashClient from './components/usuarios/DashClient';
 import DashOwner from './components/usuarios/DashOwner';
-//import ReservationClient from './components/reservation/client/ReservationClient';
-import ContainerOwner from './components/usuarios/ContainerOwner';
+import MyEstablishments from './components/establishment/MyEstablishments';
+import DashClient from './components/usuarios/DashClient';
+import ReservationClient from './components/reservation/client/ReservationClient';
 
 //Private Routes
-//import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
-//import PrivateRouteClient from './components/routes/PrivateRouteClient';
+import PrivateRouteOwner from './components/routes/PrivateRouteOwner';
+import PrivateRouteClient from './components/routes/PrivateRouteClient';
+import MixRoute from './components/routes/MixRoute';
 
 //Context
 import AlertState from './context/alerts/alertState';
@@ -34,29 +29,30 @@ import AuthState from './context/authentication/authState';
 function App() {
   
   return (
-    <AlertState>      
+    <AlertState>  
       <ModalState>
-        <EstablishmentState>
-          <ReservationState>                    
-            <AuthState>
-              <Router>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/singup" component={SingUp} />
-                  <Route exact path="/singup-client" component={SingUpCliente} />
-                  <Route exact path="/singup-duenio" component={SingUpDuenio} />
-                  <PrivateRouteClient exact path="/dash-client" component={DashClient} />
-                  {/*<PrivateRouteClient exact path="/res-client" component={ReservationClient} />*/}
-                  <PrivateRouteOwner exact path="/res-owner" component={ReservationOwner} />
-                  {/*<PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />*/}
-                  <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
-                </Switch>
-              </Router>
-            </AuthState>        
-          </ReservationState> 
-        </EstablishmentState>       
-      </ModalState>             
+      <EstablishmentState> 
+      <ReservationState>                    
+          <AuthState>
+            <Router>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/singup" component={SingUp} />
+                <Route exact path="/singup-client" component={SingUpCliente} />
+                <Route exact path="/singup-duenio" component={SingUpDuenio} />
+                <PrivateRouteClient exact path="/dash-client" component={DashClient} />
+                <PrivateRouteClient exact path="/client-search" component={ClientSearch} />
+                <MixRoute exact path="/search-result" component={SearchResult} />
+                <Route exact path="/res-client" component={ReservationClient} />
+                <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
+                <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
+              </Switch>
+            </Router>
+          </AuthState>   
+        </ReservationState>      
+      </EstablishmentState> 
+      </ModalState>                   
     </AlertState>    
   );
 }

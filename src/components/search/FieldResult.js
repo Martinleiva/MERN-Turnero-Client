@@ -11,13 +11,15 @@ import Security from '@material-ui/icons/Security';
 import MeetingRoom from '@material-ui/icons/MeetingRoom';
 import DriveEta from '@material-ui/icons/DriveEta';
 
+import AuthContext from '../../context/authentication/authContext';
+
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 
 import ReservationContext from '../../context/reservations/reservationContext';
 
 import ModalContext from '../../context/modal/modalContext';
 
-const FieldResult = ({fieldResult}) => {
+const FieldResult = ({fieldResult, history}) => {   
 
     const icons = {
         '5e8753e27086622ea490f158' : <p data-toggle="tooltip" title="WiFi"> <Wifi style={{ fontSize: 18 }}/> </p>,
@@ -39,7 +41,16 @@ const FieldResult = ({fieldResult}) => {
     const reservationContext = useContext(ReservationContext); 
     const { getReservationsByField } = reservationContext;
 
+    const authContext = useContext(AuthContext);
+    const { user } = authContext;
+
     const selectEstablisment = (field) => {
+
+        if(!user) {
+            history.push('/login');            
+            return;
+        }
+
         handleShow(); //Open modal
 
         setSelectedEstablishment(field.establishment);
@@ -101,7 +112,6 @@ const FieldResult = ({fieldResult}) => {
 
                 </div>
 
-                                                                                                
             </div>
                                   
         </div>

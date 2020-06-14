@@ -19,6 +19,7 @@ const ModalNewField = () => {
     const [loading, setLoading] = useState(false);             
 
     const [name, setName] = useState('');
+    //eslint-disable-next-line
     const [establishment, setEstablishment] = useState(null);
     const [sport_type, setSport_type] = useState('');
     const [ground_type, setGround_type] = useState('');
@@ -90,7 +91,8 @@ const ModalNewField = () => {
     useEffect(()=> {
         if(alert_message){
             showAlert(alert_message.msg, alert_message.category);
-        }                 
+        }      
+        //eslint-disable-next-line           
     }, [alert_message]);
 
     useEffect (() => {
@@ -113,6 +115,7 @@ const ModalNewField = () => {
 
             setEditionMode(true);            
         }
+        //eslint-disable-next-line
     }, [selected_field]);
 
     const cleanState = () => {

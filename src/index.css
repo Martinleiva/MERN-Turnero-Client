@@ -151,7 +151,7 @@ body {
   width: 100%;
   padding: 0.3rem 2rem 0.3rem 2rem;  
   background-color: white;
-  margin: 0 0 8rem 0;
+  margin: 0 0 0 0;
   /* font-family: 'Verdana'; */
   font-style: normal;
   /* font-family: 'Century Gothic'; */
@@ -607,6 +607,18 @@ table td:hover{
   } 
 }
 
+.header-home {
+  background-image: url('./img/estadio.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
+
+.header-home .container {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  margin-bottom: 3rem;
+}
+
 .header-search-files {
   background-image: url('./img/estadio.jpg');
   background-repeat: no-repeat;
@@ -1056,7 +1068,8 @@ table td:hover{
   background: #677c37;
 }
 
-/* Calendar*/
-.rbc-event-label {
-  font-size: 110%;
+.nav-bar-log-user {
+  display: flex !important;
+  justify-content: flex-end !important;
+  flex-direction: row !important;
 }
