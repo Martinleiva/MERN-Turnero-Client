@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, Fragment} from 'react';
-import HeaderOwner from '../../common/HeaderOwner';
+//import HeaderOwner from '../../common/HeaderOwner';
+import Header from '../../common/Header';
 import Footer from '../../inicio/Footer';
 import MyReservationOwner from './MyReservationOwner';
 
@@ -24,7 +25,7 @@ const ReservationOwner = () => {
 
     return ( 
         <Fragment>
-            <HeaderOwner />
+            <Header/>
             <h1>Reservas Dueño</h1>
 
             <MyReservationOwner />

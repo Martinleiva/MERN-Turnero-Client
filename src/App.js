@@ -10,6 +10,7 @@ import SingUpDuenio from './components/auth/SingUpDuenio';
 import ClientSearch from './components/search/ClientSearch';
 import SearchResult from './components/search/SearchResult';
 import DashOwner from './components/usuarios/DashOwner';
+import ReservationOwner from './components/reservation/owner/ReservationOwner';
 import MyEstablishments from './components/establishment/MyEstablishments';
 import DashClient from './components/usuarios/DashClient';
 import ReservationClient from './components/reservation/client/ReservationClient';
@@ -47,6 +48,7 @@ function App() {
                 <Route exact path="/res-client" component={ReservationClient} />
                 <PrivateRouteOwner exact path="/dash-owner" component={DashOwner} />
                 <PrivateRouteOwner exact path="/my-establishments" component={MyEstablishments} />
+                <PrivateRouteOwner exact path="/res-owner" component={ReservationOwner} />
               </Switch>
             </Router>
           </AuthState>   

@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import HeaderOwner from '../common/HeaderOwner';
+//import HeaderOwner from '../common/HeaderOwner'; mauro
+import Header from '../common/Header';
 import Establishment from './Establishment';
 import EstablishmentContext from '../../context/establishment/establishmentContext';
 import ModalNewField from './ModalNewField';
@@ -55,7 +56,8 @@ const MyEstablishments = () => {
 
     return ( 
         <Fragment>
-            <HeaderOwner />
+            {/*<HeaderOwner /> mauro*/} 
+            <Header />
             <div className="container container-establishments"> 
 
                 <div className="header-my-establishment">

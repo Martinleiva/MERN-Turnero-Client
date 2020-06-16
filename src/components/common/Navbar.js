@@ -44,7 +44,7 @@ const Navbar = () => {
                                 ?
                                 <>
                                  <li className="nav-item active">
-                                    <Link className="nav-link" to={'/reservas'}>Reservas</Link>
+                                    <Link className="nav-link" to={'/res-owner'}>Reservas</Link>
                                   </li> 
                                  <li className="nav-item active">
                                     <Link className="nav-link" to={'/my-establishments'}>Mis complejos</Link>
