@@ -39,7 +39,7 @@ const ReservationTableOwner = () => {
     } = reservationsContext;
 
     const establishmentsContext = useContext(establishmentContext);
-    const { selected_field } = establishmentsContext;
+    const { selected_field, selected_stablishment } = establishmentsContext;
 
     const authContext = useContext(AuthContext);
     const { user } = authContext;
@@ -70,18 +70,24 @@ const ReservationTableOwner = () => {
                 ...reservation,
                 start,
                 end,
-                title: nombre,
+                title: user.names,
                 field_id: selected_field._id, // id de la cancha actual
+                fieldName: selected_field.name,
+                establishment: selected_stablishment.name,
                 user_id: user._id, //id del usuario actual
+                state: 'Pendiente'
                 
             });
             addReservation({
                 ...reservation,
                 start,
                 end,
-                title: nombre,
+                title: user.names,
                 field_id: selected_field._id, // id de la cancha actual
-                user_id: user._id, //id del usuario actual 
+                fieldName: selected_field.name,
+                establishment: selected_stablishment.name,
+                user_id: user._id, //id del usuario actual
+                state: 'Pendiente' 
             });
         }
 
